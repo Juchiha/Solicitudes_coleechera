@@ -6,7 +6,7 @@
 	{
 		
 		static public function ctrPlantilla(){
-            if(isset($_SESSION['SessionWorky']) && $_SESSION['SessionWorky'] == 'ok'){
+            if(isset($_SESSION['SessionSeguimientos']) && $_SESSION['SessionSeguimientos'] == 'ok'){
                 include "views/plantilla.php";
             }else{
                 include "views/modulos/login/login.php";

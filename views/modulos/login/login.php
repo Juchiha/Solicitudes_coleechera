@@ -44,13 +44,13 @@
                                     </div>
                                     <form method="post" class="user">
                                         <div class="form-group">
-                                            <input type="email" required="true" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Correo" name="ingCorreo">
+                                            <input type="text" required="true" class="form-control form-control-user"
+                                                id="usu_usuario_v" aria-describedby="emailHelp"
+                                                placeholder="Usuario" name="usu_usuario_v">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" required="true" placeholder="Contraseña" name="ingPassword"> 
+                                                id="usu_password_v" required="true" placeholder="Contraseña" name="usu_password_v"> 
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

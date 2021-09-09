@@ -7,33 +7,33 @@
 		
 		public static function inicoSession(){
 			//Validamos que vengan los campos
-			if(isset($_POST['ingCorreo']) && isset($_POST['ingPassword'])){
+			if(isset($_POST['usu_usuario_v']) && isset($_POST['usu_password_v'])){
 				/*Validamos que no intenten hacer Inyeccion sql o meter caracteres extraños */
-				if($_POST['ingCorreo'] != '' && $_POST['ingPassword'] != ''){
+				if($_POST['usu_usuario_v'] != '' && $_POST['usu_password_v'] != ''){
 						
-						$item 	= "usu_correo_v";
-						$valor	= $_POST['ingCorreo'];
+						$item 	= "usu_usuario_v";
+						$valor	= $_POST['usu_usuario_v'];
 						//Encriptamos la contraseña
-						$pass = crypt($_POST['ingPassword'], '$2a$07$usesomesillystringforsalt$');
+						$pass = md5($_POST['usu_password_v']);
 						//Mandamos a preguntar la información
 						$respuesta = ModeloAuth::getDatosUsuarioLogin($item, $valor);
 						
-						if($respuesta['usu_correo_v'] == $_POST['ingCorreo'] && $respuesta['user_password'] == $pass){
+						if($respuesta['usu_usuario_v'] == $_POST['usu_usuario_v'] && $respuesta['usu_password_v'] == $pass){
 
-							$imagen = 'views/assets/img/usuarios/default/anonymous.png';
-							$_SESSION['SessionWorky'] 				= 'ok';
-							$_SESSION['codigo']						= $respuesta['user_id'];
+							//$imagen = 'views/assets/img/usuarios/default/anonymous.png';
+							$_SESSION['SessionSeguimientos'] 		= 'ok';
+							$_SESSION['codigo']						= $respuesta['usu_password_v'];
+							$_SESSION['nombres'] 					= $respuesta['usu_usuario_v'].' '.$respuesta['user_apellidos'];
 							$_SESSION['perfil']						= $respuesta['user_perfil_id'];
-							$_SESSION['nombres'] 					= $respuesta['user_nombre'].' '.$respuesta['user_apellidos'];
-							$_SESSION['correo'] 					= $respuesta['usu_correo_v'];
-							$_SESSION['cliente_id']					= $respuesta['user_cliente_id'];
+							//$_SESSION['correo'] 					= $respuesta['usu_usuario_v'];
+							$_SESSION['bnco_id']					= $respuesta['usu_banco_i'];
 							$_SESSION['idSession'] 					= Time().rand();
 
 
 							/*=============================================
 								REGISTRAR FECHA PARA SABER EL ÚLTIMO LOGIN, AUDIORIA
 							=============================================*/
-							date_default_timezone_set('America/Bogota');
+							/*date_default_timezone_set('America/Bogota');
 							$fecha = date('Y-m-d');
 							$hora = date('H:i:s');
 							$fechaActual = $fecha.' '.$hora;
@@ -43,16 +43,16 @@
 							$item2 = "user_id";
 							$valor2 = $respuesta["user_id"];
 							/*Enviamos la carga de informacion para guardar la ultima vez que esta persona se logeo en el sistema */
-							$ultimoLogin = ModeloAuth::actualizarUsuarioPostLogin('gi_usuario', $item1, $valor1, $item2, $valor2);
+							/*$ultimoLogin = ModeloAuth::actualizarUsuarioPostLogin('sc_usuarios', $item1, $valor1, $item2, $valor2);
 							if($ultimoLogin == "ok"){
 								/*No paso nada y guardo todo bien, la mandamos al inicio*/
 								echo '<script>
 										window.location = "dashboard";
 									</script>';
-							}else{
+							/*}else{
 								var_dump($ultimoLogin);
 								/*ALgo paso y no actualizo el campo de fecha del ultimo login*/
-							}
+							//}
 							
 						}else{
 							echo "<br>";

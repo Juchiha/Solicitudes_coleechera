@@ -33,7 +33,7 @@
 			$stmt->bindParam(":usu_password_v", $datos['usu_password_v'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
-				return $pdo->lastInsertId();
+				return 'ok';
 			}else{
 				self::logError('2404', "Error insertando usuario.modelo.php => " + $stmt->errorInfo());
 				return 'error';
