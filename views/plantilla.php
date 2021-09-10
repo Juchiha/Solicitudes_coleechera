@@ -62,6 +62,11 @@ echo '
                 case 'salir':
                     include "modulos/salir.php";
                     break;
+
+                case 'usuarios':
+                    include "modulos/usuarios/index.php";
+                    echo "<script>$('#usuarios').addClass('active');</script>";
+                    break;  
             }
         }else{
             include "modulos/dashboard/index.php";

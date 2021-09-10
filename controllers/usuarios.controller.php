@@ -14,6 +14,8 @@
 				$datos = array(
 					'usu_tip_doc_id_i' 		=> $_POST['usu_tip_doc_id_i_i'], 
 					'usu_documento_v' 		=> $_POST['usu_documento_v_i'],
+					'usu_nombre_v' 		=> $_POST['usu_nombre_v_i'],
+					'usu_apellido_v' 		=> $_POST['usu_apellido_v_i'],
 					'usu_per_id_i'  		=> $_POST['usu_per_id_i_i'],
 					'usu_est_id_i'			=> $_POST['usu_est_id_i_i'],
 					'usu_banco_i' 			=> $_POST['usu_banco_i_i'],
@@ -49,6 +51,8 @@
 				$datos = array(
 					'usu_tip_doc_id_i' 		=> $_POST['usu_tip_doc_id_i_e'], 
 					'usu_documento_v' 		=> $_POST['usu_documento_v_e'],
+					'usu_nombre_v' 			=> $_POST['usu_nombre_v_e'],
+					'usu_apellido_v' 		=> $_POST['usu_apellido_v_e'],
 					'usu_per_id_i'  		=> $_POST['usu_per_id_i_e'],
 					'usu_est_id_i'			=> $_POST['usu_est_id_i_e'],
 					'usu_banco_i' 			=> $_POST['usu_banco_i_e'],
@@ -77,10 +81,9 @@
 		*}
 		**/	
 		public static function deleteDatos(){
-		if(isset($_POST['usu_id_i'])){ 
-			$datos = $_POST["usu_id_i"];
-				);
-			$respuesta = UsuarioModelo::deleteDatos($datos);
+			if(isset($_POST['usu_id_i'])){ 
+				$datos = $_POST["usu_id_i"];
+				$respuesta = UsuarioModelo::deleteDatos($datos);
 				if($respuesta == "ok"){
 					return json_encode(array('code' => 1, 'message' => 'Usuario Eliminado con exito'));
 				}else{	

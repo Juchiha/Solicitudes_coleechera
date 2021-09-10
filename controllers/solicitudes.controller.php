@@ -12,9 +12,9 @@
 					'sol_nombre_solicitante_v'		=> $_POST['sol_nombre_solicitante_v_i'],
 					'sol_hora_cita_v' 				=> $_POST['sol_hora_cita_v_i'],//pendiente
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_i'],
-					'sol_orden_trabajo'				=> $_POST['sol_orden_trabajo_i'])
-					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'])
-					'sol_est_id_i'					=> $_POST['sol_est_id_i'])
+					'sol_orden_trabajo'				=> $_POST['sol_orden_trabajo_i'],
+					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
+					'sol_est_id_i'					=> $_POST['sol_est_id_i']
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
@@ -48,10 +48,10 @@
 					'sol_nombre_solicitante_v'		=> $_POST['sol_nombre_solicitante_v_e'],
 					'sol_hora_cita_v' 				=> $_POST['sol_hora_cita_v_e'],
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_e'],
-					'sol_orden_trabajo'				=> $_POST['sol_orden_trabajo_e'])
-					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_e'])
-					'sol_est_id_i'					=> $_POST['sol_est_id_e'])
-					'sol_id_i'						=> $_POST['sol_id_i_e'])
+					'sol_orden_trabajo'				=> $_POST['sol_orden_trabajo_e'],
+					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_e'],
+					'sol_est_id_i'					=> $_POST['sol_est_id_e'],
+					'sol_id_i'						=> $_POST['sol_id_i_e']
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
@@ -72,13 +72,12 @@
 		*}
 		**/	
 		public static function deleteDatos(){
-		if(isset($_POST['sol_id_i'])){ 
-			$datos = $_POST["sol_id_i"];
-				);
-			$respuesta = SolicitudesModelo::deleteDatos($datos);
+		    if(isset($_POST['sol_id_i'])){ 
+			    $datos = $_POST["sol_id_i"];
+			    $respuesta = SolicitudesModelo::deleteDatos($datos);
 				if($respuesta == "ok"){
 					return json_encode(array('code' => 1, 'message' => 'Solicitud Eliminada con exito'));
-				}else{	
+			    }else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no Eliminada'));
 				}
 			}

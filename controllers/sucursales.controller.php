@@ -65,14 +65,14 @@
 		*}
 		**/	
 		public static function deleteDatos(){
-		if(isset($_POST['suc_id_id'])){ 
-			$datos = $_POST["suc_id_id"];
-				);
-			$respuesta = SucursalModelo::deleteDatos($datos);
-				if($respuesta == "ok"){
-					return json_encode(array('code' => 1, 'message' => 'Usuario Eliminado con exito'));
-				}else{	
-					return json_encode(array('code' => 0, 'message' => 'Usuario no Eliminado'));
+			if(isset($_POST['suc_id_id'])){ 
+				$datos = $_POST["suc_id_id"];
+				$respuesta = SucursalModelo::deleteDatos($datos);
+					if($respuesta == "ok"){
+						return json_encode(array('code' => 1, 'message' => 'Usuario Eliminado con exito'));
+					}else{	
+						return json_encode(array('code' => 0, 'message' => 'Usuario no Eliminado'));
+					}
 				}
 			}
 		}
