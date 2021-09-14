@@ -67,6 +67,11 @@ echo '
                     include "modulos/usuarios/index.php";
                     echo "<script>$('#usuarios').addClass('active');</script>";
                     break;  
+
+                     case 'sucursales':
+                    include "modulos/sucursales/index.php";
+                    echo "<script>$('#sucursales').addClass('active');</script>";
+                    break; 
             }
         }else{
             include "modulos/dashboard/index.php";

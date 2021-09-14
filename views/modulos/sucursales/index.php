@@ -4,7 +4,7 @@
 ?>
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  	<h1 class="h3 mb-0 text-gray-800">Usuarios Registrados</h1>
+  	<h1 class="h3 mb-0 text-gray-800">Registrar Sucursales</h1>
 
   	<!--<a href="#" data-toggle="modal" data-target="#modalEmpresaNueva" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
     	<i class="fas fa-plus fa-sm text-white-50"></i> 
@@ -20,7 +20,7 @@
         <a class="dropdown-item eliminarDoc" href="#" data-toggle="modal" data-target="#modalCarpetaNueva">
         	Nueva Carpeta
     	</a>
-        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarUsarios">
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarSucursales">
         	Subir Archivo
     	</a>
     </div>
@@ -29,7 +29,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Datos de los usuarios</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Datos de las sucursales</h6>
         </div>
         <div class="card-body">
         	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -57,12 +57,12 @@
 </div>
 
 <!-- nuevo usuario -->
-<div class="modal" tabindex="-1" role="dialog" id="modalIngresarUsarios">
+<div class="modal" tabindex="-1" role="dialog" id="modalIngresarSucursales">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<form id="nuevaEmpresa" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Ingreso de Usuarios</h5>
+					<h5 class="modal-title">Ingreso de Sucursales</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -158,7 +158,7 @@
 
 <!--edicion de usuarios-->
 
-<div class="modal" tabindex="-1" role="dialog" id="modalActualizarUsuarios">
+<div class="modal" tabindex="-1" role="dialog" id="modalActualizarSucursales">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<form id="nuevaEmpresa" autocomplete="off" method="post" enctype="multipart/form-data">

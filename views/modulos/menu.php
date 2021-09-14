@@ -31,6 +31,14 @@
         </a>
     </li>
 
+<!-- Menu  Sucursales -->
+    <li id="sucursales" class="nav-item">
+        <a class="nav-link" href="sucursales">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Sucursales</span>
+        </a>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
