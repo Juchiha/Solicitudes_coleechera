@@ -62,7 +62,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="modalIngresarSucursales">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<form id="nuevaEmpresa" autocomplete="off" method="post" enctype="multipart/form-data">
+			<form id="nuevoSucursales" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
 					<h5 class="modal-title">Ingreso de Sucursales</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -215,7 +215,7 @@
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="idCarpetaPadre" value="0">
-					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
+					<button type="button" class="btn btn-primary" id="enviarFormEdicion">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
 			</form>
@@ -225,35 +225,7 @@
 
 
 <!-- nueva Carpeta -->
-<div class="modal" tabindex="-1" role="dialog" id="modalCarpetaNueva">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<form id="nuevaCarpeta" autocomplete="off" method="post" enctype="multipart/form-data">
-				<div class="modal-header">
-					<h5 class="modal-title">Nueva Carpeta</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="I_doc_tipo_v">Nombre de la Carpeta</label>
-								<input type="text" class="form-control" id="I_doc_tipo_v" name="I_doc_tipo_v" placeholder="Nombre de la Carpeta">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<input type="hidden" name="idCarpetaPadre" value="0">
-					<button type="button" class="btn btn-primary" id="enviarFormNuevaCarpet">Guardar</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+
 
 <!-- Page level plugins -->
 <script src="views/assets/StartBoots/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -261,3 +233,252 @@
 
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript">
+sucursales = {
+		insertSucursales:function(dataTableEmpresas){
+			var FormInsertSuc = new FormData($("#nuevoSucursales")[0]);
+	        $.ajax({
+	            url: 'ajax/sucursales.ajax.php',
+	            type  : 'post',
+	            data: FormInsertSuc,
+	            dataType : 'json',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	                if(data.code == 0){
+	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                }else{
+	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                }
+	                dataTableEmpresas.ajax.reload();
+	                $("#nuevoSucursales")[0].reset();
+	                $("#modalIngresarSucursales").modal('hide');
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		},
+
+		updateSucursales:function(dataTableEmpresas){
+			var FormUpdateSuc = new FormData($("#edicionSucursales")[0]);
+	        $.ajax({
+	            url: 'ajax/sucursales.ajax.php',
+	            type  : 'post',
+	            data: FormUpdateSuc,
+	            dataType : 'json',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	                if(data.code == 0){
+	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                }else{
+	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                }
+	                dataTableEmpresas.ajax.reload();
+	                $("#edicionSucursales")[0].reset();
+	                $("#modalActualizarSucursales").modal('hide');
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		},
+
+		deleteSucursales:function(idSucursales, dataTableEmpresas){
+			$.ajax({
+	            url: 'ajax/sucursales.ajax.php',
+	            type  : 'post',
+	            data: { suc_id_id : idSucursales},
+	            dataType : 'json',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	                if(data.code == 0){
+	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                }else{
+	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                }
+	                dataTableEmpresas.ajax.reload();
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		},
+
+		getSucursales:function(idSucursales){
+			$.ajax({
+	            url: 'ajax/sucursales.ajax.php',
+	            type  : 'post',
+	            data: { usu_id_i_g : idSucursales},
+	            dataType : 'json',
+	            cache: false,
+	            contentType: false,
+	            processData: false,
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	                if(data.code == 0){
+	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                }else{
+	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                }
+	               
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		}
+	}
+
+	$(function(){
+		let edicion = '<div class="btn-group">';
+        edicion += '<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
+        edicion += '<i class="fa fa-info-circle"></i>';
+        edicion += '<span class="sr-only">Toggle Dropdown</span>';
+        edicion += '</button>';
+        edicion += '<ul class="dropdown-menu" role="menu">';
+        edicion += '<li><a class="dropdown-item btnVerIncapacidad" id_Incapacidad href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
+        edicion += '<li class="divider"></li>';
+        edicion += '<li><a class="dropdown-item btnEditarIncapacidad" title="Editar" id_Incapacidad data-toggle="modal" data-target="#modalEditarrIncapacidad" href="#">EDITAR</a></li>';
+
+        edicion += '<li class="divider"></li>';
+        edicion += '<li><a class="dropdown-item btnEliminarIncapacidad" title="Eliminar" id_Incapacidad href="#">ELIMINAR</a></li>';
+
+     	edicion += '</ul>';
+    	edicion += '</div>';
+
+		var dataTableEmpresas = $('#dataTable').DataTable({
+		    "ajax": 'ajax/sucursales.ajax.php?allDatos=true',
+		    "columnDefs": [
+		        {
+	        	 	"targets": -1,
+            		"data": null,
+        			"className": "text-center",
+            		 render: {
+                		display: function (data, type, row) {
+                         	return edicion;
+                		}
+                	}
+		        }
+	        ],
+	    	"language" : {
+		        "sProcessing":     "Procesando...",
+		        "sLengthMenu":     "Mostrar _MENU_ registros",
+		        "sZeroRecords":    "No se encontraron resultados",
+		        "sEmptyTable":     "Ningún dato disponible en esta tabla",
+		        "sInfo":           "Mostrando de _START_ a _END_ de _TOTAL_",
+		        "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
+		        "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		        "sInfoPostFix":    "",
+		        "sSearch":         "Buscar:",
+		        "sUrl":            "",
+		        "sInfoThousands":  ",",
+		        "sLoadingRecords": "Cargando...",
+		        "oPaginate": {
+		            "sFirst":    "Primero",
+		            "sLast":     "Último",
+		            "sNext":     "Siguiente",
+		            "sPrevious": "Anterior"
+		        },
+		        "oAria": {
+		            "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		            "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		        }
+		    }
+		});
+
+
+		$("#enviarFormNuevo").click(function(){
+			sucursales.insertSucursales(dataTableEmpresas);
+		});
+
+		$("#enviarFormEdicion").click(function(){
+			sucursales.updateSucursales(dataTableEmpresas);
+		});
+
+	});
+</script>

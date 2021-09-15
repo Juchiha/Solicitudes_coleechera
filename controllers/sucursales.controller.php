@@ -3,7 +3,7 @@
 	{
 			
 		public static function insertDatos(){
-			if(isset($_POST['suc_nombre_v_i '])){ 
+			if(isset($_POST['suc_nombre_v_i'])){ 
 				$datos = array(
 					'suc_nombre_v' 		=> $_POST['suc_nombre_v_i'], 
 					'suc_ban_id_i' 		=> $_POST['suc_ban_id_i_i'],
