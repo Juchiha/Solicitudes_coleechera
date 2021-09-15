@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="views/assets/vendor/alertify/alertify.core.css">
     <link rel="stylesheet" href="views/assets/vendor/alertify/alertify.default.css">
     <link rel="stylesheet" href="views/assets/vendor/sweetalert/sweetalert.css">
-    <link rel="icon" href="views/assets/img/theme/lOGO_2_GRANDE.jpg" type="image/jpg">
+    <link rel="icon" href="views/assets/img/theme/logotipo.jpg" type="image/jpg">
 </head>
 
 <body id="page-top sidebar-toggled">

@@ -21,7 +21,7 @@
         	Nueva Carpeta
     	</a>
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarSucursales">
-        	Subir Archivo
+        	Ingresar Sucursales
     	</a>
     </div>
 </div>
@@ -35,19 +35,21 @@
         	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="width: 43%;">Identificación</th>
-                        <th style="width: 7%">Nombres</th>
-                        <th style="width: 20%;">Perfil</th>
-                        <th style="width: 20%;">Banco</th>
+                        <th style="width: 18%;">Banco</th>
+                        <th style="width: 18%;">Nombre</th>
+                        <th style="width: 18%">Codigo</th>
+                        <th style="width: 18%;">Ciudad</th>
+                        <th style="width: 18%;">Dirección</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th style="width: 43%;">Identificación</th>
-                        <th style="width: 7%">Nombres</th>
-                        <th style="width: 20%;">Perfil</th>
-                        <th style="width: 20%;">Banco</th>
+                        <th style="width: 18%;">Banco</th>
+                        <th style="width: 18%;">Nombre</th>
+                        <th style="width: 18%">Codigo</th>
+                        <th style="width: 18%;">Ciudad</th>
+                        <th style="width: 18%;">Dirección</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </tfoot>
@@ -71,15 +73,22 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_tip_doc_id_i_i">Tipo documento</label>
-								<input type="text" class="form-control" id="usu_tip_doc_id_i_i" name="usu_tip_doc_id_i_i" placeholder="Tipo documento">
+								<label for="suc_nombre_v_i">Nombre Sucursal</label>
+								<input type="text" class="form-control" id="suc_nombre_v_i" name="suc_nombre_v_i" placeholder="Nombre de Sucursal">
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_documento_v_i">Documento</label>
-								<input type="text" class="form-control" id="usu_documento_v_i" name="usu_documento_v_i" placeholder="Documento">
+								<label for="suc_ban_id_i_i">Banco</label>
+								<select class="form-control" id="suc_ban_id_i_i" name="suc_ban_id_i_i" placeholder="Tipo documento">
+									<?php 
+										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
+										foreach($bancos as $key => $value){
+											echo '<option value="'.$value['ban_id_i'].'">'.$value['ban_nombre_v'].'</option>';
+										}
+									?>
+								</select>
 							</div>
 						</div>
 
@@ -88,15 +97,15 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_nombre_v_i">Nombre</label>
-								<input type="text" class="form-control" id="usu_nombre_v_i" name="usu_nombre_v_i" placeholder="Nombre">
+								<label for="suc_codigo_v_i">Codigo</label>
+								<input type="text" class="form-control" id="suc_codigo_v_i" name="suc_codigo_v_i" placeholder="Codigo Sucursal">
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_apellido_v_i">Apellido</label>
-								<input type="text" class="form-control" id="usu_apellido_v_i" name="usu_apellido_v_i" placeholder="Apellido">
+								<label for="suc_ciu_id_i_i">Ciudad</label>
+								<input type="text" class="form-control" id="suc_ciu_id_i_i" name="suc_ciu_id_i_i" placeholder="Ciudad de Sucursal">
 							</div>
 						</div>
 
@@ -105,46 +114,21 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_per_id_i_i">Perfil Usuario</label>
-								<input type="text" class="form-control" id="usu_per_id_i_i" name="usu_per_id_i_i" placeholder="Perfil Usuario">
+								<label for="suc_direccion_v_i">Dirección</label>
+								<input type="text" class="form-control" id="suc_direccion_v_i" name="suc_direccion_v_i" placeholder="Dirección Sucursal">
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_est_id_i_i">Estado</label>
-								<input type="text" class="form-control" id="usu_est_id_i_i" name="usu_est_id_i_i" placeholder="Estado del Usuario">
+								<label for="suc_est_id_i_i">Estado</label>
+								<input type="text" class="form-control" id="suc_est_id_i_i" name="suc_est_id_i_i" placeholder="Estado Sucursal">
 							</div>
 						</div>
 
 					</div>
 
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_usuario_v_i">Usuario</label>
-								<input type="text" class="form-control" id="usu_usuario_v_i"
-								 name="usu_usuario_v_i" placeholder="Usuario">
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_password_v_i">Contraseña</label>
-								<input type="password" class="form-control" id="usu_password_v_i" name="usu_password_v_i" placeholder="Contraseña">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_banco_i_i">Banco</label>
-								<input type="text" class="form-control" id="usu_banco_i_i" name="usu_banco_i_i" placeholder="Nombre de Banco">
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="idCarpetaPadre" value="0">
@@ -163,7 +147,7 @@
 		<div class="modal-content">
 			<form id="nuevaEmpresa" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Editar Usuarios</h5>
+					<h5 class="modal-title">Modificar Sucursales</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -172,15 +156,22 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_tip_doc_id_i_i">Tipo documento</label>
-								<input type="text" class="form-control" id="usu_tip_doc_id_i_i" name="usu_tip_doc_id_i_i" placeholder="Tipo documento">
+								<label for="suc_nombre_v_e">Nombre Sucursal</label>
+								<input type="text" class="form-control" id="suc_nombre_v_e" name="suc_nombre_v_e" placeholder="Nombre de Sucursal">
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_documento_v_e">Documento</label>
-								<input type="text" class="form-control" id="usu_documento_v_e" name="usu_documento_v_e" placeholder="Documento">
+								<label for="suc_ban_id_i_e">Banco</label>
+								<select class="form-control" id="suc_ban_id_i_i" name="suc_ban_id_i_i" placeholder="Tipo documento">
+									<?php 
+										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
+										foreach($bancos as $key => $value){
+											echo '<option value="'.$value['ban_id_i'].'">'.$value['ban_nombre_v'].'</option>';
+										}
+									?>
+								</select>
 							</div>
 						</div>
 
@@ -189,15 +180,15 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_nombre_v_e">Nombre</label>
-								<input type="text" class="form-control" id="usu_nombre_v_e" name="usu_nombre_v_e" placeholder="Nombre">
+								<label for="suc_codigo_v_e">Codigo</label>
+								<input type="text" class="form-control" id="suc_codigo_v_e" name="suc_codigo_v_e" placeholder="Codigo Sucursal">
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_apellido_v_e">Apellido</label>
-								<input type="text" class="form-control" id="usu_apellido_v_e" name="usu_apellido_v_e" placeholder="Apellido">
+								<label for="suc_ciu_id_i_e">Ciudad</label>
+								<input type="text" class="form-control" id="suc_ciu_id_i_e" name="suc_ciu_id_i_e" placeholder="Ciudad de Sucursal">
 							</div>
 						</div>
 
@@ -206,46 +197,21 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_per_id_i_e">Perfil Usuario</label>
-								<input type="text" class="form-control" id="usu_per_id_i_e" name="usu_per_id_i_e" placeholder="Perfil Usuario">
+								<label for="suc_direccion_v_e">Dirección</label>
+								<input type="text" class="form-control" id="suc_direccion_v_e" name="suc_direccion_v_e" placeholder="Dirección Sucursal">
 							</div>
 						</div>
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_est_id_i_e">Estado</label>
-								<input type="text" class="form-control" id="usu_est_id_i_e" name="usu_est_id_i_e" placeholder="Estado del Usuario">
+								<label for="suc_est_id_i_e">Estado</label>
+								<input type="text" class="form-control" id="suc_est_id_i_e" name="suc_est_id_i_e" placeholder="Estado Sucursal">
 							</div>
 						</div>
 
 					</div>
 
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_usuario_v_e">Usuario</label>
-								<input type="text" class="form-control" id="usu_usuario_v_e"
-								 name="usu_usuario_v_e" placeholder="Usuario">
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_id_i_e">Contraseña</label>
-								<input type="password" class="form-control" id="usu_id_i_e" name="usu_id_i_e" placeholder="Contraseña">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_banco_i_e">Banco</label>
-								<input type="text" class="form-control" id="usu_banco_i_e" name="usu_banco_i_e" placeholder="Nombre de Banco">
-							</div>
-						</div>
-					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="idCarpetaPadre" value="0">
