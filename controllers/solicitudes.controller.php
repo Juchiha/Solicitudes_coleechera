@@ -4,21 +4,22 @@
 		
 			
 		public static function insertDatos(){
-			if(isset($_POST['usu_documento_v_i'])){ //les coloco i al final para saber que es insercion
+			if(isset($_POST['sol_ban_id_i'])){ //les coloco i al final para saber que es insercion
 				$datos = array(
 					'sol_suc_id_i' 					=> $_POST['sol_suc_id_i_i'], 
-					'sol_tec_usu_id_i' 				=> $_POST['sol_tec_usu_id_i_i'],
-					'sol_fecha_solicitud_d'  		=> $_POST['sol_fecha_solicitud_d_i'],
-					'sol_nombre_solicitante_v'		=> $_POST['sol_nombre_solicitante_v_i'],
-					'sol_hora_cita_v' 				=> $_POST['sol_hora_cita_v_i'],//pendiente
+					'sol_fecha_solicitud_d'  		=> date('Y-m-d'),
+					'sol_usu_id_i'					=> $_SESSION['codigo'],
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_i'],
-					'sol_orden_trabajo'				=> $_POST['sol_orden_trabajo_i'],
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
-					'sol_est_id_i'					=> $_POST['sol_est_id_i']
+					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
+					'sol_est_id_i'					=> 1
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
-				if($respuesta == "ok"){
+				if($respuesta != "error"){
+					$orden = SolicitudesModelo::getTotalSolicitudesDay();
+					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes', 'sol_orden_trabajo', date('Ymd').$orden['total'], 'sol_id_i', $respuesta);
+
 					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no guardadado'));

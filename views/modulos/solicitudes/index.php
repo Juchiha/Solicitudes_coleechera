@@ -81,8 +81,8 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="sol_suc_id_i">Sucursal</label>
-								<select class="form-control" id="sol_suc_id_i" name="sol_suc_id_i" placeholder="Sucursal">
+								<label for="sol_suc_id_i_i">Sucursal</label>
+								<select class="form-control" id="sol_suc_id_i_i" name="sol_suc_id_i_i" placeholder="Sucursal">
 
 								</select>
 							</div>
@@ -91,22 +91,21 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="sol_requerimiento_t">Requerimiento</label>
-								<textarea class="form-control" id="sol_requerimiento_t" name="sol_requerimiento_t" placeholder="Requerimiento"></textarea>
+								<label for="sol_requerimiento_t_i">Requerimientos</label>
+								<textarea class="form-control" id="sol_requerimiento_t_i" name="sol_requerimiento_t_i" placeholder="Requerimientos"></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="sol_observaciones_t">Observaciones</label>
-								<textarea class="form-control" id="sol_observaciones_t" name="sol_observaciones_t" placeholder="Requerimiento"></textarea>
+								<label for="sol_observaciones_t_i">Observaciones</label>
+								<textarea class="form-control" id="sol_observaciones_t_i" name="sol_observaciones_t_i" placeholder="Observaciones"></textarea>
 							</div>
 						</div>
 					</div>					
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="idCarpetaPadre" value="0">
 					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
@@ -115,14 +114,14 @@
 	</div>
 </div>
 
-<!--edicion de usuarios-->
+<!--edicion de Solicitudes-->
 
-<div class="modal" tabindex="-1" role="dialog" id="modalActualizarUsuarios">
+<div class="modal" tabindex="-1" role="dialog" id="modalActualizarSolicitudes">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<form id="editarUsuario" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Editar Usuarios</h5>
+					<h5 class="modal-title">Editar Solicitudes</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -245,11 +244,11 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript">
-	usuarios = {
-		insertUsuarios:function(dataTableEmpresas){
+	Solicitudes = {
+		insertSolicitudes:function(dataTableEmpresas){
 			var FormularioRichard = new FormData($("#nuevoUsuario")[0]);
 	        $.ajax({
-	            url: 'ajax/usuarios.ajax.php',
+	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
 	            data: FormularioRichard,
 	            dataType : 'json',
@@ -277,9 +276,9 @@
 	            //una vez finalizado correctamente
 	            success: function(data){
 	                if(data.code == 0){
-	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                    alertify.error('Proceso terminado, '+data.message);
 	                }else{
-	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                    alertify.success('Proceso terminado, '+data.message);
 	                }
 	                dataTableEmpresas.ajax.reload();
 	                $("#nuevoUsuario")[0].reset();
@@ -292,10 +291,10 @@
 	        });
 		},
 
-		updateUsuarios:function(dataTableEmpresas){
+		updateSolicitudes:function(dataTableEmpresas){
 			var FormUpdate = new FormData($("#editarUsuario")[0]);
 	        $.ajax({
-	            url: 'ajax/usuarios.ajax.php',
+	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
 	            data: FormUpdate,
 	            dataType : 'json',
@@ -323,13 +322,13 @@
 	            //una vez finalizado correctamente
 	            success: function(data){
 	                if(data.code == 0){
-	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                    alertify.error('Proceso terminado, '+data.message);
 	                }else{
-	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                    alertify.success('Proceso terminado, '+data.message);
 	                }
 	                dataTableEmpresas.ajax.reload();
 	                $("#editarUsuario")[0].reset();
-	                $("#modalActualizarUsuarios").modal('hide');
+	                $("#modalActualizarSolicitudes").modal('hide');
 	            },
 	            //si ha ocurrido un error
 	            error: function(){
@@ -338,9 +337,9 @@
 	        });
 		},
 
-		deleteUsuarios:function(idUsuario, dataTableEmpresas){
+		deleteSolicitudes:function(idUsuario, dataTableEmpresas){
 			$.ajax({
-	            url: 'ajax/usuarios.ajax.php',
+	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
 	            data: { usu_id_i_d : idUsuario},
 	            dataType : 'json',
@@ -368,9 +367,9 @@
 	            //una vez finalizado correctamente
 	            success: function(data){
 	                if(data.code == 0){
-	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                    alertify.error('Proceso terminado, '+data.message);
 	                }else{
-	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                    alertify.success('Proceso terminado, '+data.message);
 	                }
 	                dataTableEmpresas.ajax.reload();
 	            },
@@ -383,7 +382,7 @@
 
 		getUsuario:function(idUsuario){
 			$.ajax({
-	            url: 'ajax/usuarios.ajax.php',
+	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
 	            data: { usu_id_i_g : idUsuario},
 	            dataType : 'json',
@@ -411,9 +410,9 @@
 	            //una vez finalizado correctamente
 	            success: function(data){
 	                if(data.code == 0){
-	                    alertify.error('Proceso terminado, '+data.mensaje);
+	                    alertify.error('Proceso terminado, '+data.message);
 	                }else{
-	                    alertify.success('Proceso terminado, '+data.mensaje);
+	                    alertify.success('Proceso terminado, '+data.message);
 	                }
 	               
 	            },
@@ -452,9 +451,9 @@
 	            success: function(data){
 	            	var option = "<option value='0'> Seleccione </option>";
 	               $.each(data, function(item, i){
-	               		option += "<option value='"+item.suc_id_id+"'> "+item.suc_nombre_v+" </option>";
+	               		option += "<option value='"+i.suc_id_id+"'> "+i.suc_nombre_v+" </option>";
 	               });	  
-	               $("#sol_suc_id_i").html(option);           
+	               $("#sol_suc_id_i_i").html(option);           
 	            },
 	            //si ha ocurrido un error
 	            error: function(){
@@ -524,15 +523,15 @@
 
 
 		$("#enviarFormNuevo").click(function(){
-			usuarios.insertUsuarios(dataTableEmpresas);
+			Solicitudes.insertSolicitudes(dataTableEmpresas);
 		});
 
 		$("#enviarFormEdicion").click(function(){
-			usuarios.updateUsuarios(dataTableEmpresas);
+			Solicitudes.updateSolicitudes(dataTableEmpresas);
 		});
 
 		$("#sol_ban_id_i").on('change', function(){
-			usuarios.getDatosSucursales($(this).val());
+			Solicitudes.getDatosSucursales($(this).val());
 		});
 	});
 </script>

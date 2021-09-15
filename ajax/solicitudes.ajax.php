@@ -2,31 +2,32 @@
 	session_start();
 	require_once '../controllers/mail.controller.php';
 	require_once '../controllers/plantilla.controller.php';
-	require_once '../controllers/usuarios.controller.php';
+	require_once '../controllers/solicitudes.controller.php';
 
 	require_once '../models/dao.modelo.php';
 	require_once '../models/datatables.modelo.php';
-	require_once '../models/usuario.modelo.php';
+	require_once '../models/solicitudes.modelo.php';
+	require_once '../models/auth.modelo.php';
 
-	class AjaxUsuarios{
+	class AjaxSolicitudes{
 		public function insertDatos(){
-			echo ControladorUsuarios::insertDatos();
+			echo ControladorSolicitudes::insertDatos();
 		}
 
 		public function deleteDatos(){
-			echo ControladorUsuarios::deleteDatos();
+			echo ControladorSolicitudes::deleteDatos();
 		}
 
 		public function updateDatos(){
-			echo ControladorUsuarios::UpdateDatos();
+			echo ControladorSolicitudes::UpdateDatos();
 		}
 
 		public function getDatos($idUsuario){
-			echo ControladorUsuarios::getData('sc_usuarios', 'usu_id_i', $idUsuario);
+			echo ControladorSolicitudes::getData('sc_usuarios', 'usu_id_i', $idUsuario);
 		}
 
 		public function getAllDatos(){
-            $usuarios = ControladorUsuarios::getData('sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i join sc_usuarios ON usu_id_i = sol_usu_id_i ', null, null);
+            $usuarios = ControladorSolicitudes::getData('sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i join sc_usuarios ON usu_id_i = sol_usu_id_i ', null, null);
 echo '{
   	"data" : [';
   			$i = 0;
@@ -50,27 +51,27 @@ echo '{
 	}
 
 
-	if(isset($_POST['usu_documento_v_i'])){
-		$AjaxUsuarios = new AjaxUsuarios();
-		$AjaxUsuarios->insertDatos();
+	if(isset($_POST['sol_ban_id_i'])){
+		$AjaxSolicitudes = new AjaxSolicitudes();
+		$AjaxSolicitudes->insertDatos();
 	}
 
 	if(isset($_POST['usu_documento_v_e'])){
-		$AjaxUsuarios = new AjaxUsuarios();
-		$AjaxUsuarios->updateDatos();
+		$AjaxSolicitudes = new AjaxSolicitudes();
+		$AjaxSolicitudes->updateDatos();
 	}
 
 	if(isset($_POST['usu_id_i_d'])){
-		$AjaxUsuarios = new AjaxUsuarios();
-		$AjaxUsuarios->deleteDatos();
+		$AjaxSolicitudes = new AjaxSolicitudes();
+		$AjaxSolicitudes->deleteDatos();
 	}
 
 	if(isset($_POST['usu_id_i_g'])){
-		$AjaxUsuarios = new AjaxUsuarios();
-		$AjaxUsuarios->getDatos($_POST['usu_id_i_g']);
+		$AjaxSolicitudes = new AjaxSolicitudes();
+		$AjaxSolicitudes->getDatos($_POST['usu_id_i_g']);
 	}
 
 	if(isset($_GET['allDatos'])){
-		$AjaxUsuarios = new AjaxUsuarios();
-		$AjaxUsuarios->getAllDatos();
+		$AjaxSolicitudes = new AjaxSolicitudes();
+		$AjaxSolicitudes->getAllDatos();
 	}

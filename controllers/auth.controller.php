@@ -22,9 +22,9 @@
 
 							//$imagen = 'views/assets/img/usuarios/default/anonymous.png';
 							$_SESSION['SessionSeguimientos'] 		= 'ok';
-							$_SESSION['codigo']						= $respuesta['usu_password_v'];
-							$_SESSION['nombres'] 					= $respuesta['usu_usuario_v'].' '.$respuesta['user_apellidos'];
-							$_SESSION['perfil']						= $respuesta['user_perfil_id'];
+							$_SESSION['codigo']						= $respuesta['usu_id_i'];
+							$_SESSION['nombres'] 					= $respuesta['usu_nombre_v'].' '.$respuesta['usu_apellido_v'];
+							$_SESSION['perfil']						= $respuesta['usu_per_id_i'];
 							//$_SESSION['correo'] 					= $respuesta['usu_usuario_v'];
 							$_SESSION['bnco_id']					= $respuesta['usu_banco_i'];
 							$_SESSION['idSession'] 					= Time().rand();
