@@ -54,11 +54,6 @@ echo '
                     echo "<script>$('#inicio').addClass('active');</script>";
                     break;
 
-                case 'carpetas':
-                    include "modulos/carpetas/index.php";
-                    echo "<script>$('#inicio').addClass('active');</script>";
-                    break;
-
                 case 'salir':
                     include "modulos/salir.php";
                     break;
@@ -68,10 +63,16 @@ echo '
                     echo "<script>$('#usuarios').addClass('active');</script>";
                     break;  
 
-                     case 'sucursales':
+                case 'sucursales':
                     include "modulos/sucursales/index.php";
                     echo "<script>$('#sucursales').addClass('active');</script>";
-                    break; 
+                    break;
+
+                case 'solicitudes':
+                    include "modulos/solicitudes/index.php";
+                    echo "<script>$('#solicitudes').addClass('active');</script>";
+                    break;
+
             }
         }else{
             include "modulos/dashboard/index.php";

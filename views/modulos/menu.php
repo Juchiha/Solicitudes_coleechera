@@ -44,5 +44,16 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+    <!-- Menu  Sucursales -->
+    <li id="solicitudes" class="nav-item">
+        <a class="nav-link" href="solicitudes">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Solicitudes</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
 </ul>
 <!-- End of Sidebar -->
