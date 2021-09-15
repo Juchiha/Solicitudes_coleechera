@@ -24,14 +24,16 @@
     <hr class="sidebar-divider d-none d-md-block">
 
 
-      <li id="usuarios" class="nav-item">
+    <li id="usuarios" class="nav-item">
         <a class="nav-link" href="usuarios">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Usuarios</span>
         </a>
     </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
 
-<!-- Menu  Sucursales -->
+    <!-- Menu  Sucursales -->
     <li id="sucursales" class="nav-item">
         <a class="nav-link" href="sucursales">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -39,14 +41,8 @@
         </a>
     </li>
 
-
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <!--<div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>-->
 
 </ul>
 <!-- End of Sidebar -->

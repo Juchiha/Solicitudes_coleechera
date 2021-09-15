@@ -11,7 +11,7 @@
 	require_once 'controllers/solicitudes.controller.php';
 	require_once 'controllers/sucursales.controller.php';
 	require_once 'controllers/usuarios.controller.php';
-
+	require_once 'controllers/utilidades.controller.php';
 
 
 

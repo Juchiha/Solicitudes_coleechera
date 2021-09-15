@@ -122,7 +122,7 @@
 		}
 
 		static public function logError($numero, $texto){ 
-		 	$ddf = fopen('error.log','a'); 
+		 	$ddf = fopen(__DIR__.'/error.log','a'); 
 		 	fwrite($ddf,"[".date("r")."] Error $numero: $texto\r\n"); 
 		 	fclose($ddf); 
 		} 

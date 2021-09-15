@@ -7,12 +7,10 @@
 	{
 		static public function getDatosUsuarioLogin($item, $valor){
 			if(!is_null($item)){
-				echo "SELECT * FROM sc_usuarios WHERE $item = '$valor'";
 				$stmt = Conexion::conectar()->prepare("SELECT * FROM sc_usuarios WHERE $item = :$item");
 				$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 				$stmt->execute();
 				$object = $stmt->fetch();
-				print_r($object);
 				return $object;
 			}
 		}

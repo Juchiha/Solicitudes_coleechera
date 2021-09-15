@@ -18,6 +18,8 @@
 				VALUES(	
 					:usu_tip_doc_id_i,
 					:usu_documento_v,
+					:usu_nombre_v,
+					:usu_apellido_v,
 					:usu_per_id_i, 
 					:usu_est_id_i,
 					:usu_banco_i,
@@ -27,8 +29,8 @@
 			$stmt->bindParam(":usu_tip_doc_id_i", $datos['usu_tip_doc_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_documento_v", $datos['usu_documento_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_per_id_i", $datos['usu_per_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":usu_nombre_v", $datos['usu_nombre_v_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":usu_apellido_v", $datos['usu_apellido_v_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":usu_nombre_v", $datos['usu_nombre_v'], PDO::PARAM_STR);
+			$stmt->bindParam(":usu_apellido_v", $datos['usu_apellido_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_est_id_i", $datos['usu_est_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_banco_i", $datos['usu_banco_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_fecha_registro_d", $datos['usu_fecha_registro_d'], PDO::PARAM_STR);
@@ -38,7 +40,8 @@
 				$stmt = null;
 				return 'ok';
 			}else{
-				self::logError('2404', "Error insertando usuario.modelo.php => " + $stmt->errorInfo());
+				print_r($stmt->errorInfo());
+				//self::logError('43', "Error insertando usuario.modelo.php => " + $stmt->errorInfo());
 				return 'error';
 			}	
 		}

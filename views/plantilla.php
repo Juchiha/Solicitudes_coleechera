@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ireport Cloud</title>
+    <title>Seguimiento Casos</title>
 
     <!-- Custom fonts for this template-->
     <link href="views/assets/StartBoots/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -86,7 +86,7 @@ echo '
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; MyWorky 2021</span>
+                    <span>Copyright &copy; Mythology System 2021</span>
                 </div>
             </div>
         </footer>

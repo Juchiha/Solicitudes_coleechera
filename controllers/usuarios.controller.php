@@ -14,7 +14,7 @@
 				$datos = array(
 					'usu_tip_doc_id_i' 		=> $_POST['usu_tip_doc_id_i_i'], 
 					'usu_documento_v' 		=> $_POST['usu_documento_v_i'],
-					'usu_nombre_v' 		=> $_POST['usu_nombre_v_i'],
+					'usu_nombre_v' 			=> $_POST['usu_nombre_v_i'],
 					'usu_apellido_v' 		=> $_POST['usu_apellido_v_i'],
 					'usu_per_id_i'  		=> $_POST['usu_per_id_i_i'],
 					'usu_est_id_i'			=> $_POST['usu_est_id_i_i'],
@@ -47,7 +47,10 @@
 				$password = $_POST['usu_password_v_actual_e'];
 				//aqui te dejo que valides si el campo password viene vacion o no
 				//si tiene datos se lo asignas a password si no no
-				//md5($_POST['usu_password_v_e'])
+				if($_POST['usu_password_v_e'] != ''){
+					$password = md5($_POST['usu_password_v_e']);
+				}
+
 				$datos = array(
 					'usu_tip_doc_id_i' 		=> $_POST['usu_tip_doc_id_i_e'], 
 					'usu_documento_v' 		=> $_POST['usu_documento_v_e'],
@@ -81,8 +84,8 @@
 		*}
 		**/	
 		public static function deleteDatos(){
-			if(isset($_POST['usu_id_i'])){ 
-				$datos = $_POST["usu_id_i"];
+			if(isset($_POST['usu_id_i_d'])){ 
+				$datos = $_POST["usu_id_i_d"];
 				$respuesta = UsuarioModelo::deleteDatos($datos);
 				if($respuesta == "ok"){
 					return json_encode(array('code' => 1, 'message' => 'Usuario Eliminado con exito'));
