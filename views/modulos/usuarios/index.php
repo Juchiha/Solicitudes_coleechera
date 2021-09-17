@@ -441,9 +441,6 @@
 	            type  : 'post',
 	            data: { usu_id_i_g : idUsuario},
 	            dataType : 'json',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
 	            beforeSend:function(){
 	                $.blockUI({ 
 	                    message : '<h3>Un momento por favor....</h3>',
@@ -486,12 +483,12 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        edicion += '<li><a class="dropdown-item btnVerIncapacidad" id_Incapacidad href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
+        edicion += '<li><a class="dropdown-item btnVerUsuario" id_usuario href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEditarIncapacidad" title="Editar" id_Incapacidad data-toggle="modal" data-target="#modalEditarrIncapacidad" href="#">EDITAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnEditarUsuario" title="Editar" id_usuario data-toggle="modal" data-target="#modalActualizarUsuarios" href="#">EDITAR</a></li>';
 
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEliminarIncapacidad" title="Eliminar" id_Incapacidad href="#">ELIMINAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnEliminarUsuario" title="Eliminar" id_usuario href="#">ELIMINAR</a></li>';
 
      	edicion += '</ul>';
     	edicion += '</div>';
@@ -535,6 +532,17 @@
 		        }
 		    }
 		});
+
+		$('#dataTableUsuario tbody').on( 'click', 'a', function () {
+		    var data = dataTableEmpresas.row( $(this).parents('tr') ).data();
+		    $(this).attr("id_usuario", data[4]);
+		});
+
+		/* Esta parte es para traer los datos de la edicion */
+	    $('#dataTableUsuario tbody').on("click", ".btnEditarUsuario", function(){
+	        var x = $(this).attr('id_usuario');
+	       	usuarios.getUsuario(x);
+	    });
 
 
 		$("#enviarFormNuevo").click(function(){

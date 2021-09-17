@@ -22,7 +22,7 @@
 		}
 
 		public function getDatos($idUsuario){
-			echo ControladorUsuarios::getData('sc_usuarios', 'usu_id_i', $idUsuario);
+			echo json_encode(ControladorUsuarios::getData('sc_usuarios', 'usu_id_i', $idUsuario));
 		}
 
 		public function getAllDatos(){
@@ -35,7 +35,7 @@ echo '{
             		echo ",";
             	}
 				echo '[';
-				echo '"'.($value["usu_documento_v"]).'",';
+				echo '"'.$value["usu_documento_v"].'",';
 				echo '"'.$value["usu_nombre_v"].' '.$value["usu_apellido_v"].'",';
 				echo '"'.$value["perf_nombre_v"].'",'; 
 				echo '"'.$value["ban_nombre_v"].'",'; 
