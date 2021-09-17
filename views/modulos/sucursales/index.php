@@ -17,8 +17,8 @@
   		<i class="fas fa-ellipsis-v"></i>
   	</button>
   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -104px, 0px);">
-        <a class="dropdown-item eliminarDoc" href="#" data-toggle="modal" data-target="#modalCarpetaNueva">
-        	Nueva Carpeta
+       <!-- <a class="dropdown-item eliminarDoc" href="#" data-toggle="modal" data-target="#modalCarpetaNueva">
+        Nueva Carpeta-->
     	</a>
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarSucursales">
         	Ingresar Sucursales
@@ -77,7 +77,9 @@
 								<input type="text" class="form-control" id="suc_nombre_v_i" name="suc_nombre_v_i" placeholder="Nombre de Sucursal">
 							</div>
 						</div>
+					</div>
 
+					<div class="row">
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_ban_id_i_i">Banco</label>
@@ -91,7 +93,21 @@
 								</select>
 							</div>
 						</div>
+					</div>
 
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="suc_ciu_id_i_i">Ciudad</label>
+								<input type="text" class="form-control" id="suc_ciu_id_i_i" name="suc_ciu_id_i_i" placeholder="Ciudad de Sucursal">
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label for="suc_direccion_v_e">Dirección</label>
+								<input type="text" class="form-control" id="suc_direccion_v_e" name="suc_direccion_v_e" placeholder="Dirección Sucursal">
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
@@ -101,34 +117,14 @@
 								<input type="text" class="form-control" id="suc_codigo_v_i" name="suc_codigo_v_i" placeholder="Codigo Sucursal">
 							</div>
 						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="suc_ciu_id_i_i">Ciudad</label>
-								<input type="text" class="form-control" id="suc_ciu_id_i_i" name="suc_ciu_id_i_i" placeholder="Ciudad de Sucursal">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="suc_direccion_v_i">Dirección</label>
-								<input type="text" class="form-control" id="suc_direccion_v_i" name="suc_direccion_v_i" placeholder="Dirección Sucursal">
-							</div>
-						</div>
-
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_est_id_i_i">Estado</label>
 								<input type="text" class="form-control" id="suc_est_id_i_i" name="suc_est_id_i_i" placeholder="Estado Sucursal">
 							</div>
 						</div>
-
-					</div>
-
-					
+						
+					</div>					
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="idCarpetaPadre" value="0">
@@ -178,27 +174,25 @@
 					</div>
 
 					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="suc_codigo_v_e">Codigo</label>
-								<input type="text" class="form-control" id="suc_codigo_v_e" name="suc_codigo_v_e" placeholder="Codigo Sucursal">
-							</div>
-						</div>
-
-						<div class="col">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="suc_ciu_id_i_e">Ciudad</label>
 								<input type="text" class="form-control" id="suc_ciu_id_i_e" name="suc_ciu_id_i_e" placeholder="Ciudad de Sucursal">
 							</div>
 						</div>
-
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="suc_direccion_v_e">Dirección</label>
+								<input type="text" class="form-control" id="suc_direccion_v_e" name="suc_direccion_v_e" placeholder="Dirección Sucursal">
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="suc_direccion_v_e">Dirección</label>
-								<input type="text" class="form-control" id="suc_direccion_v_e" name="suc_direccion_v_e" placeholder="Dirección Sucursal">
+								<label for="suc_codigo_v_e">Codigo</label>
+								<input type="text" class="form-control" id="suc_codigo_v_e" name="suc_codigo_v_e" placeholder="Codigo Sucursal">
 							</div>
 						</div>
 
