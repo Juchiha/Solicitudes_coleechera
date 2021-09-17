@@ -99,13 +99,20 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_ciu_id_i_i">Ciudad</label>
-								<input type="text" class="form-control" id="suc_ciu_id_i_i" name="suc_ciu_id_i_i" placeholder="Ciudad de Sucursal">
+								<select class="form-control" id="suc_ban_id_i_i" name="suc_ban_id_i_i" placeholder="Tipo documento">
+									<?php 
+										$ciudades = ControladorUtilidades::getData('ciudades', null, null);
+										foreach($ciudades as $key => $value){
+											echo '<option value="'.$value['ciu_id_i'].'">'.$value['ciu_ciu_v'].'</option>';
+										}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="col">
 							<div class="form-group">
-								<label for="suc_direccion_v_e">Dirección</label>
-								<input type="text" class="form-control" id="suc_direccion_v_e" name="suc_direccion_v_e" placeholder="Dirección Sucursal">
+								<label for="suc_direccion_v_i">Dirección</label>
+								<input type="text" class="form-control" id="suc_direccion_v_i" name="suc_direccion_v_i" placeholder="Dirección Sucursal">
 							</div>
 						</div>
 					</div>
@@ -141,7 +148,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="modalActualizarSucursales">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<form id="nuevaEmpresa" autocomplete="off" method="post" enctype="multipart/form-data">
+			<form id="edicionSucursales" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
 					<h5 class="modal-title">Modificar Sucursales</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -160,7 +167,7 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_ban_id_i_e">Banco</label>
-								<select class="form-control" id="suc_ban_id_i_i" name="suc_ban_id_i_i" placeholder="Tipo documento">
+								<select class="form-control" id="suc_ban_id_i_e" name="suc_ban_id_i_e" placeholder="Tipo documento">
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
 										foreach($bancos as $key => $value){
@@ -177,7 +184,14 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="suc_ciu_id_i_e">Ciudad</label>
-								<input type="text" class="form-control" id="suc_ciu_id_i_e" name="suc_ciu_id_i_e" placeholder="Ciudad de Sucursal">
+								<select class="form-control" id="suc_ciu_id_i_e" name="suc_ciu_id_i_e" placeholder="Tipo documento">
+									<?php 
+										$ciudades = ControladorUtilidades::getData('ciudades', null, null);
+										foreach($ciudades as $key => $value){
+											echo '<option value="'.$value['ciu_id_i'].'">'.$value['ciu_ciu_v'].'</option>';
+										}
+									?>
+								</select>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -208,7 +222,7 @@
 					
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="idCarpetaPadre" value="0">
+					<input type="hidden" name="suc_id_id_e" id="suc_id_id_e" value="0">
 					<button type="button" class="btn btn-primary" id="enviarFormEdicion">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
@@ -368,11 +382,8 @@ sucursales = {
 			$.ajax({
 	            url: 'ajax/sucursales.ajax.php',
 	            type  : 'post',
-	            data: { usu_id_i_g : idSucursales},
+	            data: { suc_id_id_g : idSucursales},
 	            dataType : 'json',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
 	            beforeSend:function(){
 	                $.blockUI({ 
 	                    message : '<h3>Un momento por favor....</h3>',
@@ -393,11 +404,13 @@ sucursales = {
 	            },
 	            //una vez finalizado correctamente
 	            success: function(data){
-	                if(data.code == 0){
-	                    alertify.error('Proceso terminado, '+data.mensaje);
-	                }else{
-	                    alertify.success('Proceso terminado, '+data.mensaje);
-	                }
+					$("#suc_nombre_v_e").val(data.suc_nombre_v);
+					$("#suc_ban_id_i_e").val(data.suc_ban_id_i);
+					$("#suc_ciu_id_i_e").val(data.suc_ciu_id_i).change();
+					$("#suc_direccion_v_e").val(data.suc_direccion_v);
+					$("#suc_codigo_v_e").val(data.suc_codigo_v);
+					$("#suc_est_id_i_e").val(data.suc_est_id_i);
+					$("#suc_id_id_e").val(data.suc_id_id);
 	               
 	            },
 	            //si ha ocurrido un error
@@ -415,12 +428,12 @@ sucursales = {
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        edicion += '<li><a class="dropdown-item btnVerIncapacidad" id_Incapacidad href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
+        edicion += '<li><a class="dropdown-item btnVerSucursales" id_sucursal href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEditarIncapacidad" title="Editar" id_Incapacidad data-toggle="modal" data-target="#modalEditarrIncapacidad" href="#">EDITAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnEditarSucursales" title="Editar" id_sucursal data-toggle="modal" data-target="#modalActualizarSucursales" href="#">EDITAR</a></li>';
 
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEliminarIncapacidad" title="Eliminar" id_Incapacidad href="#">ELIMINAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnEliminarSucursales" title="Eliminar" id_sucursal href="#">ELIMINAR</a></li>';
 
      	edicion += '</ul>';
     	edicion += '</div>';
@@ -464,6 +477,25 @@ sucursales = {
 		        }
 		    }
 		});
+
+		$('#dataTable tbody').on( 'click', 'a', function () {
+		    var data = dataTableEmpresas.row( $(this).parents('tr') ).data();
+		    $(this).attr("id_sucursal", data[5]);
+		});
+
+		/* Esta parte es para traer los datos de la edicion */
+	    $('#dataTable tbody').on("click", ".btnEditarSucursales", function(){
+	        var x = $(this).attr('id_sucursal');
+	       	sucursales.getSucursales(x);
+	    });
+		/*Activar funcionalidad de boton eliminar*/
+	     $('#dataTable tbody').on("click", ".btnEliminarUsuario", function(){
+	        var x = $(this).attr('id_sucursal');
+			let isBoss = confirm("¿Desea eliminar este usuario?");
+			if (isBoss== true) {
+				sucursales.deleteUsuarios(x,dataTableEmpresas);
+			}			
+	    });
 
 
 		$("#enviarFormNuevo").click(function(){

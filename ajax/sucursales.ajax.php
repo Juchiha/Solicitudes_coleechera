@@ -22,7 +22,8 @@
 		}
 
 		public function getDatos($idSucursales){
-			echo ControladorSucursales::getData('sc_sucursales', 'suc_id_id', $idSucursales);
+			/*convertir array en JSON*/
+			echo json_encode(ControladorSucursales::getData('sc_sucursales', 'suc_id_id', $idSucursales));
 		}
 
 		public function getDatosByBanco($idBanco){

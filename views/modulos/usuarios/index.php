@@ -258,8 +258,8 @@
 
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_id_i_e">Contraseña</label>
-								<input type="password" class="form-control" id="usu_id_i_e" name="usu_id_i_e" placeholder="Contraseña">
+								<label for="usu_password_v_e">Contraseña</label>
+								<input type="password" class="form-control" id="usu_password_v_e" name="usu_password_v_e" placeholder="Contraseña">
 							</div>
 						</div>
 
@@ -398,9 +398,6 @@
 	            type  : 'post',
 	            data: { usu_id_i_d : idUsuario},
 	            dataType : 'json',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
 	            beforeSend:function(){
 	                $.blockUI({ 
 	                    message : '<h3>Un momento por favor....</h3>',
@@ -461,12 +458,16 @@
 	            },
 	            //una vez finalizado correctamente
 	            success: function(data){
-	                if(data.code == 0){
-	                    alertify.error('Proceso terminado, '+data.mensaje);
-	                }else{
-	                    alertify.success('Proceso terminado, '+data.mensaje);
-	                }
-	               
+					$("#usu_tip_doc_id_i_e").val(data.usu_tip_doc_id_i);
+					$("#usu_documento_v_e").val(data.usu_documento_v);
+					$("#usu_nombre_v_e").val(data.usu_nombre_v);
+					$("#usu_apellido_v_e").val(data.usu_apellido_v);
+					$("#usu_per_id_i_e").val(data.usu_per_id_i);
+					$("#usu_est_id_i_e").val(data.usu_est_id_i);
+					$("#usu_id_i_e").val(data.usu_id_i);
+					$("#usu_usuario_v_e").val(data.usu_usuario_v);
+					$("#usu_password_v_actual_e").val(data.usu_password_v);
+
 	            },
 	            //si ha ocurrido un error
 	            error: function(){
@@ -542,6 +543,14 @@
 	    $('#dataTableUsuario tbody').on("click", ".btnEditarUsuario", function(){
 	        var x = $(this).attr('id_usuario');
 	       	usuarios.getUsuario(x);
+	    });
+		/*Activar funcionalidad de boton eliminar*/
+	     $('#dataTableUsuario tbody').on("click", ".btnEliminarUsuario", function(){
+	        var x = $(this).attr('id_usuario');
+			let isBoss = confirm("¿Desea eliminar este usuario?");
+			if (isBoss== true) {
+				usuarios.deleteUsuarios(x,dataTableEmpresas);
+			}			
 	    });
 
 
