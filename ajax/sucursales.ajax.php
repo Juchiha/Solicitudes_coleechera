@@ -32,7 +32,7 @@
 
 
 		public function getAllDatos(){
-            $sucursales = ControladorSucursales::getData('sc_sucursales join sc_bancos on ban_id_i = suc_ban_id_i', null, null);
+            $sucursales = ControladorSucursales::getData('sc_sucursales join sc_bancos on ban_id_i = suc_ban_id_i JOIN ciudades on ciu_id_i = suc_ciu_id_i', null, null);
 echo '{
   	"data" : [';
   			$i = 0;
@@ -44,7 +44,7 @@ echo '{
 				echo '"'.$value["ban_nombre_v"].'",'; 
 				echo '"'.($value["suc_nombre_v"]).'",';
 				echo '"'.$value["suc_codigo_v"].'",';
-				echo '"'.$value["suc_ciu_id_i"].'",'; 
+				echo '"'.$value["ciu_ciu_v"].'",'; 
 				echo '"'.$value["suc_direccion_v"].'",';
 				echo '"'.$value["suc_id_id"].'"';
 				echo ']';

@@ -129,8 +129,10 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="usu_usuario_v_i">Usuario</label>
-								<input type="text" class="form-control" id="usu_usuario_v_i"
-								 name="usu_usuario_v_i" placeholder="Usuario">
+								<select class="form-control" id="usu_usuario_v_i" name="usu_usuario_v_i" placeholder="Estado del Usuario">
+									<option value="1">Activo</option>
+									<option value="0">No activo</option>
+								</select>
 							</div>
 						</div>
 
@@ -241,7 +243,10 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="usu_est_id_i_e">Estado</label>
-								<input type="text" class="form-control" id="usu_est_id_i_e" name="usu_est_id_i_e" placeholder="Estado del Usuario">
+								<select class="form-control" id="usu_est_id_i_e" name="usu_est_id_i_e" placeholder="Estado del Usuario">
+									<option value="1">Activo</option>
+									<option value="0">No activo</option>
+								</select>
 							</div>
 						</div>
 
@@ -484,13 +489,10 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        edicion += '<li><a class="dropdown-item btnVerUsuario" id_usuario href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
-        edicion += '<li class="divider"></li>';
         edicion += '<li><a class="dropdown-item btnEditarUsuario" title="Editar" id_usuario data-toggle="modal" data-target="#modalActualizarUsuarios" href="#">EDITAR</a></li>';
-
         edicion += '<li class="divider"></li>';
         edicion += '<li><a class="dropdown-item btnEliminarUsuario" title="Eliminar" id_usuario href="#">ELIMINAR</a></li>';
-
+        edicion += '<li class="divider"></li>';
      	edicion += '</ul>';
     	edicion += '</div>';
 
@@ -547,10 +549,20 @@
 		/*Activar funcionalidad de boton eliminar*/
 	     $('#dataTableUsuario tbody').on("click", ".btnEliminarUsuario", function(){
 	        var x = $(this).attr('id_usuario');
-			let isBoss = confirm("¿Desea eliminar este usuario?");
-			if (isBoss== true) {
-				usuarios.deleteUsuarios(x,dataTableEmpresas);
-			}			
+	        swal({
+	            title: '¿Está seguro de borrar el usuario?',
+	            text: "¡Si no lo está puede cancelar la accíón!",
+	            type: 'warning',
+	            showCancelButton: true,
+	            confirmButtonColor: '#3085d6',
+	            cancelButtonColor: '#d33',
+	            cancelButtonText: 'Cancelar',
+	            confirmButtonText: 'Si, borrar usuario!'
+	        },function(isConfirm) {
+	            if (isConfirm) {
+					usuarios.deleteUsuarios(x,dataTableEmpresas);
+				}	
+			});	
 	    });
 
 

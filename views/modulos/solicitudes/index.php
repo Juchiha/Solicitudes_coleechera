@@ -30,9 +30,10 @@
                 		<th style="width: 18%;">Sucursal</th>
                         <th style="width: 18%;">Fecha Sol.</th>
                         <th style="width: 18%">Nombre Sol.</th>
-                        <th style="width: 18%;">Orden Trabajo</th>
-                        <th style="width: 18%;">Fecha Cita</th>
-                        <th style="width: 10%;"></th>
+                        <th style="width: 10%;"># OT</th>
+                        <th style="width: 8%;">Estado</th>
+                        <th style="width: 20%;">Fecha Cita</th>
+                        <th style="width: 8%;"></th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -40,9 +41,10 @@
                         <th style="width: 18%;">Sucursal</th>
                         <th style="width: 18%;">Fecha Sol.</th>
                         <th style="width: 18%">Nombre Sol.</th>
-                        <th style="width: 18%;">Orden Trabajo</th>
-                        <th style="width: 18%;">Fecha Cita</th>
-                        <th style="width: 10%;"></th>
+                        <th style="width: 10%;"># OT</th>
+                        <th style="width: 8%;">Estado</th>
+                        <th style="width: 20%;">Fecha Cita</th>
+                        <th style="width: 8%;"></th>
                     </tr>
                 </tfoot>
            	</table>
@@ -114,14 +116,13 @@
 	</div>
 </div>
 
-<!--edicion de Solicitudes-->
-
-<div class="modal" tabindex="-1" role="dialog" id="modalActualizarSolicitudes">
+<!-- nuevo usuario -->
+<div class="modal" tabindex="-1" role="dialog" id="modalEditarSolicitudes">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<form id="editarUsuario" autocomplete="off" method="post" enctype="multipart/form-data">
+			<form id="editarSolcicitud" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Editar Solicitudes</h5>
+					<h5 class="modal-title">Ingreso de Solicitud</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -130,91 +131,9 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_tip_doc_id_i_i">Tipo documento</label>
-								<select class="form-control" id="usu_tip_doc_id_i_e" name="usu_tip_doc_id_i_e" placeholder="Tipo documento">
-									<?php 
-										$tiposDocumentos = ControladorUtilidades::getData('sc_tipo_documento', null, null);
-										foreach($tiposDocumentos as $key => $value){
-											echo '<option value="'.$value['tipd_id_i'].'">'.$value['tipd_descripcion_v'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_documento_v_e">Documento</label>
-								<input type="text" class="form-control" id="usu_documento_v_e" name="usu_documento_v_e" placeholder="Documento">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_nombre_v_e">Nombre</label>
-								<input type="text" class="form-control" id="usu_nombre_v_e" name="usu_nombre_v_e" placeholder="Nombre">
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_apellido_v_e">Apellido</label>
-								<input type="text" class="form-control" id="usu_apellido_v_e" name="usu_apellido_v_e" placeholder="Apellido">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_per_id_i_e">Perfil Usuario</label>
-								<select class="form-control" id="usu_per_id_i_e" name="usu_per_id_i_e" placeholder="Tipo documento">
-									<?php 
-										$perfiles = ControladorUtilidades::getData('sc_perfiles', null, null);
-										foreach($perfiles as $key => $value){
-											echo '<option value="'.$value['perf_id_i'].'">'.$value['perf_nombre_v'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_est_id_i_e">Estado</label>
-								<input type="text" class="form-control" id="usu_est_id_i_e" name="usu_est_id_i_e" placeholder="Estado del Usuario">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_usuario_v_e">Usuario</label>
-								<input type="text" class="form-control" id="usu_usuario_v_e"
-								 name="usu_usuario_v_e" placeholder="Usuario">
-							</div>
-						</div>
-
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_id_i_e">Contraseña</label>
-								<input type="password" class="form-control" id="usu_id_i_e" name="usu_id_i_e" placeholder="Contraseña">
-							</div>
-						</div>
-
-					</div>
-
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_banco_i_e">Banco</label>
-								<select class="form-control" id="usu_banco_i_e" name="usu_banco_i_e" placeholder="Nombre de Banco">
+								<label for="sol_ban_id_e">Banco</label>
+								<select class="form-control" id="sol_ban_id_e" name="sol_ban_id_e" placeholder="Nombre de Banco">
+									<option value="0">Seleccione un Banco</option>
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
 										foreach($bancos as $key => $value){
@@ -225,11 +144,99 @@
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_suc_id_i_e">Sucursal</label>
+								<select class="form-control" id="sol_suc_id_i_e" name="sol_suc_id_i_e" placeholder="Sucursal">
+
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_requerimiento_t_e">Requerimientos</label>
+								<textarea class="form-control" id="sol_requerimiento_t_e" name="sol_requerimiento_t_e" placeholder="Requerimientos"></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_observaciones_t_e">Observaciones</label>
+								<textarea class="form-control" id="sol_observaciones_t_e" name="sol_observaciones_t_e" placeholder="Observaciones"></textarea>
+							</div>
+						</div>
+					</div>					
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="usu_id_i_e" id="usu_id_i_e" value="0">
-					<input type="hidden" name="usu_password_v_actual_e" id="usu_password_v_actual_e" value="0">
-					<button type="button" class="btn btn-primary" id="enviarFormEdicion">Guardar</button>
+					<input type="hidden" name="sol_id_i_e" id="sol_id_i_editar">
+					<button type="button" class="btn btn-primary" id="enviarFormEditar">Guardar</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- nuevo usuario -->
+<div class="modal" tabindex="-1" role="dialog" id="modalAsignarSolicitudes">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form id="nuevaAsignacion" autocomplete="off" method="post" enctype="multipart/form-data">
+				<div class="modal-header">
+					<h5 class="modal-title">Ingreso de Solicitud</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_tec_usu_id_i">Tecnico</label>
+								<select class="form-control" id="sol_tec_usu_id_i" name="sol_tec_usu_id_i" placeholder="Tecnico">
+									<option value="0">Seleccione</option>
+									<?php 
+										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+										foreach($tecnicos as $key => $value){
+											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_fecha_cita_d">Fecha Atención</label>
+								<input type="text" name="sol_fecha_cita_d" id="sol_fecha_cita_d" class="form-control" placeholder="YYYY-MM-DD">
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_hora_cita_v">Hora Atención</label>
+								<select name="sol_hora_cita_v" id="sol_hora_cita_v" class="form-control" placeholder="Hora Atención">
+
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_observaciones_t_i">Observaciones</label>
+								<textarea class="form-control" id="sol_observaciones_t_i_A" name="sol_observaciones_t_i" placeholder="Observaciones"></textarea>
+							</div>
+						</div>
+					</div>					
+				</div>
+				<div class="modal-footer">
+					<input type="hidden" name="sol_id_i_e" id="sol_id_i_eAsi">
+					<button type="button" class="btn btn-primary" id="enviarFormNuevoAsignacion">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
 			</form>
@@ -292,7 +299,7 @@
 		},
 
 		updateSolicitudes:function(dataTableEmpresas){
-			var FormUpdate = new FormData($("#editarUsuario")[0]);
+			var FormUpdate = new FormData($("#editarSolcicitud")[0]);
 	        $.ajax({
 	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
@@ -327,8 +334,8 @@
 	                    alertify.success('Proceso terminado, '+data.message);
 	                }
 	                dataTableEmpresas.ajax.reload();
-	                $("#editarUsuario")[0].reset();
-	                $("#modalActualizarSolicitudes").modal('hide');
+	                $("#editarSolcicitud")[0].reset();
+	                $("#modalEditarSolicitudes").modal('hide');
 	            },
 	            //si ha ocurrido un error
 	            error: function(){
@@ -343,9 +350,6 @@
 	            type  : 'post',
 	            data: { usu_id_i_d : idUsuario},
 	            dataType : 'json',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
 	            beforeSend:function(){
 	                $.blockUI({ 
 	                    message : '<h3>Un momento por favor....</h3>',
@@ -380,11 +384,147 @@
 	        });
 		},
 
-		getUsuario:function(idUsuario){
+		getSolicitud:function(idUsuario){
 			$.ajax({
 	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
 	            data: { usu_id_i_g : idUsuario},
+	            dataType : 'json',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	if(data != false){
+	            		$("#sol_ban_id_e").val(data.sol_ban_id_i).change();
+		                Solicitudes.getDatosSucursales(data.sol_ban_id_i, data.sol_suc_id_i, 1);
+		                $("#sol_suc_id_i_e").val(data.sol_suc_id_i);
+		                $("#sol_requerimiento_t_e").val(data.sol_requerimiento_t);
+		                $("#sol_observaciones_t_e").val(data.sol_observaciones_t);
+		                $("#sol_id_i_editar").val(data.sol_id_i);
+	            	}
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		},
+
+		getDatosSucursales:function(banco, sucursal, editar = 0){
+			$.ajax({
+	            url: 'ajax/sucursales.ajax.php',
+	            type  : 'post',
+	            data: { getDatosByBanco : banco},
+	            dataType : 'json',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	var option = "<option value='0'> Seleccione </option>";
+	               	$.each(data, function(item, i){
+	               		option += "<option value='"+i.suc_id_id+"'> "+i.suc_nombre_v+" </option>";
+	               	});	  
+	               	if(editar == '0'){
+	               		$("#sol_suc_id_i_i").html(option); 	
+	               	}else{
+	               		$("#sol_suc_id_i_e").html(option); 
+	               		if(sucursal != 0){
+		               		$("#sol_suc_id_i_e").val(sucursal);
+		               	} 
+	               	} 
+	        
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		},
+
+		getFechasDisponibles:function(fecha, tecnico, horas, descHora = 0){
+			$.ajax({
+	            url: 'ajax/solicitudes.ajax.php',
+	            type  : 'post',
+	            data: { getHorasByFecha : fecha, datoTecnico: tecnico, horas: horas},
+	            dataType : 'json',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	var option = '';
+	            	if(horas != 0){
+                		option = "<option value='"+horas+"'>"+descHora+"</option>";
+	                } else {
+	                	option = "<option value='0'> Seleccione </option>";
+	                }
+	           
+	                $.each(data, function(item, i){
+	               		option += "<option value='"+i.hor_id_id+"'> "+i.hor_desc_v+" </option>";
+	                });	  
+	                $("#sol_hora_cita_v").html(option);    
+	                      
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+		},
+
+		insertSolicitudesAsignacion:function(dataTableEmpresas){
+			var FormularioRichard = new FormData($("#nuevaAsignacion")[0]);
+	        $.ajax({
+	            url: 'ajax/solicitudes.ajax.php',
+	            type  : 'post',
+	            data: FormularioRichard,
 	            dataType : 'json',
 	            cache: false,
 	            contentType: false,
@@ -414,7 +554,9 @@
 	                }else{
 	                    alertify.success('Proceso terminado, '+data.message);
 	                }
-	               
+	                dataTableEmpresas.ajax.reload();
+	                $("#nuevaAsignacion")[0].reset();
+	                $("#modalAsignarSolicitudes").modal('hide');
 	            },
 	            //si ha ocurrido un error
 	            error: function(){
@@ -423,11 +565,11 @@
 	        });
 		},
 
-		getDatosSucursales:function(banco){
+		getSolicitudAsignada:function(idSolicitud){
 			$.ajax({
-	            url: 'ajax/sucursales.ajax.php',
+	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
-	            data: { getDatosByBanco : banco},
+	            data: { getDatosAsignados : idSolicitud},
 	            dataType : 'json',
 	            beforeSend:function(){
 	                $.blockUI({ 
@@ -449,19 +591,22 @@
 	            },
 	            //una vez finalizado correctamente
 	            success: function(data){
-	            	var option = "<option value='0'> Seleccione </option>";
-	               $.each(data, function(item, i){
-	               		option += "<option value='"+i.suc_id_id+"'> "+i.suc_nombre_v+" </option>";
-	               });	  
-	               $("#sol_suc_id_i_i").html(option);           
+	            	if(data != false){
+	            		$("#sol_tec_usu_id_i").val(data.asi_usu_tec_id_i);
+		            	$("#sol_fecha_cita_d").val(data.asi_fecha_d);
+		            	Solicitudes.getFechasDisponibles(data.asi_fecha_d , data.asi_usu_tec_id_i, data.asi_hor_id_i, data.hor_desc_v);
+		            	
+		            	$("#sol_observaciones_t_i_A").val(data.asi_observacion_v);
+	            	}
+	            	
 	            },
 	            //si ha ocurrido un error
 	            error: function(){
 	                alertify.error('Error al realizar el proceso');
 	            }
 	        });
-
 		}
+		
 	}
 
 	$(function(){
@@ -471,13 +616,12 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        edicion += '<li><a class="dropdown-item btnVerIncapacidad" id_Incapacidad href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
+        edicion += '<li><a class="dropdown-item btnVerSolicitudes" id_solicitud href="#" data-toggle="modal" data-target="#modalAsignarSolicitudes" title="Asignar una solicitud a un tecnico">ASIGNAR</a></li>';
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEditarIncapacidad" title="Editar" id_Incapacidad data-toggle="modal" data-target="#modalEditarrIncapacidad" href="#">EDITAR</a></li>';
-
+        edicion += '<li><a class="dropdown-item btnEditarSolicitudes" title="Editar" id_solicitud data-toggle="modal" data-target="#modalEditarSolicitudes" href="#">EDITAR</a></li>';
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEliminarIncapacidad" title="Eliminar" id_Incapacidad href="#">ELIMINAR</a></li>';
-
+        edicion += '<li><a class="dropdown-item btnEliminarSolicitudes" title="Eliminar" id_solicitud href="#">ELIMINAR</a></li>';
+        edicion += '<li class="divider"></li>';
      	edicion += '</ul>';
     	edicion += '</div>';
 
@@ -521,17 +665,82 @@
 		    }
 		});
 
+		$('#dataTableUsuario tbody').on( 'click', 'a', function () {
+		    var data = dataTableEmpresas.row( $(this).parents('tr') ).data();
+		    $(this).attr("id_solicitud", data[6]);
+		});
+
+		/* Esta parte es para traer los datos de la edicion */
+	    $('#dataTableUsuario tbody').on("click", ".btnVerSolicitudes", function(){
+	        var x = $(this).attr('id_solicitud');
+	        Solicitudes.getSolicitudAsignada(x);
+	       	$("#sol_id_i_eAsi").val(x);
+	    });
+		/*Activar funcionalidad de boton eliminar*/
+	    $('#dataTableUsuario tbody').on("click", ".btnEliminarSolicitudes", function(){
+	        var x = $(this).attr('id_solicitud');
+			swal({
+	            title: '¿Está seguro de borrar la solicitud?',
+	            text: "¡Si no lo está puede cancelar la accíón!",
+	            type: 'warning',
+	            showCancelButton: true,
+	            confirmButtonColor: '#3085d6',
+	            cancelButtonColor: '#d33',
+	            cancelButtonText: 'Cancelar',
+	            confirmButtonText: 'Si, borrar solicitud!'
+	        },function(isConfirm) {
+	            if (isConfirm) {
+					Solicitudes.deleteSolicitudes(x,dataTableEmpresas);
+				}
+			});			
+	    });
+
+	    $('#dataTableUsuario tbody').on("click", ".btnEditarSolicitudes", function(){
+	        var x = $(this).attr('id_solicitud');
+	       	Solicitudes.getSolicitud(x);
+	    });
 
 		$("#enviarFormNuevo").click(function(){
 			Solicitudes.insertSolicitudes(dataTableEmpresas);
 		});
 
-		$("#enviarFormEdicion").click(function(){
+		$("#enviarFormEditar").click(function(){
 			Solicitudes.updateSolicitudes(dataTableEmpresas);
 		});
 
-		$("#sol_ban_id_i").on('change', function(){
-			Solicitudes.getDatosSucursales($(this).val());
+		$("#enviarFormNuevoAsignacion").click(function(){
+			Solicitudes.insertSolicitudesAsignacion(dataTableEmpresas);
 		});
+
+		$("#sol_ban_id_i").on('change', function(){
+			Solicitudes.getDatosSucursales($(this).val(), 0);
+		});
+
+		$("#sol_ban_id_e").on('change', function(){
+			Solicitudes.getDatosSucursales($(this).val(), 0);
+		});
+
+
+
+		$.fn.datepicker.dates['es'] = {
+		    days: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+		    daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+		    daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+		    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+		    monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+		    today: "Today",
+		    clear: "Clear",
+		    format: "yyyy-mm-dd",
+		    weekStart: 0
+		};
+
+		$("#sol_fecha_cita_d").datepicker({
+	        language: "es",
+	        autoclose: true,
+	        todayHighlight: true
+	    }).on('changeDate', function (selected) {
+	        var minDate = new Date(selected.date.valueOf());
+	        Solicitudes.getFechasDisponibles( moment(minDate).format('YYYY-MM-DD') , $("#sol_tec_usu_id_i").val(), 0, 0);
+	    }); 
 	});
 </script>

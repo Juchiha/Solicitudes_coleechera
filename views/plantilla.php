@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="views/assets/vendor/alertify/alertify.default.css">
     <link rel="stylesheet" href="views/assets/vendor/sweetalert/sweetalert.css">
     <link rel="icon" href="views/assets/img/theme/logotipo.jpg" type="image/jpg">
+    <link rel="stylesheet" type="text/css" href="views/assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
 </head>
 
 <body id="page-top sidebar-toggled">
@@ -122,6 +123,10 @@ echo '
     <script src="views/assets/vendor/alertify/alertify.min.js"></script>
 
     <script src="views/assets/vendor/sweetalert/sweetalert.min.js"></script>
+
+    <script type="text/javascript" src="views/assets/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+
+    <script type="text/javascript" src="views/assets/vendor/moment.min.js"></script>
 </body>
 
 </html>

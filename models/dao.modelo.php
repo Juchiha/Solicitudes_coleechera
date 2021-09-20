@@ -78,9 +78,9 @@
 
 			$stmt -> execute();
 			$totales = $stmt->fetch();
-			return $totales['cantidad'];
-			$stmt -> close();
 			$stmt = null;
+			return $totales['cantidad'];
+			
 		}
 
 		static public function mdlCrear($tabla, $campos, $valores){

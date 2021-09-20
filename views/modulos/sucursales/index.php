@@ -127,7 +127,10 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_est_id_i_i">Estado</label>
-								<input type="text" class="form-control" id="suc_est_id_i_i" name="suc_est_id_i_i" placeholder="Estado Sucursal">
+								<select class="form-control" id="suc_est_id_i_i" name="suc_est_id_i_i" placeholder="Estado Sucursal">
+									<option value="1">Activo</option>
+									<option value="0">No activo</option>
+								</select>
 							</div>
 						</div>
 						
@@ -213,7 +216,10 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_est_id_i_e">Estado</label>
-								<input type="text" class="form-control" id="suc_est_id_i_e" name="suc_est_id_i_e" placeholder="Estado Sucursal">
+								<select class="form-control" id="suc_est_id_i_e" name="suc_est_id_i_e" placeholder="Estado Sucursal">
+									<option value="1">Activo</option>
+									<option value="0">No activo</option>
+								</select>
 							</div>
 						</div>
 
@@ -341,9 +347,6 @@ sucursales = {
 	            type  : 'post',
 	            data: { suc_id_id : idSucursales},
 	            dataType : 'json',
-	            cache: false,
-	            contentType: false,
-	            processData: false,
 	            beforeSend:function(){
 	                $.blockUI({ 
 	                    message : '<h3>Un momento por favor....</h3>',
@@ -428,13 +431,10 @@ sucursales = {
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        edicion += '<li><a class="dropdown-item btnVerSucursales" id_sucursal href="#" data-toggle="modal" data-target="#modalEditarrIncapacidadver">VER</a></li>';
-        edicion += '<li class="divider"></li>';
         edicion += '<li><a class="dropdown-item btnEditarSucursales" title="Editar" id_sucursal data-toggle="modal" data-target="#modalActualizarSucursales" href="#">EDITAR</a></li>';
-
         edicion += '<li class="divider"></li>';
         edicion += '<li><a class="dropdown-item btnEliminarSucursales" title="Eliminar" id_sucursal href="#">ELIMINAR</a></li>';
-
+        edicion += '<li class="divider"></li>';
      	edicion += '</ul>';
     	edicion += '</div>';
 
@@ -489,12 +489,22 @@ sucursales = {
 	       	sucursales.getSucursales(x);
 	    });
 		/*Activar funcionalidad de boton eliminar*/
-	     $('#dataTable tbody').on("click", ".btnEliminarUsuario", function(){
+	    $('#dataTable tbody').on("click", ".btnEliminarSucursales", function(){
 	        var x = $(this).attr('id_sucursal');
-			let isBoss = confirm("¿Desea eliminar este usuario?");
-			if (isBoss== true) {
-				sucursales.deleteUsuarios(x,dataTableEmpresas);
-			}			
+			swal({
+	            title: '¿Está seguro de borrar la sucursal?',
+	            text: "¡Si no lo está puede cancelar la accíón!",
+	            type: 'warning',
+	            showCancelButton: true,
+	            confirmButtonColor: '#3085d6',
+	            cancelButtonColor: '#d33',
+	            cancelButtonText: 'Cancelar',
+	            confirmButtonText: 'Si, borrar sucursal!'
+	        },function(isConfirm) {
+	            if (isConfirm) {
+					sucursales.deleteSucursales(x,dataTableEmpresas);
+				}
+			});			
 	    });
 
 
