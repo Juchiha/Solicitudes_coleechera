@@ -4,7 +4,7 @@
 ?>
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  	<h1 class="h3 mb-0 text-gray-800">Solicitudes En el sistema</h1>
+  	<h1 class="h3 mb-0 text-gray-800">Incidencias reportadas en el sistema</h1>
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -13,7 +13,7 @@
   	</button>
   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -104px, 0px);">
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarSolicitudes">
-        	Nueva Solicitud
+        	Nueva Incidencia
     	</a>
     </div>
 </div>
@@ -21,7 +21,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Datos de las solicitudes</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Datos de las Incidencias</h6>
         </div>
         <div class="card-body">
         	<table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0">
@@ -58,7 +58,7 @@
 		<div class="modal-content">
 			<form id="nuevoUsuario" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Ingreso de Solicitud</h5>
+					<h5 class="modal-title">Nueva Incidencia</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -122,7 +122,7 @@
 		<div class="modal-content">
 			<form id="editarSolcicitud" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Ingreso de Solicitud</h5>
+					<h5 class="modal-title">Editar Incidencia</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -187,7 +187,7 @@
 		<div class="modal-content">
 			<form id="nuevaAsignacion" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Ingreso de Solicitud</h5>
+					<h5 class="modal-title">Asignar Técnico</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -616,11 +616,11 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        edicion += '<li><a class="dropdown-item btnVerSolicitudes" id_solicitud href="#" data-toggle="modal" data-target="#modalAsignarSolicitudes" title="Asignar una solicitud a un tecnico">ASIGNAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnVerSolicitudes" id_solicitud href="#" data-toggle="modal" data-target="#modalAsignarSolicitudes" title="Asignar una incidencia a un tecnico">ASIGNAR</a></li>';
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEditarSolicitudes" title="Editar" id_solicitud data-toggle="modal" data-target="#modalEditarSolicitudes" href="#">EDITAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnEditarSolicitudes" title="Editar incidencia" id_solicitud data-toggle="modal" data-target="#modalEditarSolicitudes" href="#">EDITAR</a></li>';
         edicion += '<li class="divider"></li>';
-        edicion += '<li><a class="dropdown-item btnEliminarSolicitudes" title="Eliminar" id_solicitud href="#">ELIMINAR</a></li>';
+        edicion += '<li><a class="dropdown-item btnEliminarSolicitudes" title="Eliminar incidencia" id_solicitud href="#">ELIMINAR</a></li>';
         edicion += '<li class="divider"></li>';
      	edicion += '</ul>';
     	edicion += '</div>';
@@ -680,14 +680,14 @@
 	    $('#dataTableUsuario tbody').on("click", ".btnEliminarSolicitudes", function(){
 	        var x = $(this).attr('id_solicitud');
 			swal({
-	            title: '¿Está seguro de borrar la solicitud?',
+	            title: '¿Está seguro de borrar la incidencia?',
 	            text: "¡Si no lo está puede cancelar la accíón!",
 	            type: 'warning',
 	            showCancelButton: true,
 	            confirmButtonColor: '#3085d6',
 	            cancelButtonColor: '#d33',
 	            cancelButtonText: 'Cancelar',
-	            confirmButtonText: 'Si, borrar solicitud!'
+	            confirmButtonText: 'Si, borrar incidencia!'
 	        },function(isConfirm) {
 	            if (isConfirm) {
 					Solicitudes.deleteSolicitudes(x,dataTableEmpresas);
