@@ -40,7 +40,7 @@
                
                 <a class="dropdown-item" href="salir">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
+                    Salir
                 </a>
             </div>
         </li>

@@ -69,9 +69,9 @@ echo '
                     echo "<script>$('#sucursales').addClass('active');</script>";
                     break;
 
-                case 'solicitudes':
+                case 'incidencias':
                     include "modulos/solicitudes/index.php";
-                    echo "<script>$('#solicitudes').addClass('active');</script>";
+                    echo "<script>$('#incidencias').addClass('active');</script>";
                     break;
 
                      case 'bancos':
@@ -93,7 +93,7 @@ echo '
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Mythology System 2021</span>
+                    <span>Copyright &copy; LemonDesings 2021</span>
                 </div>
             </div>
         </footer>
@@ -123,7 +123,7 @@ echo '
     <!-- Page level plugins -->
     <script src="views/assets/StartBoots/vendor/chart.js/Chart.min.js"></script>
 
-    <script src="views/assets/vendor/blockui/blockUI.js"></script>
+    <script src="views/assets/vendor/blockui/blockUi.js"></script>
 
     <script src="views/assets/vendor/alertify/alertify.min.js"></script>
 

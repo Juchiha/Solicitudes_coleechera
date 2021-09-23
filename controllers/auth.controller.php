@@ -47,7 +47,7 @@
 							if($ultimoLogin == "ok"){
 								/*No paso nada y guardo todo bien, la mandamos al inicio*/
 								echo '<script>
-										window.location = "dashboard";
+										window.location = "incidencias";
 									</script>';
 							/*}else{
 								var_dump($ultimoLogin);
