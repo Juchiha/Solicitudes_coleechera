@@ -55,5 +55,13 @@
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
+<!-- Menu  bancos -->
+     <li id="bancos" class="nav-item">
+        <a class="nav-link" href="bancos">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Bancos</span>
+        </a>
+    </li>
+
 </ul>
 <!-- End of Sidebar -->

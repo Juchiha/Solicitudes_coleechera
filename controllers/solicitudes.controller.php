@@ -12,7 +12,7 @@
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_i'],
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
-					'sol_est_id_i'					=> 1
+					'sol_est_id_i'					=> 3
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);

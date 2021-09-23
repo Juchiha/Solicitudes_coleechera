@@ -12,6 +12,7 @@
 	require_once 'controllers/sucursales.controller.php';
 	require_once 'controllers/usuarios.controller.php';
 	require_once 'controllers/utilidades.controller.php';
+	require_once 'controllers/bancos.controller.php';
 
 
 

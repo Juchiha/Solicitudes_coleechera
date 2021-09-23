@@ -74,6 +74,11 @@ echo '
                     echo "<script>$('#solicitudes').addClass('active');</script>";
                     break;
 
+                     case 'bancos':
+                    include "modulos/bancos/index.php";
+                    echo "<script>$('#bancos').addClass('active');</script>";
+                    break;
+
             }
         }else{
             include "modulos/dashboard/index.php";

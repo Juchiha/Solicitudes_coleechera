@@ -33,6 +33,7 @@
 
 			$stmt->bindParam(":ban_nombre_v", $datos['ban_nombre_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":ban_est_id_i", $datos['ban_est_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":ban_id_i", $datos['ban_id_i'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
