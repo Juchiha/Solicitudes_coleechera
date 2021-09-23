@@ -99,7 +99,7 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="suc_ciu_id_i_i">Ciudad</label>
-								<select class="form-control" id="suc_ban_id_i_i" name="suc_ban_id_i_i" placeholder="Tipo documento">
+								<select class="form-control" id="suc_ciu_id_i_i" name="suc_ciu_id_i_i" placeholder="Ciudad">
 									<?php 
 										$ciudades = ControladorUtilidades::getData('ciudades', null, null);
 										foreach($ciudades as $key => $value){

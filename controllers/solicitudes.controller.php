@@ -12,7 +12,8 @@
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_i'],
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
-					'sol_est_id_i'					=> 3
+					'sol_est_id_i'					=> 3,
+					'sol_prio_id'					=> $_POST['sol_prio_id_i']
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
@@ -43,7 +44,8 @@
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_e'],
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_e'],
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_e'],
-					'sol_id_i'						=> $_POST['sol_id_i_e']
+					'sol_id_i'						=> $_POST['sol_id_i_e'],
+					'sol_prio_id'					=> $_POST['sol_prio_id_e']
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
