@@ -35,7 +35,7 @@
 		}
 
 		public function getAllDatos(){
-            $usuarios = ControladorSolicitudes::getData('sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i LEFT join sc_usuarios ON usu_id_i = sol_usu_id_i join sc_estados ON est_id_i = sol_est_id_i LEFT JOIN sc_asignaciones ON asi_sol_id_i = sol_id_i LEFT JOIN sc_horas ON hor_id_id = asi_hor_id_i ', null, null);
+            $usuarios = ControladorSolicitudes::getData('sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i  join sc_estados ON est_id_i = sol_est_id_i LEFT JOIN sc_asignaciones ON asi_sol_id_i = sol_id_i LEFT JOIN sc_horas ON hor_id_id = asi_hor_id_i LEFT JOIN sc_prioridades ON  sol_prio_id= pri_id_i', null, null);
 echo '{
   	"data" : [';
   			$i = 0;
@@ -46,9 +46,9 @@ echo '{
 				echo '[';
 				echo '"'.$value["suc_nombre_v"].'",';
 				echo '"'.$value["sol_fecha_solicitud_d"].'",';
-				echo '"'.$value["usu_nombre_v"].' '.$value['usu_apellido_v'].'",'; 
 				echo '"'.$value["sol_orden_trabajo"].'",'; 
 				echo '"'.$value["est_nombre_v"].'",';
+				echo '"'. strtoupper($value["pri_desc_v"]).'",';
 				echo '"'.$value["asi_fecha_d"].' '.$value['hor_desc_v'].'",';
 				echo '"'.$value["sol_id_i"].'"';
 				echo ']';

@@ -12,7 +12,7 @@ class SolicitudesModelo extends ModeloDAO
 					sol_usu_id_i,
 					sol_ban_id_i,
 					sol_est_id_i,
-					sol_pri_id_i)
+					sol_prio_id)
 				VALUES(	
 					:sol_suc_id_i,
 					:sol_fecha_solicitud_d, 

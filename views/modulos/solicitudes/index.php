@@ -27,23 +27,23 @@
         	<table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                		<th style="width: 18%;">Sucursal</th>
-                        <th style="width: 18%;">Fecha Sol.</th>
-                        <th style="width: 18%">Nombre Sol.</th>
+                		<th style="width: 27%;">Sucursal</th>
+                        <th style="width: 12%;">Fecha Sol.</th>
                         <th style="width: 10%;"># OT</th>
-                        <th style="width: 8%;">Estado</th>
-                        <th style="width: 20%;">Fecha Cita</th>
+                        <th style="width: 9%;">Estado</th>
+                        <th style="width: 10%;">Prioridad</th>
+                        <th style="width: 24%;">Fecha Cita</th>
                         <th style="width: 8%;"></th>
                     </tr>
                 </thead>
                 <tfoot>
-                    <tr>
-                        <th style="width: 18%;">Sucursal</th>
-                        <th style="width: 18%;">Fecha Sol.</th>
-                        <th style="width: 18%">Nombre Sol.</th>
+                     <tr>
+                		<th style="width: 27%;">Sucursal</th>
+                        <th style="width: 12%;">Fecha Sol.</th>
                         <th style="width: 10%;"># OT</th>
-                        <th style="width: 8%;">Estado</th>
-                        <th style="width: 20%;">Fecha Cita</th>
+                        <th style="width: 9%;">Estado</th>
+                        <th style="width: 10%;">Prioridad</th>
+                        <th style="width: 24%;">Fecha Cita</th>
                         <th style="width: 8%;"></th>
                     </tr>
                 </tfoot>
@@ -80,16 +80,36 @@
 							</div>
 						</div>
 					</div>
+	
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
 								<label for="sol_suc_id_i_i">Sucursal</label>
 								<select class="form-control" id="sol_suc_id_i_i" name="sol_suc_id_i_i" placeholder="Sucursal">
+									<option value="0">Seleccione</option>
+									
 
 								</select>
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_prio_id_i">Prioridad</label>
+								<select class="form-control" id="sol_prio_id_i" name="sol_prio_id_i" placeholder="Prioridad">
+									<?php 
+										$prioridades = ControladorUtilidades::getData('sc_prioridades', null, null);
+										foreach($prioridades as $key => $value){
+											echo '<option value="'.$value['pri_id_i'].'">'.$value['pri_desc_v'].'</option>';
+										}
+									?>
+
+								</select>
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
@@ -149,6 +169,23 @@
 							<div class="form-group">
 								<label for="sol_suc_id_i_e">Sucursal</label>
 								<select class="form-control" id="sol_suc_id_i_e" name="sol_suc_id_i_e" placeholder="Sucursal">
+
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_prio_id_e">Prioridad</label>
+								<select class="form-control" id="sol_prio_id_e" name="sol_prio_id_e" placeholder="Prioridad">
+									<?php 
+										$prioridades = ControladorUtilidades::getData('sc_prioridades', null, null);
+										foreach($prioridades as $key => $value){
+											echo '<option value="'.$value['pri_id_i'].'">'.$value['pri_desc_v'].'</option>';
+										}
+									?>
 
 								</select>
 							</div>
