@@ -9,6 +9,7 @@ class SolicitudesModelo extends ModeloDAO
 					sol_fecha_solicitud_d, 
 					sol_requerimiento_t, 
 					sol_observaciones_t,
+					sol_tec_usu_id_i,
 					sol_usu_id_i,
 					sol_ban_id_i,
 					sol_est_id_i,
@@ -18,18 +19,20 @@ class SolicitudesModelo extends ModeloDAO
 					:sol_fecha_solicitud_d, 
 					:sol_requerimiento_t, 
 					:sol_observaciones_t,
+					:sol_tec_usu_id_i,
 					:sol_usu_id_i,
 					:sol_ban_id_i,
 					:sol_est_id_i,
 					:sol_prio_id) ");
 			$stmt->bindParam(":sol_suc_id_i", $datos['sol_suc_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_fecha_solicitud_d", $datos['sol_fecha_solicitud_d'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_requerimiento_t", $datos['sol_requerimiento_t'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_observaciones_t", $datos['sol_observaciones_t'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_est_id_i", $datos['sol_est_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_usu_id_i", $datos['sol_usu_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_ban_id_i", $datos['sol_ban_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_prio_id",  $datos['sol_prio_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_requerimiento_t",   $datos['sol_requerimiento_t'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_observaciones_t",   $datos['sol_observaciones_t'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_est_id_i",          $datos['sol_est_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_tec_usu_id_i",      $datos['sol_tec_usu_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_usu_id_i",          $datos['sol_usu_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_ban_id_i",          $datos['sol_ban_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_prio_id",           $datos['sol_prio_id'], PDO::PARAM_STR);
 			
 			if($stmt->execute()){
 				$stmt = null;
@@ -84,6 +87,7 @@ class SolicitudesModelo extends ModeloDAO
 					sol_suc_id_i = :sol_suc_id_i,
 					sol_requerimiento_t = :sol_requerimiento_t,
 					sol_observaciones_t = :sol_observaciones_t ,
+					sol_tec_usu_id_i = :sol_tec_usu_id_i ,
 					sol_ban_id_i = :sol_ban_id_i,
 					sol_prio_id = :sol_prio_id
 				WHERE 
@@ -92,6 +96,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_suc_id_i",        $datos['sol_suc_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_requerimiento_t", $datos['sol_requerimiento_t'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_observaciones_t", $datos['sol_observaciones_t'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_tec_usu_id_i", $datos['sol_tec_usu_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_id_i",     $datos['sol_id_i'],     PDO::PARAM_STR);
 			$stmt->bindParam(":sol_ban_id_i", $datos['sol_ban_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_prio_id",  $datos['sol_prio_id'], PDO::PARAM_STR);

@@ -146,7 +146,7 @@
 
 					</div>
 
-					<div class="row">
+					<div class="row" style="display: none;" id="rowBanco">
 						<div class="col">
 							<div class="form-group">
 								<label for="usu_banco_i_i">Banco</label>
@@ -161,6 +161,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="idCarpetaPadre" value="0">
@@ -271,7 +272,7 @@
 
 					</div>
 
-					<div class="row">
+					<div class="row" style="display: none;" id="rowActBanco">
 						<div class="col">
 							<div class="form-group">
 								<label for="usu_banco_i_e">Banco</label>
@@ -286,6 +287,8 @@
 							</div>
 						</div>
 					</div>
+					
+
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="usu_id_i_e" id="usu_id_i_e" value="0">
@@ -574,6 +577,21 @@
 		$("#enviarFormEdicion").click(function(){
 			usuarios.updateUsuarios(dataTableEmpresas);
 		});
+
+		$("#usu_per_id_i_i").change(function(){
+			if ($("#usu_per_id_i_i").val() == "3") {
+				$("#rowBanco").show();
+			}else{
+				$("#rowBanco").hide();
+			}
+		})
+		$("#usu_per_id_i_e").change(function(){
+		if ($("#usu_per_id_i_e").val() == "3") {
+				$("#rowActBanco").show();
+			}else{
+				$("#rowActBanco").hide();
+			}
+		})
 
 	});
 </script>

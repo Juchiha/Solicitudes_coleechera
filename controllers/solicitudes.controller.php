@@ -5,11 +5,17 @@
 			
 		public static function insertDatos(){
 			if(isset($_POST['sol_ban_id_i'])){ //les coloco i al final para saber que es insercion
+				$tecnico = 0;
+				if(isset($_POST['sol_tec_usu_id_i_i'])){
+					$tecnico = $_POST['sol_tec_usu_id_i_i'] ;
+				}
+
 				$datos = array(
 					'sol_suc_id_i' 					=> $_POST['sol_suc_id_i_i'], 
 					'sol_fecha_solicitud_d'  		=> date('Y-m-d'),
 					'sol_usu_id_i'					=> $_SESSION['codigo'],
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_i'],
+					'sol_tec_usu_id_i'				=> $tecnico,
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
 					'sol_est_id_i'					=> 3,
@@ -38,11 +44,16 @@
 		*}
 		**/	
 		public static function UpdateDatos(){
-			if(isset($_POST['sol_ban_id_e'])){ //e de edicion
+			if(isset($_POST['sol_ban_id_e'])){ 
+			$tecnico = 0;
+				if(isset($_POST['sol_tec_usu_id_i_e'])){
+					$tecnico = $_POST['sol_tec_usu_id_i_e'] ;
+				}//e de edicion
 				$datos = array(
 					'sol_suc_id_i' 					=> $_POST['sol_suc_id_i_e'], 
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_e'],
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_e'],
+					'sol_tec_usu_id_i'			    => $tecnico,
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_e'],
 					'sol_id_i'						=> $_POST['sol_id_i_e'],
 					'sol_prio_id'					=> $_POST['sol_prio_id_e']

@@ -125,7 +125,29 @@
 								<textarea class="form-control" id="sol_observaciones_t_i" name="sol_observaciones_t_i" placeholder="Observaciones"></textarea>
 							</div>
 						</div>
-					</div>					
+					</div>	
+					<?php
+						if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
+					?>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_tec_usu_id_i_i">Tecnico</label>
+								<select class="form-control" id="sol_tec_usu_id_i_i" name="sol_tec_usu_id_i_i" placeholder="Tecnico">
+									<option value="0">Seleccione</option>
+									<?php 
+										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+										foreach($tecnicos as $key => $value){
+											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+					</div>
+					<?php
+					}
+					?>					
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
@@ -206,7 +228,29 @@
 								<textarea class="form-control" id="sol_observaciones_t_e" name="sol_observaciones_t_e" placeholder="Observaciones"></textarea>
 							</div>
 						</div>
-					</div>					
+					</div>	
+					<?php
+						if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
+					?>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_tec_usu_id_i_e">Tecnico</label>
+								<select class="form-control" id="sol_tec_usu_id_i_e" name="sol_tec_usu_id_i_e" placeholder="Tecnico">
+									<option value="0">Seleccione</option>
+									<?php 
+										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+										foreach($tecnicos as $key => $value){
+											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>
+					</div>	
+					<?php
+					}
+					?>			
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="sol_id_i_e" id="sol_id_i_editar">
