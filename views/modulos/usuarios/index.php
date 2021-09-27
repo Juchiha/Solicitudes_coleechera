@@ -119,7 +119,10 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="usu_est_id_i_i">Estado</label>
-								<input type="text" class="form-control" id="usu_est_id_i_i" name="usu_est_id_i_i" placeholder="Estado del Usuario">
+								<select class="form-control" id="usu_est_id_i_i" name="usu_est_id_i_i" placeholder="Estado del Usuario">
+									<option value="1">Activo</option>
+									<option value="0">No activo</option>
+								</select>
 							</div>
 						</div>
 
@@ -128,11 +131,9 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_usuario_v_i">Usuario</label>
-								<select class="form-control" id="usu_usuario_v_i" name="usu_usuario_v_i" placeholder="Estado del Usuario">
-									<option value="1">Activo</option>
-									<option value="0">No activo</option>
-								</select>
+								<label for="usu_usuario_v_i">Nombre de Usuario</label>
+								<input type="text" class="form-control" id="usu_usuario_v_i" name="usu_usuario_v_i" placeholder="Nombre de Usuario">
+								
 							</div>
 						</div>
 
@@ -255,9 +256,9 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_usuario_v_e">Usuario</label>
+								<label for="usu_usuario_v_e">Nombre de Usuario</label>
 								<input type="text" class="form-control" id="usu_usuario_v_e"
-								 name="usu_usuario_v_e" placeholder="Usuario">
+								 name="usu_usuario_v_e" placeholder="Nombre de Usuario">
 							</div>
 						</div>
 

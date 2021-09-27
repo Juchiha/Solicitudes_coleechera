@@ -425,6 +425,7 @@ sucursales = {
 	}
 
 	$(function(){
+
 		let edicion = '<div class="btn-group">';
         edicion += '<button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
         edicion += '<i class="fa fa-info-circle"></i>';
