@@ -27,6 +27,17 @@
 					$orden = SolicitudesModelo::getTotalSolicitudesDay();
 					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes', 'sol_orden_trabajo', date('Ymd').$orden['total'], 'sol_id_i', $respuesta);
 
+					//Aqui vamos a hacer una validacion de si viene o no la observacion
+					if(isset($_POST['sol_observaciones_t_i']) && $_POST['sol_observaciones_t_i'] != ''){
+						$datos = array (
+							'obs_desc_v'      => $_POST['sol_observaciones_t_i'], //observacion
+							'obs_usu_id_i'      => $_SESSION['codigo'],//quien hace la observacion
+							'obs_sol_id_i'      => $respuesta, //codigo solicitud
+							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
+						);
+						$observacion = SolicitudesModelo::insertObservaciones($datos);	
+					}
+					
 					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no guardadado'));
@@ -61,6 +72,16 @@
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
 				if($respuesta == "ok"){
+					//Aqui vamos a hacer una validacion de si viene o no la observacion
+					if(isset($_POST['sol_observaciones_t_e']) && $_POST['sol_observaciones_t_e'] != ''){
+						$datos = array (
+							'obs_desc_v'      => $_POST['sol_observaciones_t_e'], //observacion
+							'obs_usu_id_i'      => $_SESSION['codigo'],//quien hace la observacion
+							'obs_sol_id_i'      => $_POST['sol_id_i_e'], //codigo solicitud
+							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
+						);
+						$observacion = SolicitudesModelo::insertObservaciones($datos);	
+					}
 					return json_encode(array('code' => 1, 'message' => 'Solicitud actualizada con exito'));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no actualizada'));
@@ -92,6 +113,17 @@
 				$respuesta = SolicitudesModelo::insertDatosAsignar($datos);
 				if($respuesta == "ok"){
 					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes', 'sol_est_id_i', '4', 'sol_id_i', $_POST['sol_id_i_e']);
+
+					//Aqui vamos a hacer una validacion de si viene o no la observacion
+					if(isset($_POST['sol_observaciones_t_i']) && $_POST['sol_observaciones_t_i'] != ''){
+						$datos = array (
+							'obs_desc_v'      => $_POST['sol_observaciones_t_i'], //observacion
+							'obs_usu_id_i'      => $_SESSION['codigo'],//quien hace la observacion
+							'obs_sol_id_i'      => $_POST['sol_id_i_e'], //codigo solicitud
+							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
+						);
+						$observacion = SolicitudesModelo::insertObservaciones($datos);	
+					}
 
 					return json_encode(array('code' => 1, 'message' => 'Solicitud actualizada con exito'));
 				}else{	

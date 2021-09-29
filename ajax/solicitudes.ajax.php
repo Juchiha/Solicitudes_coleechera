@@ -44,13 +44,13 @@ echo '{
             		echo ",";
             	}
 				echo '[';
-				echo '"'.$value["suc_nombre_v"].'",';
-				echo '"'.$value["sol_fecha_solicitud_d"].'",';
-				echo '"'.$value["sol_orden_trabajo"].'",'; 
-				echo '"'.$value["est_nombre_v"].'",';
-				echo '"'. strtoupper($value["pri_desc_v"]).'",';
-				echo '"'.$value["asi_fecha_d"].' '.$value['hor_desc_v'].'",';
-				echo '"'.$value["sol_id_i"].'"';
+				echo '"'.$value["suc_nombre_v"].'",';//viene de sucursales
+				echo '"'.$value["sol_fecha_solicitud_d"].'",'; //solicitudes
+				echo '"'.$value["sol_orden_trabajo"].'",'; //solicitudes
+				echo '"'.$value["est_nombre_v"].'",';//estados
+				echo '"'. strtoupper($value["pri_desc_v"]).'",';//prioridades
+				echo '"'.$value["asi_fecha_d"].' '.$value['hor_desc_v'].'",';//asignaciones
+				echo '"'.$value["sol_id_i"].'"';//solicitudes
 				echo ']';
             	$i++;
 		 	}

@@ -53,22 +53,20 @@ class SolicitudesModelo extends ModeloDAO
 					asi_hor_id_i, 
 					asi_est_id_i,
 					asi_observacion_v,
-					asi_sol_id_i, 
-					sol_ban_id_i)
+					asi_sol_id_i)
 				VALUES(	
 					:asi_usu_tec_id_i,
 					:asi_fecha_d, 
 					:asi_hor_id_i, 
 					1,
 					:asi_observacion_v,
-					:asi_sol_id_i,
-					:sol_ban_id_i) ");
+					:asi_sol_id_i) ");
 			$stmt->bindParam(":asi_usu_tec_id_i", $datos['asi_usu_tec_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_fecha_d", $datos['asi_fecha_d'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_hor_id_i", $datos['asi_hor_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_observacion_v", $datos['asi_observacion_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_sol_id_i", $datos['asi_sol_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_ban_id_i", $datos['sol_ban_id_i'], PDO::PARAM_STR);
+		
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
@@ -140,5 +138,36 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->execute();
 			return $stmt->fetch();
 		}
+
+		//desde aqui crud observaciones
+		public static function insertObservaciones($datos){
+			$pdo  = Conexion::conectar();
+			$stmt = $pdo->prepare("INSERT INTO 
+				sc_observaciones(
+					obs_desc_v,
+				 	obs_usu_id_i,
+				 	obs_sol_id_i,
+				 	obs_fecha_d)
+				   VALUES(
+				   :obs_desc_v,
+				   :obs_usu_id_i,
+				   :obs_sol_id_i,
+				   :obs_fecha_d)");
+			$stmt->bindParam(":obs_desc_v", $datos['obs_desc_v'], PDO::PARAM_STR);
+			$stmt->bindParam(":obs_usu_id_i", $datos['obs_usu_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":obs_sol_id_i", $datos['obs_sol_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":obs_fecha_d", $datos['obs_fecha_d'], PDO::PARAM_STR);
+
+			if($stmt->execute()){
+				$stmt = null;
+				return 'ok';
+			}else{
+				print_r($stmt->errorInfo());
+				///self::logError('2404', "Error insertando solicitudes.modelo.php => " + $stmt->errorInfo());
+				return 'error';
+			}	
+		}
+
+       
 	}
 ?>
