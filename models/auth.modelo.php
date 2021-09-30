@@ -7,7 +7,7 @@
 	{
 		static public function getDatosUsuarioLogin($item, $valor){
 			if(!is_null($item)){
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM sc_usuarios WHERE $item = :$item");
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM sc_usuarios JOIN sc_perfiles ON perf_id_i = usu_per_id_i WHERE $item = :$item");
 				$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 				$stmt->execute();
 				$object = $stmt->fetch();

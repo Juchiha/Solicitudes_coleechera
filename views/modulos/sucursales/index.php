@@ -10,6 +10,10 @@
     	<i class="fas fa-plus fa-sm text-white-50"></i> 
     	Nuevo Cargue
   	</a>-->
+  	<?php 
+  		if ($_SESSION['perf_add_i']==1) {
+  			
+  	 ?>
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -24,6 +28,7 @@
         	Ingresar Sucursales
     	</a>
     </div>
+	}
 </div>
 <div class="container-fluid">
     <!-- DataTales Example -->
