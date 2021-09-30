@@ -5,6 +5,9 @@
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   	<h1 class="h3 mb-0 text-gray-800">Incidencias reportadas en el sistema</h1>
+  	<?php 
+  		if ($_SESSION['perf_add_i']==1) {	
+  	?>
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -16,6 +19,9 @@
         	Nueva Incidencia
     	</a>
     </div>
+    <?php 
+		}
+	?>
 </div>
 <div class="container-fluid">
     <!-- DataTales Example -->
@@ -54,7 +60,7 @@
 
 <!-- nuevo usuario -->
 <div class="modal" tabindex="-1" role="dialog" id="modalIngresarSolicitudes">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<form id="nuevoUsuario" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
@@ -79,9 +85,7 @@
 								</select>
 							</div>
 						</div>
-					</div>
-	
-					<div class="row">
+
 						<div class="col">
 							<div class="form-group">
 								<label for="sol_suc_id_i_i">Sucursal</label>
@@ -94,7 +98,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="sol_prio_id_i">Prioridad</label>
 								<select class="form-control" id="sol_prio_id_i" name="sol_prio_id_i" placeholder="Prioridad">
@@ -108,6 +112,27 @@
 								</select>
 							</div>
 						</div>
+						<?php
+							if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
+						?>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label for="sol_tec_usu_id_i_i">Tecnico</label>
+									<select class="form-control" id="sol_tec_usu_id_i_i" name="sol_tec_usu_id_i_i" placeholder="Tecnico">
+										<option value="0">Seleccione</option>
+										<?php 
+											$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+											foreach($tecnicos as $key => $value){
+												echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
+											}
+										?>
+									</select>
+								</div>
+							</div>
+					
+						<?php
+						}
+						?>	
 					</div>
 
 					<div class="row">
@@ -132,22 +157,22 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="sol_tec_usu_id_i_i">Tecnico</label>
-								<select class="form-control" id="sol_tec_usu_id_i_i" name="sol_tec_usu_id_i_i" placeholder="Tecnico">
-									<option value="0">Seleccione</option>
-									<?php 
-										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
-										foreach($tecnicos as $key => $value){
-											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
-										}
-									?>
+								<label for="sol_fecha_cita_d">Fecha Atención</label>
+								<input type="text" name="sol_fecha_cita_d" id="sol_fecha_cita_d_i" class="form-control" placeholder="YYYY-MM-DD">
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_hora_cita_v">Hora Atención</label>
+								<select name="sol_hora_cita_v" id="sol_hora_cita_v_i" class="form-control" placeholder="Hora Atención">
+
 								</select>
 							</div>
 						</div>
-					</div>
-					<?php
+					</div>	
+					<?php 
 					}
-					?>					
+					?>			
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
@@ -160,7 +185,7 @@
 
 <!-- nuevo usuario -->
 <div class="modal" tabindex="-1" role="dialog" id="modalEditarSolicitudes">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<form id="editarSolcicitud" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
@@ -250,7 +275,25 @@
 					</div>	
 					<?php
 					}
-					?>			
+					?>	
+
+					<div class="row">
+						<div class="col">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<td>#</td>
+										<td>Observación</td>
+										<td>Realizada Por</td>
+										<td>Fecha</td>
+									</tr>
+								</thead>
+								<tbody id="cuerpoObservaciones">
+									
+								</tbody>
+							</table>
+						</div>
+					</div>		
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="sol_id_i_e" id="sol_id_i_editar">
@@ -498,6 +541,7 @@
 		                $("#sol_requerimiento_t_e").val(data.sol_requerimiento_t);
 		                $("#sol_observaciones_t_e").val(data.sol_observaciones_t);
 		                $("#sol_id_i_editar").val(data.sol_id_i);
+		                Solicitudes.getObservaciones(data.sol_id_i);
 	            	}
 	            },
 	            //si ha ocurrido un error
@@ -590,7 +634,8 @@
 	                $.each(data, function(item, i){
 	               		option += "<option value='"+i.hor_id_id+"'> "+i.hor_desc_v+" </option>";
 	                });	  
-	                $("#sol_hora_cita_v").html(option);    
+	                $("#sol_hora_cita_v").html(option); 
+	                $("#sol_hora_cita_v_i").html(option);       
 	                      
 	            },
 	            //si ha ocurrido un error
@@ -686,8 +731,55 @@
 	                alertify.error('Error al realizar el proceso');
 	            }
 	        });
+		},
+
+		getObservaciones:function(idUsuario){
+			$.ajax({
+	            url: 'ajax/solicitudes.ajax.php',
+	            type  : 'post',
+	            data: { getObservaciones : idUsuario},
+	            dataType : 'json',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	if(data != false){
+	            		var tabla = '';
+	    
+	            		$.each(data, function(item, i){
+	            			console.log(i);
+		               		tabla += '<tr>';
+		               		tabla += '<td>'+(Number(item)+1)+'</td>';
+		               		tabla += '<td>'+i.obs_desc_v+'</td>';
+		               		tabla += '<td>'+i.usu_nombre_v+' '+ i.usu_apellido_v +'</td>';
+		               		tabla += '<td>'+i.obs_fecha_d+'</td>';
+		               		tabla += '</tr>';
+		                });	
+		                $("#cuerpoObservaciones").html(tabla);
+	            	}
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
 		}
-		
 	}
 
 	$(function(){
@@ -697,12 +789,26 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
+        <?php 
+  			if ($_SESSION['perf_asig_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnVerSolicitudes" id_solicitud href="#" data-toggle="modal" data-target="#modalAsignarSolicitudes" title="Asignar una incidencia a un tecnico">ASIGNAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php 
+    		}
+  			if ($_SESSION['perf_upd_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEditarSolicitudes" title="Editar incidencia" id_solicitud data-toggle="modal" data-target="#modalEditarSolicitudes" href="#">EDITAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+  			if ($_SESSION['perf_del_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEliminarSolicitudes" title="Eliminar incidencia" id_solicitud href="#">ELIMINAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+    	?>
      	edicion += '</ul>';
     	edicion += '</div>';
 
@@ -823,5 +929,16 @@
 	        var minDate = new Date(selected.date.valueOf());
 	        Solicitudes.getFechasDisponibles( moment(minDate).format('YYYY-MM-DD') , $("#sol_tec_usu_id_i").val(), 0, 0);
 	    }); 
+
+	    $("#sol_fecha_cita_d_i").datepicker({
+	        language: "es",
+	        autoclose: true,
+	        todayHighlight: true
+	    }).on('changeDate', function (selected) {
+	        var minDate = new Date(selected.date.valueOf());
+	        Solicitudes.getFechasDisponibles( moment(minDate).format('YYYY-MM-DD') , $("#sol_tec_usu_id_i_i").val(), 0, 0);
+	    }); 
+
+	    
 	});
 </script>

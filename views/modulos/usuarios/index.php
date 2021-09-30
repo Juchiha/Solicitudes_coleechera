@@ -5,6 +5,9 @@
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   	<h1 class="h3 mb-0 text-gray-800">Usuarios Registrados</h1>
+  	<?php 
+  		if ($_SESSION['perf_add_i']==1) {	
+  	?>
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -16,6 +19,9 @@
         	Nuevo Usuario
     	</a>
     </div>
+    <?php 
+		}
+	?>
 </div>
 <div class="container-fluid">
     <!-- DataTales Example -->
@@ -493,10 +499,20 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
+        <?php 
+  			if ($_SESSION['perf_upd_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEditarUsuario" title="Editar" id_usuario data-toggle="modal" data-target="#modalActualizarUsuarios" href="#">EDITAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+  			if ($_SESSION['perf_del_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEliminarUsuario" title="Eliminar" id_usuario href="#">ELIMINAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+    	?>
      	edicion += '</ul>';
     	edicion += '</div>';
 

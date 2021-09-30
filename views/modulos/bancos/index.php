@@ -10,6 +10,9 @@
     	<i class="fas fa-plus fa-sm text-white-50"></i> 
     	Nuevo Cargue
   	</a>-->
+  	<?php 
+  		if ($_SESSION['perf_add_i']==1) {	
+  	?>
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -24,6 +27,9 @@
         	Ingresar Bancos
     	</a>
     </div>
+    <?php 
+		}
+	?>
 </div>
 <div class="container-fluid">
     <!-- DataTales Example -->
@@ -355,12 +361,20 @@
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
-        /*edicion += '<li><a class="dropdown-item btnVerBancos" id_bancos href="#" data-toggle="modal" data-target="#modalAsignarSolicitudes" title="Asignar una solicitud a un tecnico">ASIGNAR</a></li>';*/
-        edicion += '<li class="divider"></li>';
+     	<?php 
+  			if ($_SESSION['perf_upd_i'] == 1) {		
+  		?>
         edicion += '<li><a class="dropdown-item btnEditarBancos" title="Editar" id_bancos data-toggle="modal" data-target="#modalActulizarBancos" href="#">EDITAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+  			if ($_SESSION['perf_del_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEliminarBancos" title="Eliminar" id_bancos href="#">ELIMINAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+    	?>
      	edicion += '</ul>';
     	edicion += '</div>';
 

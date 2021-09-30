@@ -30,12 +30,22 @@
 			echo json_encode(ControladorSolicitudes::getData('sc_solicitudes', 'sol_id_i', $idUsuario));
 		}
 
+		public function getObservaciones($idUsuario){
+			echo json_encode(ControladorSolicitudes::getDataFromLsql('*', 'sc_observaciones JOIN sc_usuarios ON usu_id_i = 	obs_usu_id_i', 'obs_sol_id_i = '. $idUsuario, null, 'ORDER BY obs_fecha_d DESC', null));
+
+		}
+
 		public function getDatosAsignados($idSolicitud){
 			echo json_encode(ControladorSolicitudes::getData('sc_asignaciones JOIN sc_horas ON hor_id_id = asi_hor_id_i ', 'asi_sol_id_i', $idSolicitud));
 		}
 
 		public function getAllDatos(){
-            $usuarios = ControladorSolicitudes::getData('sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i  join sc_estados ON est_id_i = sol_est_id_i LEFT JOIN sc_asignaciones ON asi_sol_id_i = sol_id_i LEFT JOIN sc_horas ON hor_id_id = asi_hor_id_i LEFT JOIN sc_prioridades ON  sol_prio_id= pri_id_i', null, null);
+			$where = null;
+			
+			if ($_SESSION['perfil'] != '1' && $_SESSION['perfil'] != '2') {
+				$where = 'asi_usu_tec_id_i = '.$_SESSION['codigo'];
+			}
+            $usuarios = ControladorSolicitudes::getDataFromLsql('suc_nombre_v, sol_fecha_solicitud_d, sol_orden_trabajo, est_nombre_v, pri_desc_v, asi_fecha_d, hor_desc_v, sol_id_i', 'sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i  join sc_estados ON est_id_i = sol_est_id_i LEFT JOIN sc_asignaciones ON asi_sol_id_i = sol_id_i LEFT JOIN sc_horas ON hor_id_id = asi_hor_id_i LEFT JOIN sc_prioridades ON  sol_prio_id= pri_id_i', $where, null, 'ORDER BY sol_fecha_solicitud_d DESC', null);
 echo '{
   	"data" : [';
   			$i = 0;
@@ -100,4 +110,8 @@ echo '{
 		$AjaxSolicitudes->getDatosAsignados($_POST['getDatosAsignados']);
 	}
 
+	if(isset($_POST['getObservaciones'])){
+		$AjaxSolicitudes = new AjaxSolicitudes();
+		$AjaxSolicitudes->getObservaciones($_POST['getObservaciones']);
+	}
 	

@@ -11,9 +11,8 @@
     	Nuevo Cargue
   	</a>-->
   	<?php 
-  		if ($_SESSION['perf_add_i']==1) {
-  			
-  	 ?>
+  		if ($_SESSION['perf_add_i']==1) {	
+  	?>
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -28,7 +27,9 @@
         	Ingresar Sucursales
     	</a>
     </div>
-	}
+ 	<?php 
+		}
+	?>
 </div>
 <div class="container-fluid">
     <!-- DataTales Example -->
@@ -437,10 +438,20 @@ sucursales = {
         edicion += '<span class="sr-only">Toggle Dropdown</span>';
         edicion += '</button>';
         edicion += '<ul class="dropdown-menu" role="menu">';
+        <?php 
+  			if ($_SESSION['perf_upd_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEditarSucursales" title="Editar" id_sucursal data-toggle="modal" data-target="#modalActualizarSucursales" href="#">EDITAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+  			if ($_SESSION['perf_del_i'] == 1) {	
+  		?>
         edicion += '<li><a class="dropdown-item btnEliminarSucursales" title="Eliminar" id_sucursal href="#">ELIMINAR</a></li>';
         edicion += '<li class="divider"></li>';
+        <?php
+        	}
+    	?>
      	edicion += '</ul>';
     	edicion += '</div>';
 

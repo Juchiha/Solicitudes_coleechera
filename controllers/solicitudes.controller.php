@@ -24,6 +24,7 @@
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
 				if($respuesta != "error"){
+					
 					$orden = SolicitudesModelo::getTotalSolicitudesDay();
 					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes', 'sol_orden_trabajo', date('Ymd').$orden['total'], 'sol_id_i', $respuesta);
 
