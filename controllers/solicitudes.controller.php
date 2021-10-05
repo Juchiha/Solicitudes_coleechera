@@ -6,8 +6,10 @@
 		public static function insertDatos(){
 			if(isset($_POST['sol_ban_id_i'])){ //les coloco i al final para saber que es insercion
 				$tecnico = 0;
+				$estado = 3;
 				if(isset($_POST['sol_tec_usu_id_i_i'])){
 					$tecnico = $_POST['sol_tec_usu_id_i_i'] ;
+					$estado = 4;
 				}
 
 				$datos = array(
@@ -18,7 +20,7 @@
 					'sol_tec_usu_id_i'				=> $tecnico,
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
-					'sol_est_id_i'					=> 3,
+					'sol_est_id_i'					=> $estado,
 					'sol_prio_id'					=> $_POST['sol_prio_id_i']
 				);
 
@@ -38,6 +40,20 @@
 						);
 						$observacion = SolicitudesModelo::insertObservaciones($datos);	
 					}
+
+					if($tecnico != 0){
+						$datos = array(
+							'asi_usu_tec_id_i' 			=> $tecnico, 
+							'asi_fecha_d' 				=> $_POST['sol_fecha_cita_d'],
+							'asi_hor_id_i'  			=> $_POST['sol_hora_cita_v'],
+							'asi_observacion_v'		    => $_POST['sol_observaciones_t_i'],
+							'asi_sol_id_i'				=> $respuesta,
+							'asi_fecha_aignacion'		=> date('Y-m-d')
+						);
+					}
+					
+
+					$respuesta = SolicitudesModelo::insertDatosAsignar($datos);
 					
 					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
 				}else{	
@@ -56,19 +72,42 @@
 		*}
 		**/	
 		public static function UpdateDatos(){
-			if(isset($_POST['sol_ban_id_e'])){ 
-			$tecnico = 0;
+			if(isset($_POST['sol_id_i_e'])){ 
+				$tecnico = 0;
 				if(isset($_POST['sol_tec_usu_id_i_e'])){
 					$tecnico = $_POST['sol_tec_usu_id_i_e'] ;
 				}//e de edicion
+				$inicidencia = self::getData('sc_solicitudes', 'sol_id_i', $_POST['sol_id_i_e']);
+				$estado = $inicidencia['sol_est_id_i'];
+				$prioridad = $inicidencia['sol_prio_id'];
+				$banco = $inicidencia['sol_ban_id_i'];
+				$sucursal = $inicidencia['sol_suc_id_i'];
+
+				if(isset($_POST['sol_estado_e'])){
+					$estado = $_POST['sol_estado_e'];
+				}
+
+				if(isset($_POST['sol_prio_id_e'])){
+					$prioridad = $_POST['sol_prio_id_e'];
+				}
+
+				if(isset($_POST['sol_ban_id_e'])){
+					$banco = $_POST['sol_ban_id_e'];
+				}
+
+				if(isset($_POST['sol_suc_id_i_e'])){
+					$sucursal = $_POST['sol_suc_id_i_e'];
+				}
+
 				$datos = array(
-					'sol_suc_id_i' 					=> $_POST['sol_suc_id_i_e'], 
+					'sol_suc_id_i' 					=> $sucursal, 
 					'sol_requerimiento_t'			=> $_POST['sol_requerimiento_t_e'],
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_e'],
 					'sol_tec_usu_id_i'			    => $tecnico,
-					'sol_ban_id_i'					=> $_POST['sol_ban_id_e'],
+					'sol_ban_id_i'					=> $banco,
 					'sol_id_i'						=> $_POST['sol_id_i_e'],
-					'sol_prio_id'					=> $_POST['sol_prio_id_e']
+					'sol_prio_id'					=> $prioridad,
+					'sol_est_id_i'					=> $estado
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
@@ -82,6 +121,11 @@
 							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
 						);
 						$observacion = SolicitudesModelo::insertObservaciones($datos);	
+					}
+
+					if(isset($_POST['sol_estado_e']) && $_POST['sol_estado_e'] == '5'){
+						//Solucionado
+						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes', 'sol_fecha_solucion=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
 					}
 					return json_encode(array('code' => 1, 'message' => 'Solicitud actualizada con exito'));
 				}else{	
@@ -108,7 +152,8 @@
 					'asi_fecha_d' 				=> $_POST['sol_fecha_cita_d'],
 					'asi_hor_id_i'  			=> $_POST['sol_hora_cita_v'],
 					'asi_observacion_v'		    => $_POST['sol_observaciones_t_i'],
-					'asi_sol_id_i'				=> $_POST['sol_id_i_e']
+					'asi_sol_id_i'				=> $_POST['sol_id_i_e'],
+					'asi_fecha_aignacion'		=> date('Y-m-d')
 				);
 
 				$respuesta = SolicitudesModelo::insertDatosAsignar($datos);
@@ -144,6 +189,7 @@
 		public static function deleteDatos(){
 		    if(isset($_POST['usu_id_i_d'])){ 
 			    $datos = $_POST["usu_id_i_d"];
+			    $eliminar = SolicitudesModelo::deleteDatosAsignacion($datos);
 			    $respuesta = SolicitudesModelo::deleteDatos($datos);
 				if($respuesta == "ok"){
 					return json_encode(array('code' => 1, 'message' => 'Solicitud Eliminada con exito'));

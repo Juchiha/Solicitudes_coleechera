@@ -80,7 +80,7 @@ echo '{
 		$AjaxSolicitudes->insertDatosAsignacion();
 	}
 
-	if(isset($_POST['sol_ban_id_e'])){
+	if(isset($_POST['sol_id_i_e'])){
 		$AjaxSolicitudes = new AjaxSolicitudes();
 		$AjaxSolicitudes->updateDatos();
 	}

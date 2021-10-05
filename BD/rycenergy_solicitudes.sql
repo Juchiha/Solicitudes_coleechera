@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2021 a las 02:15:20
--- Versión del servidor: 10.4.20-MariaDB
--- Versión de PHP: 7.4.21
+-- Servidor: localhost:3306
+-- Tiempo de generación: 05-10-2021 a las 16:16:27
+-- Versión del servidor: 10.3.31-MariaDB-0ubuntu0.20.04.1
+-- Versión de PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `seguimiento_casos`
+-- Base de datos: `rycenergy_solicitudes`
 --
 
 -- --------------------------------------------------------
@@ -53,23 +53,24 @@ CREATE TABLE `sc_asignaciones` (
   `asi_hor_id_i` int(11) NOT NULL,
   `asi_est_id_i` int(11) NOT NULL,
   `asi_observacion_v` text DEFAULT NULL,
-  `asi_sol_id_i` int(11) NOT NULL
+  `asi_sol_id_i` int(11) NOT NULL,
+  `asi_fecha_aignacion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `sc_asignaciones`
 --
 
-INSERT INTO `sc_asignaciones` (`asi_id_i`, `asi_usu_tec_id_i`, `asi_fecha_d`, `asi_hor_id_i`, `asi_est_id_i`, `asi_observacion_v`, `asi_sol_id_i`) VALUES
-(3, 2, '2021-09-21', 1, 1, 'Estamos probando esto a ver que pasa!', 2),
-(4, 2, '2021-09-21', 3, 1, 'Esta es otra prueba!', 4),
-(5, 2, '2021-09-21', 5, 1, 'Otra prueba a ver!', 5),
-(6, 2, '2021-09-21', 8, 1, 'Pruebas de esta nuevamente!', 6),
-(7, 2, '2021-09-20', 10, 1, 'Pruebas!', 9),
-(8, 2, '2021-09-22', 1, 1, 'La gente me critica porque ahora ya no soy parrandero', 7),
-(10, 2, '2021-09-21', 3, 1, 'Pruiabdnap', 3),
-(13, 2, '2021-09-23', 1, 1, '', 1),
-(14, 2, '2021-09-30', 2, 1, 'Esta es una prueba de asignacion!', 13);
+INSERT INTO `sc_asignaciones` (`asi_id_i`, `asi_usu_tec_id_i`, `asi_fecha_d`, `asi_hor_id_i`, `asi_est_id_i`, `asi_observacion_v`, `asi_sol_id_i`, `asi_fecha_aignacion`) VALUES
+(3, 2, '2021-09-21', 1, 1, 'Estamos probando esto a ver que pasa!', 2, NULL),
+(4, 2, '2021-09-21', 3, 1, 'Esta es otra prueba!', 4, NULL),
+(5, 2, '2021-09-21', 5, 1, 'Otra prueba a ver!', 5, NULL),
+(6, 2, '2021-09-21', 8, 1, 'Pruebas de esta nuevamente!', 6, NULL),
+(7, 2, '2021-09-20', 10, 1, 'Pruebas!', 9, NULL),
+(14, 2, '2021-09-30', 2, 1, 'Esta es una prueba de asignacion!', 13, NULL),
+(15, 2, '2021-10-07', 9, 1, 'por favor dejar todo en buen estado!', 14, NULL),
+(16, 2, '2021-10-08', 10, 1, 'vamos a ver que sucede!', 15, NULL),
+(17, 2, '2021-10-21', 7, 1, 'observen por favor!', 16, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,8 +116,9 @@ INSERT INTO `sc_estados` (`est_id_i`, `est_nombre_v`) VALUES
 (2, 'NO ACTIVO'),
 (3, 'PENDIENTE'),
 (4, 'ASIGNADO'),
-(5, 'TERMINADO'),
-(6, 'CANCELADO');
+(5, 'SOLUCIONADO'),
+(6, 'SIN SOLUCIÓN'),
+(7, 'EN CURSO');
 
 -- --------------------------------------------------------
 
@@ -166,7 +168,23 @@ CREATE TABLE `sc_observaciones` (
 --
 
 INSERT INTO `sc_observaciones` (`obs_id_i`, `obs_desc_v`, `obs_usu_id_i`, `obs_sol_id_i`, `obs_fecha_d`) VALUES
-(1, 'Esta es una prueba de asignacion!', 5, 13, '2021-09-29 17:47:10');
+(1, 'Esta es una prueba de asignacion!', 5, 13, '2021-09-29 17:47:10'),
+(2, 'aqui estoy revisando esta parte a ver que sucede!', 2, 13, '2021-10-04 17:12:02'),
+(3, 'Vamos a cerrarlo, para ver que sucede', 2, 13, '2021-10-04 17:16:51'),
+(4, 'Prueba de solucion!', 2, 6, '2021-10-05 10:08:48'),
+(5, 'cambie la observacion a ver que sucede,. primro', 5, 4, '2021-10-05 10:15:01'),
+(6, 'otra vez la cambio', 5, 2, '2021-10-05 10:15:14'),
+(7, 'nada que observar', 5, 5, '2021-10-05 10:15:25'),
+(8, 'esta es una incidencia que no se resolvio, vamos a ver que sucede!', 2, 9, '2021-10-05 10:19:40'),
+(9, 'sigue el trabajo del tecnico', 2, 9, '2021-10-05 10:23:18'),
+(10, 'solucionado', 2, 5, '2021-10-05 10:23:31'),
+(11, 'Solucionado!!!', 2, 9, '2021-10-05 10:27:04'),
+(12, 'Solucionado!!!', 2, 9, '2021-10-05 10:27:13'),
+(13, 'Listo quedo solucionado!', 2, 4, '2021-10-05 10:31:30'),
+(14, 'ya esta arreglado el tema!', 2, 2, '2021-10-05 10:43:11'),
+(15, 'por favor dejar todo en buen estado!', 5, 14, '2021-10-05 10:55:30'),
+(16, 'vamos a ver que sucede!', 5, 15, '2021-10-05 10:57:06'),
+(17, 'observen por favor!', 5, 16, '2021-10-05 10:58:43');
 
 -- --------------------------------------------------------
 
@@ -189,7 +207,7 @@ CREATE TABLE `sc_perfiles` (
 
 INSERT INTO `sc_perfiles` (`perf_id_i`, `perf_nombre_v`, `perf_asig_i`, `perf_add_i`, `perf_upd_i`, `perf_del_i`) VALUES
 (1, 'SUPERADMINISTRADOR', 1, 0, 0, 0),
-(2, 'ADMINISTRADOR', 0, 1, 1, 1),
+(2, 'ADMINISTRADOR', 1, 1, 1, 1),
 (3, 'USUARIO', 0, 0, 0, 0),
 (4, 'TECNICO', 0, 0, 0, 0);
 
@@ -232,25 +250,23 @@ CREATE TABLE `sc_solicitudes` (
   `sol_est_id_i` int(11) NOT NULL,
   `sol_fecha_cita_d` date DEFAULT NULL,
   `sol_usu_id_i` int(11) DEFAULT NULL,
-  `sol_ban_id_i` int(11) DEFAULT NULL
+  `sol_ban_id_i` int(11) DEFAULT NULL,
+  `sol_fecha_solucion` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `sc_solicitudes`
 --
 
-INSERT INTO `sc_solicitudes` (`sol_id_i`, `sol_suc_id_i`, `sol_tec_usu_id_i`, `sol_fecha_solicitud_d`, `sol_hora_cita_v`, `sol_requerimiento_t`, `sol_orden_trabajo`, `sol_observaciones_t`, `sol_prio_id`, `sol_est_id_i`, `sol_fecha_cita_d`, `sol_usu_id_i`, `sol_ban_id_i`) VALUES
-(1, 2, NULL, '2021-09-15', NULL, 'Ayuda!!!', '202109151', 'por Favor!!!', 0, 4, NULL, 1, 1),
-(2, 3, NULL, '2021-09-15', NULL, 'Ayuda!!! Ayuda!!!', '202109152', 'Por Favor!!! Por Favor!!!', 0, 4, NULL, 1, 1),
-(3, 2, NULL, '2021-09-15', NULL, 'Ayuda!!!', '202109153', 'por Favor!!!', 0, 4, NULL, 1, 1),
-(4, 3, NULL, '2021-09-15', NULL, 'Ayuda!!! Ayuda!!!', '202109155', 'por Favor!!!', 0, 4, NULL, 1, 1),
-(5, 3, NULL, '2021-09-15', NULL, 'Ayuda!!!', '202109156', 'por Favor!!!', 0, 4, NULL, 1, 1),
-(6, 3, 2, '2021-09-15', NULL, 'Ayuda!!!', '202109157', 'por Favor!!! por favor1 ', 2, 4, NULL, 1, 1),
-(7, 2, NULL, '2021-09-15', NULL, 'Ayuda!!!', '202109158', 'por Favor!!!', 0, 4, NULL, 1, 1),
-(9, 3, 0, '2021-09-15', NULL, 'Hola!!', '2021091510', 'Ayuda!!', 3, 4, NULL, 1, 1),
-(11, 2, NULL, '2021-09-20', NULL, 'ayudaaaaa', '202109202', 'Ayudaaaaaaaaa', 0, 3, NULL, 5, 1),
-(12, 2, NULL, '2021-09-23', NULL, 'ayuda', '202109232', 'Mantenimiento planeado', 0, 3, NULL, 5, 1),
-(13, 3, NULL, '2021-09-23', NULL, 'urgente', '202109233', 'Mantenimiento segundo nivel', 2, 4, NULL, 5, 1);
+INSERT INTO `sc_solicitudes` (`sol_id_i`, `sol_suc_id_i`, `sol_tec_usu_id_i`, `sol_fecha_solicitud_d`, `sol_hora_cita_v`, `sol_requerimiento_t`, `sol_orden_trabajo`, `sol_observaciones_t`, `sol_prio_id`, `sol_est_id_i`, `sol_fecha_cita_d`, `sol_usu_id_i`, `sol_ban_id_i`, `sol_fecha_solucion`) VALUES
+(2, 3, 0, '2021-09-15', NULL, 'Ayuda!!! Ayuda!!!', '202109152', 'ya esta arreglado el tema!', 2, 5, NULL, 1, 1, '2021-10-05'),
+(4, 3, 0, '2021-09-15', NULL, 'Ayuda!!! Ayuda!!!', '202109155', 'Listo quedo solucionado!', 1, 5, NULL, 1, 1, '2021-10-05'),
+(5, 3, 0, '2021-09-15', NULL, 'Ayuda!!!', '202109156', 'solucionado', 3, 5, NULL, 1, 1, NULL),
+(6, 3, 0, '2021-09-15', NULL, 'Ayuda!!!', '202109157', 'Prueba de solucion!', 2, 5, NULL, 1, 1, NULL),
+(9, 3, 0, '2021-09-15', NULL, 'Hola!!', '2021091510', 'Solucionado!!!', 3, 5, NULL, 1, 1, NULL),
+(13, 3, 0, '2021-09-23', NULL, 'urgente', '202109233', 'Vamos a cerrarlo, para ver que sucede', 2, 5, NULL, 5, 1, NULL),
+(15, 2, 2, '2021-10-05', NULL, 'Vamos a modificar todo el cableado estructural del sitio!', '202110052', 'vamos a ver que sucede!', 1, 4, NULL, 5, 1, NULL),
+(16, 3, 2, '2021-10-05', NULL, 'Pruebas nbuevam,entye!', '202110053', 'observen por favor!', 1, 4, NULL, 5, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -416,7 +432,7 @@ ALTER TABLE `ciudades`
 -- AUTO_INCREMENT de la tabla `sc_asignaciones`
 --
 ALTER TABLE `sc_asignaciones`
-  MODIFY `asi_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `asi_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `sc_bancos`
@@ -428,7 +444,7 @@ ALTER TABLE `sc_bancos`
 -- AUTO_INCREMENT de la tabla `sc_estados`
 --
 ALTER TABLE `sc_estados`
-  MODIFY `est_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `est_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `sc_horas`
@@ -440,7 +456,7 @@ ALTER TABLE `sc_horas`
 -- AUTO_INCREMENT de la tabla `sc_observaciones`
 --
 ALTER TABLE `sc_observaciones`
-  MODIFY `obs_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `obs_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `sc_perfiles`
@@ -458,7 +474,7 @@ ALTER TABLE `sc_prioridades`
 -- AUTO_INCREMENT de la tabla `sc_solicitudes`
 --
 ALTER TABLE `sc_solicitudes`
-  MODIFY `sol_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sol_id_i` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `sc_sucursales`

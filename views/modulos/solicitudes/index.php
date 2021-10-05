@@ -1,7 +1,4 @@
 <!-- Page Heading -->
-<?php 
-
-?>
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   	<h1 class="h3 mb-0 text-gray-800">Incidencias reportadas en el sistema</h1>
@@ -210,8 +207,6 @@
 								</select>
 							</div>
 						</div>
-					</div>
-					<div class="row">
 						<div class="col">
 							<div class="form-group">
 								<label for="sol_suc_id_i_e">Sucursal</label>
@@ -223,7 +218,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col">
+						<div class="col-md-6">
 							<div class="form-group">
 								<label for="sol_prio_id_e">Prioridad</label>
 								<select class="form-control" id="sol_prio_id_e" name="sol_prio_id_e" placeholder="Prioridad">
@@ -237,6 +232,24 @@
 								</select>
 							</div>
 						</div>
+						<?php
+							if($_SESSION['perfil'] == '4'){
+						?>	
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_estado_e">Estado</label>
+								<select class="form-control" id="sol_estado_e" name="sol_estado_e" placeholder="Estado">
+									<option value="4">Asignado</option>
+									<option value="7">En curso</option>
+									<option value="5">Solucionado</option>
+									<option value="6">Cerrado sin Solución</option>
+
+								</select>
+							</div>
+						</div>
+						<?php
+							}
+						?>
 					</div>
 					<div class="row">
 						<div class="col">
@@ -254,29 +267,6 @@
 							</div>
 						</div>
 					</div>	
-					<?php
-						if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
-					?>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_tec_usu_id_i_e">Tecnico</label>
-								<select class="form-control" id="sol_tec_usu_id_i_e" name="sol_tec_usu_id_i_e" placeholder="Tecnico">
-									<option value="0">Seleccione</option>
-									<?php 
-										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
-										foreach($tecnicos as $key => $value){
-											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-					</div>	
-					<?php
-					}
-					?>	
-
 					<div class="row">
 						<div class="col">
 							<table class="table table-bordered table-hover">
@@ -539,9 +529,38 @@
 		                Solicitudes.getDatosSucursales(data.sol_ban_id_i, data.sol_suc_id_i, 1);
 		                $("#sol_suc_id_i_e").val(data.sol_suc_id_i);
 		                $("#sol_requerimiento_t_e").val(data.sol_requerimiento_t);
-		                $("#sol_observaciones_t_e").val(data.sol_observaciones_t);
 		                $("#sol_id_i_editar").val(data.sol_id_i);
+		                $("#sol_prio_id_e").val(data.sol_prio_id);
+		                $("#sol_estado_e").val(data.sol_est_id_i);
 		                Solicitudes.getObservaciones(data.sol_id_i);
+
+		                <?php 
+		                if ($_SESSION['perfil'] == '4'){
+	                	?>
+		                	$("#sol_ban_id_e").attr('disabled', true);
+		                	$("#sol_suc_id_i_e").attr('disabled', true);
+		                	$("#sol_requerimiento_t_e").attr('readonly', true);
+		                	$("#sol_prio_id_e").attr('disabled', true);
+
+		                	if(data.sol_est_id_i == '5'){
+		                		$("#sol_observaciones_t_e").attr('readonly', true);
+		                		$("#sol_estado_e").attr('disabled', true);
+		                		$("#enviarFormEditar").attr('disabled', true);
+		                	}else{
+		                		$("#sol_observaciones_t_e").attr('readonly', false);
+		                		$("#sol_estado_e").attr('disabled', false);
+		                		$("#enviarFormEditar").attr('disabled', false);
+		                	}
+		                <?php 
+	            		}else{
+	                	?>
+	                		$("#sol_ban_id_e").attr('disabled', false);
+		                	$("#sol_suc_id_i_e").attr('disabled', false);
+		                	$("#sol_requerimiento_t_e").attr('readonly', true);
+		                	$("#sol_prio_id_e").attr('disabled', false);
+	                	<?php 
+	            		}
+	                	?>
 	            	}
 	            },
 	            //si ha ocurrido un error
@@ -759,9 +778,10 @@
 	            },
 	            //una vez finalizado correctamente
 	            success: function(data){
+
 	            	if(data != false){
 	            		var tabla = '';
-	    
+	    				
 	            		$.each(data, function(item, i){
 	            			console.log(i);
 		               		tabla += '<tr>';
@@ -772,6 +792,8 @@
 		               		tabla += '</tr>';
 		                });	
 		                $("#cuerpoObservaciones").html(tabla);
+	            	}else{
+	            		$("#cuerpoObservaciones").html('<tr><td colspan="4" style="text-align:center;"><b>No hay Observaciones</b></td></tr>');
 	            	}
 	            },
 	            //si ha ocurrido un error
@@ -808,6 +830,12 @@
         edicion += '<li class="divider"></li>';
         <?php
         	}
+    		if ($_SESSION['perfil'] == '4'){
+    	?>
+    	edicion += '<li><a class="dropdown-item btnEditarSolicitudes" data-toggle="modal" data-target="#modalEditarSolicitudes"  title="Datos de Incidencia" id_solicitud href="#">VER INCIDENCIA</a></li>';
+        edicion += '<li class="divider"></li>';
+        <?php
+        	}
     	?>
      	edicion += '</ul>';
     	edicion += '</div>';
@@ -824,8 +852,55 @@
                          	return edicion;
                 		}
                 	}
+		        },
+		        {
+	        	 	"targets": -3,
+            		"data": null,
+        			"className": "text-center",
+            		 render: {
+                		display: function (data, type, row) {
+                			if ( row[3] !== 'SOLUCIONADO' ){
+	            				if ( row[4] === 'ALTA' ) {
+	                     			return '<span style="text-align:center; color:red;">ALTA</span>';
+	                         	}else if(row[4] === 'MEDIA'){
+	                         		return '<span style="text-align:center; color:orange;">MEDIA</span>';
+	                         	}else if(row[4] === 'BAJA'){
+	                         		return '<span style="text-align:center; color:yellow;">BAJA</span>';
+	                         	}else{
+	                         		return '<span style="text-align:center; color:yellow;"></span>';
+	                         	}	
+                         	}else{
+                         		return '<span style="text-align:center; color:green;">'+ row[4] +'</span>';
+                         	}
+            			}
+                		
+                	}
+		        },
+		        {
+	        	 	"targets": -4,
+            		"data": null,
+        			"className": "text-center",
+            		 render: {
+                		display: function (data, type, row) {
+                			if ( row[3] !== 'SOLUCIONADO' ){
+	            				if ( row[4] === 'ALTA' ) {
+	                     			return '<span style="text-align:center; color:red;">'+row[3]+'</span>';
+	                         	}else if(row[4] === 'MEDIA'){
+	                         		return '<span style="text-align:center; color:orange;">'+row[3]+'</span>';
+	                         	}else if(row[4] === 'BAJA'){
+	                         		return '<span style="text-align:center; color:yellow;">'+row[3]+'</span>';
+	                         	}else{
+	                         		return '<span></span>';
+	                         	}	
+                         	}else{
+                         		return '<span style="text-align:center; color:green;">'+row[3]+'</span>';
+                         	}
+            			}
+                		
+                	}
 		        }
 	        ],
+	        "order": [[ 3, "desc" ]],
 	    	"language" : {
 		        "sProcessing":     "Procesando...",
 		        "sLengthMenu":     "Mostrar _MENU_ registros",

@@ -53,20 +53,22 @@ class SolicitudesModelo extends ModeloDAO
 					asi_hor_id_i, 
 					asi_est_id_i,
 					asi_observacion_v,
-					asi_sol_id_i)
+					asi_sol_id_i,
+					asi_fecha_aignacion)
 				VALUES(	
 					:asi_usu_tec_id_i,
 					:asi_fecha_d, 
 					:asi_hor_id_i, 
 					1,
 					:asi_observacion_v,
-					:asi_sol_id_i) ");
+					:asi_sol_id_i,
+					:asi_fecha_aignacion) ");
 			$stmt->bindParam(":asi_usu_tec_id_i", $datos['asi_usu_tec_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_fecha_d", $datos['asi_fecha_d'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_hor_id_i", $datos['asi_hor_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_observacion_v", $datos['asi_observacion_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_sol_id_i", $datos['asi_sol_id_i'], PDO::PARAM_STR);
-		
+			$stmt->bindParam(":asi_fecha_aignacion", $datos['asi_fecha_aignacion'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
@@ -87,7 +89,8 @@ class SolicitudesModelo extends ModeloDAO
 					sol_observaciones_t = :sol_observaciones_t ,
 					sol_tec_usu_id_i = :sol_tec_usu_id_i ,
 					sol_ban_id_i = :sol_ban_id_i,
-					sol_prio_id = :sol_prio_id
+					sol_prio_id = :sol_prio_id,
+					sol_est_id_i = :sol_est_id_i
 				WHERE 
 					sol_id_i = :sol_id_i");
 
@@ -98,6 +101,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_id_i",     $datos['sol_id_i'],     PDO::PARAM_STR);
 			$stmt->bindParam(":sol_ban_id_i", $datos['sol_ban_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_prio_id",  $datos['sol_prio_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_est_id_i",  $datos['sol_est_id_i'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
