@@ -8,5 +8,7 @@
             "email": "josegiron@outlook.es"
         }
     ],
-    "require": {}
+    "require": {
+		"mpdf/mpdf": "^8.0"
+	}
 }

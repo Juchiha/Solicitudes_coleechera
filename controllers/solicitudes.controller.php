@@ -7,6 +7,11 @@
 			if(isset($_POST['sol_ban_id_i'])){ //les coloco i al final para saber que es insercion
 				$tecnico = 0;
 				$estado = 3;
+				$ruta = '';
+				if(isset($_FILES['sol_imagen_datos']['tmp_name']) && !empty($_FILES['sol_imagen_datos']['tmp_name']) ){
+	                $ruta = self::putImage($_FILES['sol_imagen_datos']['tmp_name'], $_FILES["sol_imagen_datos"]["type"] , __DIR__."/../views/inicidencias_img/", 'views/inicidencias_img/');
+	            }
+
 				if(isset($_POST['sol_tec_usu_id_i_i'])){
 					$tecnico = $_POST['sol_tec_usu_id_i_i'] ;
 					$estado = 4;
@@ -21,7 +26,8 @@
 					'sol_observaciones_t'			=> $_POST['sol_observaciones_t_i'],
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
 					'sol_est_id_i'					=> $estado,
-					'sol_prio_id'					=> $_POST['sol_prio_id_i']
+					'sol_prio_id'					=> $_POST['sol_prio_id_i'],
+					'sol_ruta_evidencia'			=> $ruta
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
@@ -50,10 +56,8 @@
 							'asi_sol_id_i'				=> $respuesta,
 							'asi_fecha_aignacion'		=> date('Y-m-d')
 						);
+						$respuesta = SolicitudesModelo::insertDatosAsignar($datos);
 					}
-					
-
-					$respuesta = SolicitudesModelo::insertDatosAsignar($datos);
 					
 					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
 				}else{	
@@ -83,6 +87,11 @@
 				$banco = $inicidencia['sol_ban_id_i'];
 				$sucursal = $inicidencia['sol_suc_id_i'];
 
+				$ruta = $inicidencia['sol_ruta_evidencia'];
+				if(isset($_FILES['sol_imagen_datos_e']['tmp_name']) && !empty($_FILES['sol_imagen_datos_e']['tmp_name']) ){
+	                $ruta = self::putImage($_FILES['sol_imagen_datos_e']['tmp_name'], $_FILES["sol_imagen_datos_e"]["type"] , __DIR__."/../views/inicidencias_img/", 'views/inicidencias_img/');
+	            }
+
 				if(isset($_POST['sol_estado_e'])){
 					$estado = $_POST['sol_estado_e'];
 				}
@@ -107,7 +116,8 @@
 					'sol_ban_id_i'					=> $banco,
 					'sol_id_i'						=> $_POST['sol_id_i_e'],
 					'sol_prio_id'					=> $prioridad,
-					'sol_est_id_i'					=> $estado
+					'sol_est_id_i'					=> $estado,
+					'sol_ruta_evidencia'			=> $ruta
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
@@ -127,6 +137,20 @@
 						//Solucionado
 						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes', 'sol_fecha_solucion=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
 					}
+
+					if($tecnico != 0 && $_POST['sol_fecha_cita_d_e'] != '' && $_POST['sol_fecha_cita_d_e'] != 0 ){
+						$eliminar = SolicitudesModelo::deleteDatosAsignacion($_POST['sol_id_i_e']);
+						$datos = array(
+							'asi_usu_tec_id_i' 			=> $tecnico, 
+							'asi_fecha_d' 				=> $_POST['sol_fecha_cita_d_e'],
+							'asi_hor_id_i'  			=> $_POST['sol_hora_cita_v_e'],
+							'asi_observacion_v'		    => $_POST['sol_observaciones_t_e'],
+							'asi_sol_id_i'				=> $_POST['sol_id_i_e'],
+							'asi_fecha_aignacion'		=> date('Y-m-d')
+						);
+						$respuesta = SolicitudesModelo::insertDatosAsignar($datos);
+					}
+
 					return json_encode(array('code' => 1, 'message' => 'Solicitud actualizada con exito'));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no actualizada'));

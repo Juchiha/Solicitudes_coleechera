@@ -22,35 +22,42 @@
                 return ModeloDAO::mdlMostrarGroupAndOrder($campos, $tabla, $where, $group, $order, $limit);
         }
 
-		static public function putImage($fila, $typo, $ruta, $extension = null){
-			list($ancho, $alto) = getimagesize($fila);
-            $nuevoAncho = 900;
-            $nuevoAlto  = 500;
+		static public function putImage($fila, $typo, $ruta, $rutaReal, $extension = null){
+            if($typo == "image/jpeg" || $typo == "image/png"){
+                list($ancho, $alto) = getimagesize($fila);
+                $nuevoAncho = 900;
+                $nuevoAlto  = 500;
+            }
+            
             if (!file_exists($ruta)) {
                 mkdir($ruta, 0755);
             }
 
             if($typo == "image/jpeg"){
-                $aleatorio = mt_rand(1000, 9999);
+                $aleatorio = mt_rand(1000, 9999).date('YmdHis');
                 $ruta =  $ruta.$aleatorio.".jpg";
+                $rutaReal =  $rutaReal.$aleatorio.".jpg";
                 $origen  = imagecreatefromjpeg($fila);
                 $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                 imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
                 imagejpeg($destino, $ruta);
             }elseif($typo == "image/png"){
-                $aleatorio = mt_rand(1000, 9999);
+                $aleatorio = mt_rand(1000, 9999).date('YmdHis');
                 $ruta = $ruta.$aleatorio.".png";
+                $rutaReal =  $rutaReal.$aleatorio.".jpg";
                 $origen  = imagecreatefrompng($fila);
                 $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                 imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
                 imagepng($destino, $ruta);
             }else{
-                $aleatorio = mt_rand(100, 999);
-                $ruta =   $ruta.$aleatorio.$extension;
+                $aleatorio = mt_rand(100, 9999).date('YmdHis');
+                $rutaReal =  $rutaReal.$aleatorio.".pdf";
+                $ruta =  $ruta.$aleatorio.".pdf";
                 copy($fila, $ruta);
             }
-            return $ruta;
-		}
+            return $rutaReal;
+        }
+
 
         
         public static function getBrowser($user_agent){

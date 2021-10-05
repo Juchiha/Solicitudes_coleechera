@@ -148,6 +148,14 @@
 							</div>
 						</div>
 					</div>	
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_imagen_datos">Imagen / Documento</label>
+								<input type="file" class="form-control NuevaFoto" id="sol_imagen_datos" name="sol_imagen_datos" placeholder="Imagen / Documento">
+							</div>
+						</div>
+					</div>
 					<?php
 						if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
 					?>
@@ -180,7 +188,7 @@
 	</div>
 </div>
 
-<!-- nuevo usuario -->
+<!-- editar usuario -->
 <div class="modal" tabindex="-1" role="dialog" id="modalEditarSolicitudes">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -218,7 +226,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="sol_prio_id_e">Prioridad</label>
 								<select class="form-control" id="sol_prio_id_e" name="sol_prio_id_e" placeholder="Prioridad">
@@ -233,9 +241,23 @@
 							</div>
 						</div>
 						<?php
-							if($_SESSION['perfil'] == '4'){
-						?>	
-						<div class="col">
+							if ($_SESSION['perfil'] != '3') {
+						?>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="sol_tec_usu_id_i_e">Tecnico</label>
+								<select class="form-control" id="sol_tec_usu_id_i_e" name="sol_tec_usu_id_i_e" placeholder="Tecnico">
+									<option value="0">Seleccione</option>
+									<?php 
+										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+										foreach($tecnicos as $key => $value){
+											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
+										}
+									?>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-3">
 							<div class="form-group">
 								<label for="sol_estado_e">Estado</label>
 								<select class="form-control" id="sol_estado_e" name="sol_estado_e" placeholder="Estado">
@@ -267,6 +289,43 @@
 							</div>
 						</div>
 					</div>	
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_imagen_datos_e">Imagen / Documento</label>
+								<input type="file" class="form-control NuevaFoto" id="sol_imagen_datos_e" name="sol_imagen_datos_e" placeholder="Imagen / Documento">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<a href="#" id="hrefVerEvidencia" >Ver Evidencia Cargada</a>
+							</div>
+						</div>
+					</div>
+					<?php
+						if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
+					?>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_fecha_cita_d_e">Fecha Atención</label>
+								<input type="text" name="sol_fecha_cita_d_e" id="sol_fecha_cita_d_e" class="form-control" placeholder="YYYY-MM-DD">
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label for="sol_hora_cita_v_e">Hora Atención</label>
+								<select name="sol_hora_cita_v_e" id="sol_hora_cita_v_e" class="form-control" placeholder="Hora Atención">
+
+								</select>
+							</div>
+						</div>
+					</div>	
+					<?php 
+					}
+					?>
 					<div class="row">
 						<div class="col">
 							<table class="table table-bordered table-hover">
@@ -532,7 +591,17 @@
 		                $("#sol_id_i_editar").val(data.sol_id_i);
 		                $("#sol_prio_id_e").val(data.sol_prio_id);
 		                $("#sol_estado_e").val(data.sol_est_id_i);
+		                if(data.sol_ruta_evidencia != '' && data.sol_ruta_evidencia != null){
+		                	$("#hrefVerEvidencia").attr("href", data.sol_ruta_evidencia);
+		                	$("#hrefVerEvidencia").attr("target", '_blank');
+		                	$("#hrefVerEvidencia").show();
+		                }else{
+		                	$("#hrefVerEvidencia").attr("href", "#");
+		                	$("#hrefVerEvidencia").hide();
+		                }
+		                
 		                Solicitudes.getObservaciones(data.sol_id_i);
+		                Solicitudes.getSolicitudAsignada(data.sol_id_i, 'edicion');
 
 		                <?php 
 		                if ($_SESSION['perfil'] == '4'){
@@ -541,6 +610,8 @@
 		                	$("#sol_suc_id_i_e").attr('disabled', true);
 		                	$("#sol_requerimiento_t_e").attr('readonly', true);
 		                	$("#sol_prio_id_e").attr('disabled', true);
+		                	$("#sol_tec_usu_id_i_e").attr('disabled', true);
+		                	$("#sol_imagen_datos_e").attr('disabled', true);
 
 		                	if(data.sol_est_id_i == '5'){
 		                		$("#sol_observaciones_t_e").attr('readonly', true);
@@ -558,6 +629,8 @@
 		                	$("#sol_suc_id_i_e").attr('disabled', false);
 		                	$("#sol_requerimiento_t_e").attr('readonly', true);
 		                	$("#sol_prio_id_e").attr('disabled', false);
+		                	$("#sol_tec_usu_id_i_e").attr('disabled', false);
+		                	$("#sol_imagen_datos_e").attr('disabled', false);
 	                	<?php 
 	            		}
 	                	?>
@@ -654,7 +727,8 @@
 	               		option += "<option value='"+i.hor_id_id+"'> "+i.hor_desc_v+" </option>";
 	                });	  
 	                $("#sol_hora_cita_v").html(option); 
-	                $("#sol_hora_cita_v_i").html(option);       
+	                $("#sol_hora_cita_v_i").html(option);  
+	                $("#sol_hora_cita_v_e").html(option);       
 	                      
 	            },
 	            //si ha ocurrido un error
@@ -710,7 +784,7 @@
 	        });
 		},
 
-		getSolicitudAsignada:function(idSolicitud){
+		getSolicitudAsignada:function(idSolicitud, edicion = 0){
 			$.ajax({
 	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
@@ -737,11 +811,15 @@
 	            //una vez finalizado correctamente
 	            success: function(data){
 	            	if(data != false){
-	            		$("#sol_tec_usu_id_i").val(data.asi_usu_tec_id_i);
-		            	$("#sol_fecha_cita_d").val(data.asi_fecha_d);
-		            	Solicitudes.getFechasDisponibles(data.asi_fecha_d , data.asi_usu_tec_id_i, data.asi_hor_id_i, data.hor_desc_v);
-		            	
-		            	$("#sol_observaciones_t_i_A").val(data.asi_observacion_v);
+	            		if(edicion == '0'){
+	            			$("#sol_tec_usu_id_i").val(data.asi_usu_tec_id_i);
+			            	$("#sol_fecha_cita_d").val(data.asi_fecha_d);
+			            	Solicitudes.getFechasDisponibles(data.asi_fecha_d , data.asi_usu_tec_id_i, data.asi_hor_id_i, data.hor_desc_v);
+	            		}else{
+	            			$("#sol_tec_usu_id_i_e").val(data.asi_usu_tec_id_i);
+			            	$("#sol_fecha_cita_d_e").val(data.asi_fecha_d);
+			            	Solicitudes.getFechasDisponibles(data.asi_fecha_d , data.asi_usu_tec_id_i, data.asi_hor_id_i, data.hor_desc_v);
+	            		}
 	            	}
 	            	
 	            },
@@ -837,6 +915,8 @@
         <?php
         	}
     	?>
+    	edicion += '<li><a class="dropdown-item btnExportarPDF" title="Exportar PDF" id_solicitud href="#">EXPORTAR</a></li>';
+        edicion += '<li class="divider"></li>';
      	edicion += '</ul>';
     	edicion += '</div>';
 
@@ -962,6 +1042,11 @@
 	       	Solicitudes.getSolicitud(x);
 	    });
 
+	    $("#dataTableUsuario tbody").on('click', '.btnExportarPDF', function(){
+	    	var x = $(this).attr('id_solicitud');
+	    	window.open('ajax/exportrarPdf.ajax.php?numeroOrden='+x);
+	    });
+
 		$("#enviarFormNuevo").click(function(){
 			Solicitudes.insertSolicitudes(dataTableEmpresas);
 		});
@@ -1014,6 +1099,56 @@
 	        Solicitudes.getFechasDisponibles( moment(minDate).format('YYYY-MM-DD') , $("#sol_tec_usu_id_i_i").val(), 0, 0);
 	    }); 
 
+	    $("#sol_fecha_cita_d_e").datepicker({
+	        language: "es",
+	        autoclose: true,
+	        todayHighlight: true
+	    }).on('changeDate', function (selected) {
+	        var minDate = new Date(selected.date.valueOf());
+	        Solicitudes.getFechasDisponibles( moment(minDate).format('YYYY-MM-DD') , $("#sol_tec_usu_id_i_e").val(), 0, 0);
+	    });
 	    
+
+	    $(".NuevaFoto").change(function(){
+		    var imax = $(this).attr('valor');
+		    var imagen = this.files[0];
+		    console.log(imagen);
+		    /* Validar el tipo de imagen */
+		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" ){
+		        $(".NuevaFoto").val('');
+		        swal({
+		            title : "Error al subir el archivo",
+		            text  : "El archivo debe estar en formato PNG , JPG, PDF",
+		            type  : "error",
+		            confirmButtonText : "Cerrar"
+		        });
+		    }else if(imagen['size'] > 2000000 ) {
+		        $(".NuevaFoto").val('');
+		        swal({
+		            title : "Error al subir el archivo",
+		            text  : "El archivo no debe pesar mas de 2MB",
+		            type  : "error",
+		            confirmButtonText : "Cerrar"
+		        });
+		    }else{
+
+		        if(imagen['type'] == 'image/jpeg' || imagen['type'] == 'image/png' || imagen['type'] != "application/pdf"){
+		            var datosImagen = new FileReader();
+		            datosImagen.readAsDataURL(imagen);
+
+		            $(datosImagen).on("load", function(event){
+		                var rutaimagen = event.target.result;
+		                if(imax == '0'){
+		                    $(".previsualizar").attr('src', rutaimagen);
+		                }else{
+		                    $(".previsualizar"+imax).attr('src', rutaimagen);
+		                }
+		                
+		                
+		            }); 
+		        }
+		        
+		    }   
+		});
 	});
 </script>

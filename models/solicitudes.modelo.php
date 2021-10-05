@@ -13,7 +13,8 @@ class SolicitudesModelo extends ModeloDAO
 					sol_usu_id_i,
 					sol_ban_id_i,
 					sol_est_id_i,
-					sol_prio_id)
+					sol_prio_id,
+					sol_ruta_evidencia)
 				VALUES(	
 					:sol_suc_id_i,
 					:sol_fecha_solicitud_d, 
@@ -23,7 +24,8 @@ class SolicitudesModelo extends ModeloDAO
 					:sol_usu_id_i,
 					:sol_ban_id_i,
 					:sol_est_id_i,
-					:sol_prio_id) ");
+					:sol_prio_id,
+					:sol_ruta_evidencia) ");
 			$stmt->bindParam(":sol_suc_id_i", $datos['sol_suc_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_fecha_solicitud_d", $datos['sol_fecha_solicitud_d'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_requerimiento_t",   $datos['sol_requerimiento_t'], PDO::PARAM_STR);
@@ -33,6 +35,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_usu_id_i",          $datos['sol_usu_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_ban_id_i",          $datos['sol_ban_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_prio_id",           $datos['sol_prio_id'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_ruta_evidencia",    $datos['sol_ruta_evidencia'], PDO::PARAM_STR);
 			
 			if($stmt->execute()){
 				$stmt = null;
@@ -69,6 +72,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":asi_observacion_v", $datos['asi_observacion_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_sol_id_i", $datos['asi_sol_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":asi_fecha_aignacion", $datos['asi_fecha_aignacion'], PDO::PARAM_STR);
+
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
@@ -90,7 +94,8 @@ class SolicitudesModelo extends ModeloDAO
 					sol_tec_usu_id_i = :sol_tec_usu_id_i ,
 					sol_ban_id_i = :sol_ban_id_i,
 					sol_prio_id = :sol_prio_id,
-					sol_est_id_i = :sol_est_id_i
+					sol_est_id_i = :sol_est_id_i,
+					sol_ruta_evidencia = :sol_ruta_evidencia
 				WHERE 
 					sol_id_i = :sol_id_i");
 
@@ -102,6 +107,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_ban_id_i", $datos['sol_ban_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_prio_id",  $datos['sol_prio_id'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_est_id_i",  $datos['sol_est_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_ruta_evidencia",    $datos['sol_ruta_evidencia'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
