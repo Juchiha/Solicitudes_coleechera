@@ -25,10 +25,10 @@
 
 
 		$objPHPExcel->getActiveSheet()
-			->getStyle('A1:K1')
+			->getStyle('A1:H1')
 			->getAlignment();
 
-		$objPHPExcel->getActiveSheet()->getStyle('A1:K1')->getFont()->setBold( true );
+		$objPHPExcel->getActiveSheet()->getStyle('A1:H1')->getFont()->setBold( true );
 
 
 		$objPHPExcel->getActiveSheet()->setTitle('INCIDENCIAS');
@@ -53,7 +53,7 @@
 			$i++;
 	    }
 
-	    foreach(range('A','K') as $columnID) {
+	    foreach(range('A','H') as $columnID) {
         	$objPHPExcel->getActiveSheet()->getColumnDimension($columnID)
             ->setAutoSize(true);
     	}
