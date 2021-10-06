@@ -477,9 +477,11 @@
 					$("#usu_documento_v_e").val(data.usu_documento_v);
 					$("#usu_nombre_v_e").val(data.usu_nombre_v);
 					$("#usu_apellido_v_e").val(data.usu_apellido_v);
-					$("#usu_per_id_i_e").val(data.usu_per_id_i);
+					$("#usu_per_id_i_e").val(data.usu_per_id_i).change();
 					$("#usu_est_id_i_e").val(data.usu_est_id_i);
+					$("#usu_banco_i_e").val(data.usu_banco_i);
 					$("#usu_id_i_e").val(data.usu_id_i);
+
 					$("#usu_usuario_v_e").val(data.usu_usuario_v);
 					$("#usu_password_v_actual_e").val(data.usu_password_v);
 
