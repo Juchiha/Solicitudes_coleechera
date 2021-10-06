@@ -18,6 +18,9 @@
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarUsarios">
         	Nuevo Usuario
     	</a>
+    	<a class="dropdown-item" href="ajax/exportarUsuariosExcel.ajax.php?descargarDatos=true">
+        	Exportar Usuario
+    	</a>
     </div>
     <?php 
 		}
@@ -105,6 +108,16 @@
 							</div>
 						</div>
 
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="usu_correo_v_i">Correo</label>
+								<input type="mail" class="form-control" id="usu_correo_v_i" name="usu_correo_v_i" placeholder="Digite su correo">
+									
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
@@ -232,6 +245,17 @@
 						</div>
 
 					</div>
+
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label for="usu_correo_v_e">Correo</label>
+								<input type="email" class="form-control" id="usu_correo_v_e" name="usu_correo_v_e" placeholder="Digite su correo">
+									
+							</div>
+						</div>
+					</div>
+					
 
 					<div class="row">
 						<div class="col">
@@ -481,9 +505,9 @@
 					$("#usu_est_id_i_e").val(data.usu_est_id_i);
 					$("#usu_banco_i_e").val(data.usu_banco_i);
 					$("#usu_id_i_e").val(data.usu_id_i);
-
 					$("#usu_usuario_v_e").val(data.usu_usuario_v);
 					$("#usu_password_v_actual_e").val(data.usu_password_v);
+					$("#usu_correo_v").val(data.usu_correo_v);
 
 	            },
 	            //si ha ocurrido un error

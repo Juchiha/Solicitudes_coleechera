@@ -21,7 +21,8 @@
 					'usu_banco_i' 			=> $_POST['usu_banco_i_i'],
 					'usu_fecha_registro_d'  => date('Y-m-d'), //Con esta funciona obtyengo la fecha actual
 					'usu_usuario_v'			=> $_POST['usu_usuario_v_i'],
-					'usu_password_v'		=> md5($_POST['usu_password_v_i']) //Con MD5 encripto lo que llegue en ese campo
+					'usu_password_v'		=> md5($_POST['usu_password_v_i']),
+					'usu_correo_v'			=> $_POST['usu_correo_v_i']
 				);
 
 				$respuesta = UsuarioModelo::insertDatos($datos);
@@ -62,7 +63,8 @@
 					'usu_fecha_registro_d'  => date('Y-m-d'), //COn esta funciona obtyengo la fecha actual
 					'usu_usuario_v'			=> $_POST['usu_usuario_v_e'],
 					'usu_password_v'		=> $password,  //Con MD5 encripto lo que llegue en ese campo
-					'usu_id_i'				=> $_POST['usu_id_i_e']
+					'usu_id_i'				=> $_POST['usu_id_i_e'],
+					'usu_correo_v'			=> $_POST['usu_correo_v_e']	
 				);
 
 				$respuesta = UsuarioModelo::UpdateDatos($datos);
