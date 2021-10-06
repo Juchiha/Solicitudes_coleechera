@@ -2,9 +2,7 @@
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   	<h1 class="h3 mb-0 text-gray-800">Incidencias reportadas en el sistema</h1>
-  	<?php 
-  		if ($_SESSION['perf_add_i']==1) {	
-  	?>
+  	
   	<button class="btn btn-circle btn-default dropdown no-arrow" title="Opciones" 
   		data-toggle="dropdown" 
   		aria-haspopup="true" 
@@ -12,13 +10,21 @@
   		<i class="fas fa-ellipsis-v"></i>
   	</button>
   	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="top-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, -104px, 0px);">
+  		<?php 
+  		if ($_SESSION['perf_add_i']==1) {	
+  		?>
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarSolicitudes">
         	Nueva Incidencia
     	</a>
+    	<?php 
+			}
+			echo '<li class="divider"></li>';
+		?>
+    	<a class="dropdown-item" href="ajax/exportarExcel.ajax.php?descargarDatos=true">
+        	Exportar Incidencias
+    	</a>
     </div>
-    <?php 
-		}
-	?>
+    
 </div>
 <div class="container-fluid">
     <!-- DataTales Example -->

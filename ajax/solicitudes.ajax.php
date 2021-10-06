@@ -42,9 +42,14 @@
 		public function getAllDatos(){
 			$where = null;
 			
-			if ($_SESSION['perfil'] != '1' && $_SESSION['perfil'] != '2') {
+			if ($_SESSION['perfil'] == '4') {
 				$where = 'asi_usu_tec_id_i = '.$_SESSION['codigo'];
+			}else if($_SESSION['perfil'] == '3'){
+				$where = 'sol_ban_id_i = '.$_SESSION['bnco_id'];
+			}else{
+				$where = null;
 			}
+
             $usuarios = ControladorSolicitudes::getDataFromLsql('suc_nombre_v, sol_fecha_solicitud_d, sol_orden_trabajo, est_nombre_v, pri_desc_v, asi_fecha_d, hor_desc_v, sol_id_i', 'sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i  join sc_estados ON est_id_i = sol_est_id_i LEFT JOIN sc_asignaciones ON asi_sol_id_i = sol_id_i LEFT JOIN sc_horas ON hor_id_id = asi_hor_id_i LEFT JOIN sc_prioridades ON  sol_prio_id= pri_id_i', $where, null, 'ORDER BY sol_fecha_solicitud_d DESC', null);
 echo '{
   	"data" : [';
