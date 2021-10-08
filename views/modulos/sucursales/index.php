@@ -41,7 +41,7 @@
         	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="width: 18%;">Banco</th>
+                        <th style="width: 18%;">Cliente</th>
                         <th style="width: 18%;">Nombre</th>
                         <th style="width: 18%">Codigo</th>
                         <th style="width: 18%;">Ciudad</th>
@@ -51,7 +51,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th style="width: 18%;">Banco</th>
+                        <th style="width: 18%;">Cliente</th>
                         <th style="width: 18%;">Nombre</th>
                         <th style="width: 18%">Codigo</th>
                         <th style="width: 18%;">Ciudad</th>
@@ -88,7 +88,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="suc_ban_id_i_i">Banco</label>
+								<label for="suc_ban_id_i_i">Cliente</label>
 								<select class="form-control" id="suc_ban_id_i_i" name="suc_ban_id_i_i" placeholder="Tipo documento">
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
@@ -175,7 +175,7 @@
 
 						<div class="col">
 							<div class="form-group">
-								<label for="suc_ban_id_i_e">Banco</label>
+								<label for="suc_ban_id_i_e">Cliente</label>
 								<select class="form-control" id="suc_ban_id_i_e" name="suc_ban_id_i_e" placeholder="Tipo documento">
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);

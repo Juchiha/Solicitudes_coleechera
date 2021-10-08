@@ -27,7 +27,10 @@
 					'sol_ban_id_i'					=> $_POST['sol_ban_id_i'],
 					'sol_est_id_i'					=> $estado,
 					'sol_prio_id'					=> $_POST['sol_prio_id_i'],
-					'sol_ruta_evidencia'			=> $ruta
+					'sol_ruta_evidencia'			=> $ruta,
+					'sol_ruta_ot_v'					=> $_POST['sol_ruta_ot_v_i'],
+					'sol_id_tps_i'					=> $_POST['sol_id_tps_i_i'],
+					'sol_aplica_i'					=> $_POST['sol_aplica_i_i'],
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
@@ -117,7 +120,10 @@
 					'sol_id_i'						=> $_POST['sol_id_i_e'],
 					'sol_prio_id'					=> $prioridad,
 					'sol_est_id_i'					=> $estado,
-					'sol_ruta_evidencia'			=> $ruta
+					'sol_ruta_evidencia'			=> $ruta,
+					'sol_ruta_ot_v'					=> $_POST['sol_ruta_ot_v_e'],
+					'sol_id_tps_i'					=> $_POST['sol_id_tps_i_e'],
+					'sol_aplica_i'					=> $_POST['sol_aplica_i_e']
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);

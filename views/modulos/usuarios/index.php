@@ -39,7 +39,7 @@
                         <th style="width: 10%;">Identificación</th>
                         <th style="width: 40%">Nombres</th>
                         <th style="width: 20%;">Perfil</th>
-                        <th style="width: 20%;">Banco</th>
+                        <th style="width: 20%;">Cliente</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </thead>
@@ -48,7 +48,7 @@
                         <th style="width: 10%;">Identificación</th>
                         <th style="width: 40%">Nombres</th>
                         <th style="width: 20%;">Perfil</th>
-                        <th style="width: 20%;">Banco</th>
+                        <th style="width: 20%;">Cliente</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </tfoot>
@@ -125,6 +125,7 @@
 							<div class="form-group">
 								<label for="usu_per_id_i_i">Perfil Usuario</label>
 								<select class="form-control" id="usu_per_id_i_i" name="usu_per_id_i_i" placeholder="Tipo documento">
+									<option value="0">Seleccione un perfil</option>
 									<?php 
 										$perfiles = ControladorUtilidades::getData('sc_perfiles', null, null);
 										foreach($perfiles as $key => $value){
@@ -168,8 +169,8 @@
 					<div class="row" style="display: none;" id="rowBanco">
 						<div class="col">
 							<div class="form-group">
-								<label for="usu_banco_i_i">Banco</label>
-								<select class="form-control" id="usu_banco_i_i" name="usu_banco_i_i" placeholder="Nombre de Banco">
+								<label for="usu_banco_i_i">Cliente</label>
+								<select class="form-control" id="usu_banco_i_i" name="usu_banco_i_i" placeholder="Nombre de Cliente">
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
 										foreach($bancos as $key => $value){
@@ -261,7 +262,8 @@
 						<div class="col">
 							<div class="form-group">
 								<label for="usu_per_id_i_e">Perfil Usuario</label>
-								<select class="form-control" id="usu_per_id_i_e" name="usu_per_id_i_e" placeholder="Tipo documento">
+								<select class="form-control" id="usu_per_id_i_e"  name="usu_per_id_i_e" placeholder="Tipo documento">
+									<option value="0"></option>
 									<?php 
 										$perfiles = ControladorUtilidades::getData('sc_perfiles', null, null);
 										foreach($perfiles as $key => $value){

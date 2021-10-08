@@ -76,9 +76,9 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="sol_ban_id_i">Banco</label>
-								<select class="form-control" id="sol_ban_id_i" name="sol_ban_id_i" placeholder="Nombre de Banco">
-									<option value="0">Seleccione un Banco</option>
+								<label for="sol_ban_id_i">Cliente</label>
+								<select class="form-control" id="sol_ban_id_i" name="sol_ban_id_i" placeholder="Nombre de Cliente">
+									<option value="0">Seleccione un Cliente</option>
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
 										foreach($bancos as $key => $value){
@@ -209,9 +209,9 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="sol_ban_id_e">Banco</label>
-								<select class="form-control" id="sol_ban_id_e" name="sol_ban_id_e" placeholder="Nombre de Banco">
-									<option value="0">Seleccione un Banco</option>
+								<label for="sol_ban_id_e">Cliente</label>
+								<select class="form-control" id="sol_ban_id_e" name="sol_ban_id_e" placeholder="Nombre de Cliente">
+									<option value="0">Seleccione un Cliente</option>
 									<?php 
 										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
 										foreach($bancos as $key => $value){

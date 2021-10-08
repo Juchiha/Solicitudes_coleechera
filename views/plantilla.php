@@ -74,9 +74,9 @@ echo '
                     echo "<script>$('#incidencias').addClass('active');</script>";
                     break;
 
-                     case 'bancos':
+                     case 'clientes':
                     include "modulos/bancos/index.php";
-                    echo "<script>$('#bancos').addClass('active');</script>";
+                    echo "<script>$('#clientes').addClass('active');</script>";
                     break;
 
             }

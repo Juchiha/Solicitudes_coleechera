@@ -40,7 +40,7 @@
 <br/>
 <table style="font-family:tahoma;font-size:11;border:solid 1px black;" width="100%" cellpadding="3px" cellspacing="1px" width="100%">
     <tr>
-    	<th style="text-align:justify;">BANCO</th>
+    	<th style="text-align:justify;">CLIENTE</th>
     	<th style="text-align:justify;">SUCURSAL</th>
     </tr>
     <tr>

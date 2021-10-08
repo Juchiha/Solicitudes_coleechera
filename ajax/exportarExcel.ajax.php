@@ -41,7 +41,7 @@
 
 		$objPHPExcel->getActiveSheet()->setTitle('INCIDENCIAS');
 		$objPHPExcel->getActiveSheet()->setCellValue("A1", "#"); 
-	    $objPHPExcel->getActiveSheet()->setCellValue("B1", "BANCO");
+	    $objPHPExcel->getActiveSheet()->setCellValue("B1", "CLIENTE");
 	    $objPHPExcel->getActiveSheet()->setCellValue("C1", "SUCURSAL"); 
 	    $objPHPExcel->getActiveSheet()->setCellValue("D1", "# ORDEN");    
 	    $objPHPExcel->getActiveSheet()->setCellValue("E1", "PRIORIDAD"); 

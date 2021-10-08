@@ -39,7 +39,7 @@
 	    $objPHPExcel->getActiveSheet()->setCellValue("E1", "CORREO"); 
 	    $objPHPExcel->getActiveSheet()->setCellValue("F1", "USUARIOS"); 
 	    $objPHPExcel->getActiveSheet()->setCellValue("G1", "TIPO USUARIO"); 
-	    $objPHPExcel->getActiveSheet()->setCellValue("H1", "BANCO"); 
+	    $objPHPExcel->getActiveSheet()->setCellValue("H1", "CLIENTE"); 
 	    $i = 2;
 	    foreach ($usuarios as $key => $value) {
 			$objPHPExcel->getActiveSheet()->setCellValue("A".$i, ($key+1)); 

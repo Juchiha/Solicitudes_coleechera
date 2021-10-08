@@ -4,7 +4,7 @@
 ?>
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  	<h1 class="h3 mb-0 text-gray-800">Registrar Bancos</h1>
+  	<h1 class="h3 mb-0 text-gray-800">Registrar Clientes</h1>
 
   	<!--<a href="#" data-toggle="modal" data-target="#modalEmpresaNueva" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
     	<i class="fas fa-plus fa-sm text-white-50"></i> 
@@ -24,7 +24,7 @@
         Nueva Carpeta-->
     	</a>
         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalIngresarBancos">
-        	Ingresar Bancos
+        	Ingresar Clientes
     	</a>
     </div>
     <?php 
@@ -35,20 +35,20 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Datos de los Bancos</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Datos de los Clientes</h6>
         </div>
         <div class="card-body">
         	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th style="width: 40%;">Nombre entidad bancaria</th>
+                        <th style="width: 40%;">Nombre Clientes</th>
                         <th style="width: 40%">Estado</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th style="width: 40%;">Nombre entidad bancaria</th>
+                        <th style="width: 40%;">Nombre Clientes</th>
                         <th style="width: 40%">Estado</th>
                         <th style="width: 10%;"></th>
                     </tr>
@@ -64,7 +64,7 @@
 		<div class="modal-content">
 			<form id="crearBancos" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Ingreso de Bancos</h5>
+					<h5 class="modal-title">Ingreso Clientes</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -73,8 +73,8 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="ban_nombre_v_i">Nombre Banco</label>
-								<input type="text" class="form-control" id="ban_nombre_v_i" name="ban_nombre_v_i" placeholder="Nombre de Banco">
+								<label for="ban_nombre_v_i">Nombre Clientes</label>
+								<input type="text" class="form-control" id="ban_nombre_v_i" name="ban_nombre_v_i" placeholder="Nombre Clientes">
 							</div>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 		<div class="modal-content">
 			<form id="nuevobanco" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Actualizar Bancos</h5>
+					<h5 class="modal-title">Actualizar Cliente</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -107,7 +107,7 @@
 					<div class="row">
 						<div class="col">
 							<div class="form-group">
-								<label for="ban_nombre_v_e">Nombre Banco</label>
+								<label for="ban_nombre_v_e">Nombre Cliente</label>
 								<input type="text" class="form-control" id="ban_nombre_v_e" name="ban_nombre_v_e" placeholder="Nombre Banco">
 							</div>
 						</div>
