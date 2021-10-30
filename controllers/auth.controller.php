@@ -26,7 +26,6 @@
 							$_SESSION['nombres'] 					= $respuesta['usu_nombre_v'].' '.$respuesta['usu_apellido_v'];
 							$_SESSION['perfil']						= $respuesta['usu_per_id_i'];
 							//$_SESSION['correo'] 					= $respuesta['usu_usuario_v'];
-							$_SESSION['bnco_id']					= $respuesta['usu_banco_i'];
 							$_SESSION['perf_asig_i']				= $respuesta['perf_asig_i'];
 							$_SESSION['perf_add_i']				    = $respuesta['perf_add_i'];
 							$_SESSION['perf_upd_i']				    = $respuesta['perf_upd_i'];
