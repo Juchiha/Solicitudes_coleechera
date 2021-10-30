@@ -9,6 +9,7 @@
 	require_once '../models/bancos.modelo.php';
 
 	class AjaxBancos{
+		
 		public function insertDatos(){
 			echo ControladorBancos::insertDatos();
 		}

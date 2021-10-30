@@ -39,7 +39,6 @@
                         <th style="width: 10%;">Identificación</th>
                         <th style="width: 40%">Nombres</th>
                         <th style="width: 20%;">Perfil</th>
-                        <th style="width: 20%;">Cliente</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </thead>
@@ -48,7 +47,6 @@
                         <th style="width: 10%;">Identificación</th>
                         <th style="width: 40%">Nombres</th>
                         <th style="width: 20%;">Perfil</th>
-                        <th style="width: 20%;">Cliente</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </tfoot>
@@ -165,23 +163,6 @@
 						</div>
 
 					</div>
-
-					<div class="row" style="display: none;" id="rowBanco">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_banco_i_i">Cliente</label>
-								<select class="form-control" id="usu_banco_i_i" name="usu_banco_i_i" placeholder="Nombre de Cliente">
-									<?php 
-										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
-										foreach($bancos as $key => $value){
-											echo '<option value="'.$value['ban_id_i'].'">'.$value['ban_nombre_v'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-					</div>
-					
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="idCarpetaPadre" value="0">
@@ -303,24 +284,6 @@
 						</div>
 
 					</div>
-
-					<div class="row" style="display: none;" id="rowActBanco">
-						<div class="col">
-							<div class="form-group">
-								<label for="usu_banco_i_e">Banco</label>
-								<select class="form-control" id="usu_banco_i_e" name="usu_banco_i_e" placeholder="Nombre de Banco">
-									<?php 
-										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
-										foreach($bancos as $key => $value){
-											echo '<option value="'.$value['ban_id_i'].'">'.$value['ban_nombre_v'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-					</div>
-					
-
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="usu_id_i_e" id="usu_id_i_e" value="0">
@@ -586,7 +549,7 @@
 
 		$('#dataTableUsuario tbody').on( 'click', 'a', function () {
 		    var data = dataTableEmpresas.row( $(this).parents('tr') ).data();
-		    $(this).attr("id_usuario", data[4]);
+		    $(this).attr("id_usuario", data[3]);
 		});
 
 		/* Esta parte es para traer los datos de la edicion */
@@ -621,21 +584,6 @@
 		$("#enviarFormEdicion").click(function(){
 			usuarios.updateUsuarios(dataTableEmpresas);
 		});
-
-		$("#usu_per_id_i_i").change(function(){
-			if ($("#usu_per_id_i_i").val() == "3") {
-				$("#rowBanco").show();
-			}else{
-				$("#rowBanco").hide();
-			}
-		})
-		$("#usu_per_id_i_e").change(function(){
-		if ($("#usu_per_id_i_e").val() == "3") {
-				$("#rowActBanco").show();
-			}else{
-				$("#rowActBanco").hide();
-			}
-		})
 
 	});
 </script>

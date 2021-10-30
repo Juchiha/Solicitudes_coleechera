@@ -7,6 +7,7 @@
 	require_once '../models/dao.modelo.php';
 	require_once '../models/datatables.modelo.php';
 	require_once '../models/solicitudes.modelo.php';
+	require_once '../models/clientes.modelo.php';
 	require_once '../models/auth.modelo.php';
 
 	class AjaxSolicitudes{
@@ -50,7 +51,7 @@
 				$where = null;
 			}
 
-            $usuarios = ControladorSolicitudes::getDataFromLsql('suc_nombre_v, sol_fecha_solicitud_d, sol_orden_trabajo, est_nombre_v, pri_desc_v, asi_fecha_d, hor_desc_v, sol_id_i', 'sc_solicitudes join sc_sucursales on suc_id_id = sol_suc_id_i  join sc_estados ON est_id_i = sol_est_id_i LEFT JOIN sc_asignaciones ON asi_sol_id_i = sol_id_i LEFT JOIN sc_horas ON hor_id_id = asi_hor_id_i LEFT JOIN sc_prioridades ON  sol_prio_id= pri_id_i', $where, null, 'ORDER BY sol_fecha_solicitud_d DESC', null);
+            $usuarios = ControladorSolicitudes::getDataFromLsql('cli_nombre_v, sol_fecha_solicitud, sol_orden_trabajo_v, sol_estado_i, sol_prioridad_i, sol_asignado_a_i,  est_nombre_v, pri_desc_v, sol_id_i, usu_nombre_v', 'sc_solicitudes_coolechera JOIN sc_clientes ON cli_id_i = sol_clie_id_i JOIN sc_estados ON est_id_i = sol_estado_i LEFT JOIN sc_prioridades ON  sol_prioridad_i = pri_id_i LEFT JOIN sc_usuarios ON usu_id_i = sol_asignado_a_i', $where, null, 'ORDER BY sol_fecha_solicitud DESC', null);
 echo '{
   	"data" : [';
   			$i = 0;
@@ -59,12 +60,12 @@ echo '{
             		echo ",";
             	}
 				echo '[';
-				echo '"'.$value["suc_nombre_v"].'",';//viene de sucursales
-				echo '"'.$value["sol_fecha_solicitud_d"].'",'; //solicitudes
-				echo '"'.$value["sol_orden_trabajo"].'",'; //solicitudes
+				echo '"'.$value["cli_nombre_v"].'",';//viene de sucursales
+				echo '"'.$value["sol_fecha_solicitud"].'",'; //solicitudes
+				echo '"'.$value["sol_orden_trabajo_v"].'",'; //solicitudes
 				echo '"'.$value["est_nombre_v"].'",';//estados
-				echo '"'. strtoupper($value["pri_desc_v"]).'",';//prioridades
-				echo '"'.$value["asi_fecha_d"].' '.$value['hor_desc_v'].'",';//asignaciones
+				echo '"'.mb_strtoupper($value["pri_desc_v"]).'",';//prioridades
+				echo '"'.mb_strtoupper($value['usu_nombre_v']).'",';//asignaciones
 				echo '"'.$value["sol_id_i"].'"';//solicitudes
 				echo ']';
             	$i++;
@@ -75,7 +76,7 @@ echo '{
 	}
 
 
-	if(isset($_POST['sol_ban_id_i'])){
+	if(isset($_POST['sol_tip_sol_id_i'])){
 		$AjaxSolicitudes = new AjaxSolicitudes();
 		$AjaxSolicitudes->insertDatos();
 	}

@@ -14,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Seguimiento Casos</title>
+    <title>Insidencias Coolechera</title>
 
     <!-- Custom fonts for this template-->
     <link href="views/assets/StartBoots/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="views/assets/vendor/alertify/alertify.core.css">
     <link rel="stylesheet" href="views/assets/vendor/alertify/alertify.default.css">
     <link rel="stylesheet" href="views/assets/vendor/sweetalert/sweetalert.css">
-    <link rel="icon" href="views/assets/img/theme/logotipo.jpg" type="image/jpg">
+    <link rel="icon" href="views/assets/img/theme/logotipo.png" type="image/png">
     <link rel="stylesheet" type="text/css" href="views/assets/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css">
 </head>
 

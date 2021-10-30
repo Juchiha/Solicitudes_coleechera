@@ -11,7 +11,6 @@
 					usu_apellido_v,
 					usu_per_id_i, 
 					usu_est_id_i,
-					usu_banco_i,
 					usu_fecha_registro_d, 
 					usu_usuario_v,
 					usu_password_v,
@@ -23,7 +22,6 @@
 					:usu_apellido_v,
 					:usu_per_id_i, 
 					:usu_est_id_i,
-					:usu_banco_i,
 					:usu_fecha_registro_d, 
 					:usu_usuario_v,
 					:usu_password_v,
@@ -34,7 +32,6 @@
 			$stmt->bindParam(":usu_nombre_v", $datos['usu_nombre_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_apellido_v", $datos['usu_apellido_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_est_id_i", $datos['usu_est_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":usu_banco_i", $datos['usu_banco_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_fecha_registro_d", $datos['usu_fecha_registro_d'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_usuario_v", $datos['usu_usuario_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_password_v", $datos['usu_password_v'], PDO::PARAM_STR);
@@ -60,7 +57,6 @@
 					usu_apellido_v = :usu_apellido_v,
 					usu_per_id_i = :usu_per_id_i,
 					usu_est_id_i = :usu_est_id_i,
-					usu_banco_i = :usu_banco_i,
 					usu_fecha_registro_d = :usu_fecha_registro_d,
 					usu_usuario_v = :usu_usuario_v,
 					usu_password_v = :usu_password_v,
@@ -74,7 +70,6 @@
 			$stmt->bindParam(":usu_apellido_v", $datos['usu_apellido_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_per_id_i", $datos['usu_per_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_est_id_i", $datos['usu_est_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":usu_banco_i", $datos['usu_banco_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_fecha_registro_d", $datos['usu_fecha_registro_d'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_usuario_v", $datos['usu_usuario_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":usu_password_v", $datos['usu_password_v'], PDO::PARAM_STR);

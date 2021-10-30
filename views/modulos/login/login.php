@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ireport Cloud</title>
+    <title>Insidencias Coolechera</title>
     <link rel="icon" href="views/assets/img/theme/logotipo.jpg" type="image/jpg">
 
     <!-- Custom fonts for this template-->
@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-danger">
 
     <div class="container">
 

@@ -19,7 +19,7 @@
 	require_once 'models/dao.modelo.php';
 	require_once 'models/auth.modelo.php';
 	require_once 'models/empresa.modelo.php';
-	require_once 'models/bancos.modelo.php';
+	require_once 'models/clientes.modelo.php';
 	require_once 'models/solicitudes.modelo.php';
 	require_once 'models/sucursales.modelo.php';
 	require_once 'models/usuario.modelo.php';

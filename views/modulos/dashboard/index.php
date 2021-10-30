@@ -1,7 +1,7 @@
 
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-  	<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+  	<h1 class="h3 mb-0 text-gray-800">Estadisticas</h1>
 </div>
 <div class="container-fluid">
 	<div class="row">
@@ -15,7 +15,7 @@
                                 Solicitudes Pendientes</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                         	<?php
-$solicitudesPendient = ControladorUtilidades::getCount('sc_solicitudes', 'sol_est_id_i = 3');
+$solicitudesPendient = ControladorUtilidades::getCount('sc_solicitudes_coolechera', 'sol_estado_i = 3');
 echo $solicitudesPendient;
                         	?>
                             </div>
@@ -37,13 +37,13 @@ echo $solicitudesPendient;
                              	Solicitudes Asignadas</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                             	<?php
-$solicitudesAsig = ControladorUtilidades::getCount('sc_solicitudes', 'sol_est_id_i = 4');
+$solicitudesAsig = ControladorUtilidades::getCount('sc_solicitudes_coolechera', 'sol_estado_i = 4');
 echo $solicitudesAsig;
                             	?>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas fa-check fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -56,15 +56,15 @@ echo $solicitudesAsig;
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Promedio
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Clientes
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">10%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                    <?php
+$clients = ControladorUtilidades::getCount('sc_clientes', null);
+echo $clients;
+                            	?>	
                                     </div>
                                 </div>
                             </div>
@@ -102,35 +102,101 @@ echo $tecnicosActivos;
     </div>
 
     <div class="row">
-        <div class="col-lg-6">
-            <div class="card shadow mb-6">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Solicitudes - Sucursales</h6>
-                </div>
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="chart-pie pt-6">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <hr>
-                    <div style="text-align: center;">Sucursales con mas Solicitudes.</div>
-                </div>
-            </div>
+    	<div class="col-lg-12">
+    		<table class="table table-hover table-bordered" style="width:100%">
+    			<thead>
+    				<tr>
+    					<th colspan="5" style="text-align: center;">
+    						DATOS DE LOS TECNICOS
+    					</th>
+    				</tr>
+    				<tr>
+    					<th style="width:10px; text-align: center;">#</th>
+    					<th style="width:50%; text-align: center;">TECNICO</th>
+    					<th style="width:18%; text-align: center;"># ASIGNACIONES</th>
+    					<th style="width:18%; text-align: center;"># SOLUCIONADAS</th>
+    					<th style="width:14%; text-align: center;">%</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<?php
+                        $tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+
+                        foreach($tecnicos as $key => $value){
+                            $asignadas = 0;
+                            $terminadas = 0;
+                            
+                            $revisarAsignadas = ControladorUtilidades::getDataFromLsql('sol_estado_i', 'sc_solicitudes_coolechera', 'sol_asignado_a_i = '.$value['usu_id_i'], null, null, null);
+                            foreach($revisarAsignadas as $newKey => $newValue){
+                                $asignadas++;
+                                if($newValue['sol_estado_i'] == '5'){
+                                    $terminadas++;
+                                }
+                            }
+                            $promedio = 0;
+                            if($asignadas > 0){
+                                $promedio = ($terminadas*100/$asignadas);
+                            }
+                            echo '<tr>
+                                    <td style="width:10px; text-align: center;">'.($key+1).'</td>
+                                    <td style="width:50%; text-align: center;">'.mb_strtoupper($value['nombres']).'</td>
+                                    <td style="width:18%; text-align: center;">'.$asignadas.'</td>
+                                    <td style="width:18%; text-align: center;">'.$terminadas.'</td>
+                                    <td style="width:14%; text-align: center;">'.number_format($promedio, 2).' %</td>
+                                </tr>';
+                        }
+    				?>
+    			</tbody>
+    		</table>
+    	</div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-hover table-bordered" style="width:100%">
+                <thead>
+                    <tr>
+                        <th colspan="5" style="text-align: center;">
+                            DETALLES POR CLIENTES
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="width:10px; text-align: center;">#</th>
+                        <th style="width:50%; text-align: center;">CLIENTE</th>
+                        <th style="width:18%; text-align: center;"># SOLICITUDES</th>
+                        <th style="width:18%; text-align: center;"># SOLUCIONADAS</th>
+                        <th style="width:14%; text-align: center;">%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        $clientes =  ControladorUtilidades::getData('sc_clientes', null, null);
+
+                        foreach($clientes as $key => $value){
+                            $asignadas = 0;
+                            $terminadas = 0;
+                            $revisarAsignadas = ControladorUtilidades::getDataFromLsql('sol_id_i, sol_estado_i', 'sc_solicitudes_coolechera', 'sol_clie_id_i = '.$value['cli_id_i'], null, null, null);
+                            foreach($revisarAsignadas as $newKey => $newValue){
+                                $asignadas++;
+                                if($newValue['sol_estado_i'] == '5'){
+                                    $terminadas++;
+                                }
+                            }
+                            $promedio = 0;
+                            if($asignadas > 0){
+                                $promedio = ($terminadas*100/$asignadas);
+                            }
+                            echo '<tr>
+                                    <td style="width:10px; text-align: center;">'.($key+1).'</td>
+                                    <td style="width:50%; text-align: center;">'.mb_strtoupper($value['cli_nombre_v']).'</td>
+                                    <td style="width:18%; text-align: center;">'.$asignadas.'</td>
+                                    <td style="width:18%; text-align: center;">'.$terminadas.'</td>
+                                    <td style="width:14%; text-align: center;">'.number_format($promedio, 2).' %</td>
+                                </tr>';
+                        }
+                    ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-
-
-<!-- Page level plugins -->
-<script src="views/assets/StartBoots/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
-<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-<!-- Page level plugins -->
-<script src="views/assets/StartBoots/vendor/chart.js/Chart.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="views/assets/StartBoots/js/demo/chart-pie-demo.js"></script>
-

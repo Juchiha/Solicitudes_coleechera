@@ -26,7 +26,7 @@
 		}
 
 		public function getAllDatos(){
-            $usuarios = ControladorUsuarios::getData('sc_usuarios join sc_perfiles ON usu_per_id_i = perf_id_i join sc_bancos on ban_id_i = usu_banco_i', null, null);
+            $usuarios = ControladorUsuarios::getData('sc_usuarios join sc_perfiles ON usu_per_id_i = perf_id_i', null, null);
 echo '{
   	"data" : [';
   			$i = 0;
@@ -37,8 +37,7 @@ echo '{
 				echo '[';
 				echo '"'.$value["usu_documento_v"].'",';
 				echo '"'.$value["usu_nombre_v"].' '.$value["usu_apellido_v"].'",';
-				echo '"'.$value["perf_nombre_v"].'",'; 
-				echo '"'.$value["ban_nombre_v"].'",'; 
+				echo '"'.$value["perf_nombre_v"].'",';  
 				echo '"'.$value["usu_id_i"].'"';
 				echo ']';
             	$i++;

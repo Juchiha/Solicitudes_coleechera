@@ -18,7 +18,6 @@
 					'usu_apellido_v' 		=> $_POST['usu_apellido_v_i'],
 					'usu_per_id_i'  		=> $_POST['usu_per_id_i_i'],
 					'usu_est_id_i'			=> $_POST['usu_est_id_i_i'],
-					'usu_banco_i' 			=> $_POST['usu_banco_i_i'],
 					'usu_fecha_registro_d'  => date('Y-m-d'), //Con esta funciona obtyengo la fecha actual
 					'usu_usuario_v'			=> $_POST['usu_usuario_v_i'],
 					'usu_password_v'		=> md5($_POST['usu_password_v_i']),
@@ -59,7 +58,6 @@
 					'usu_apellido_v' 		=> $_POST['usu_apellido_v_e'],
 					'usu_per_id_i'  		=> $_POST['usu_per_id_i_e'],
 					'usu_est_id_i'			=> $_POST['usu_est_id_i_e'],
-					'usu_banco_i' 			=> $_POST['usu_banco_i_e'],
 					'usu_fecha_registro_d'  => date('Y-m-d'), //COn esta funciona obtyengo la fecha actual
 					'usu_usuario_v'			=> $_POST['usu_usuario_v_e'],
 					'usu_password_v'		=> $password,  //Con MD5 encripto lo que llegue en ese campo

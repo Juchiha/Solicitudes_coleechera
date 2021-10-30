@@ -44,7 +44,7 @@
             }elseif($typo == "image/png"){
                 $aleatorio = mt_rand(1000, 9999).date('YmdHis');
                 $ruta = $ruta.$aleatorio.".png";
-                $rutaReal =  $rutaReal.$aleatorio.".jpg";
+                $rutaReal =  $rutaReal.$aleatorio.".png";
                 $origen  = imagecreatefrompng($fila);
                 $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
                 imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
