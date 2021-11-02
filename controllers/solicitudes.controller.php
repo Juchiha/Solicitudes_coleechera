@@ -28,6 +28,7 @@
 
 				$id_Cliente = 0;
 				if($_POST['sol_tip_sol_id_i'] == '1' || $_POST['sol_tip_sol_id_i'] == '3' ){
+					
 					/*Insertamos el cliente*/
 					$datosCliente = array(
 						'cli_documento_v' 	=> $_POST['cli_identificacion_v'],
@@ -41,7 +42,8 @@
 						'cli_ciu_id_i' 			=> 0,
 						'cli_planta_id_i' 		=> $_POST['cli_planta_id_i'],
 						'cli_direccion_v' 		=> 0,
-						'cli_est_id_i' 			=> 1
+						'cli_est_id_i' 			=> 1,
+						'cli_tip_sol_id_i'		=> $_POST['sol_tip_sol_id_i']
 					);
 
 					$id_Cliente = ClientesModelo::insertDatos($datosCliente);

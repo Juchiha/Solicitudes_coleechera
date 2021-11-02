@@ -1674,5 +1674,64 @@
 				$(".cliente").attr('disabled', true);
 			}
 		});
+
+		/*Para capturar la cedula y validarla*/
+		$("#cli_identificacion_v").on('change', function(){
+			var cedula = $(this).val();
+            var datos = new FormData();
+            datos.append('cedulaCliente', cedula);
+            $.ajax({
+                url   : 'ajax/clientes.ajax.php',
+                method: 'post',
+                data  : datos,
+                cache : false,
+                contentType : false,
+                processData : false,
+                dataType    : 'json',
+                success     : function(respuesta){
+                    if(respuesta != false){
+                       /*El cliente existe*/ 
+                      	$("#cli_nombres").val(respuesta.cli_nombre_v);
+                      	$("#cli_fecha_ingreso_d").val(respuesta.cli_fecha_ingreso_d);                 
+                      	$("#cli_numero_empleado_v").val(respuesta.cli_numero_empleado_v);
+                       	$("#cli_usuario_red_v").val(respuesta.cli_usuario_red_v);
+                       	$("#cli_usuario_sap_v").val(respuesta.cli_usuario_sap_v);
+                       	$("#cli_cargo_v").val(respuesta.cli_cargo_v);
+                       	$("#cli_area_i").val(respuesta.cli_area_i);
+                       	$("#cli_area_i").val(respuesta.cli_area_i).change();
+                       	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i);
+                       	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
+                       	if(respuesta.cli_tip_sol_id_i == 1){
+                       	 	$("#sol_tip_sol_id_i").val(2).change();
+                       	}else{
+                       		$("#sol_tip_sol_id_i").val(4).change();
+                       	}
+                    }else{
+                    	/*Cliente no registrado*/
+                    	console.log("cliente no registrado");
+                       	$("#sol_tip_sol_id_i").val(1).change();
+                       	
+                    }
+                },
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+            });
+		});
 	});
 </script>
