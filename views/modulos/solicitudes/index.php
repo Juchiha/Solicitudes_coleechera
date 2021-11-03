@@ -556,201 +556,510 @@
 		</div>
 	</div>
 </div>
-
 <!-- editar usuario -->
 <div class="modal" tabindex="-1" role="dialog" id="modalEditarSolicitudes">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-			<form id="editarSolcicitud" autocomplete="off" method="post" enctype="multipart/form-data">
+			<form id="editarSolicitud" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Editar Incidencia</h5>
+					<h5 class="modal-title">Nueva Incidencia</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_ban_id_e">Cliente</label>
-								<select class="form-control" id="sol_ban_id_e" name="sol_ban_id_e" placeholder="Nombre de Cliente">
-									<option value="0">Seleccione un Cliente</option>
-									<?php 
-										$bancos = ControladorUtilidades::getData('sc_bancos', null, null);
-										foreach($bancos as $key => $value){
-											echo '<option value="'.$value['ban_id_i'].'">'.$value['ban_nombre_v'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_suc_id_i_e">Sucursal</label>
-								<select class="form-control" id="sol_suc_id_i_e" name="sol_suc_id_i_e" placeholder="Sucursal">
-
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="sol_prio_id_e">Prioridad</label>
-								<select class="form-control" id="sol_prio_id_e" name="sol_prio_id_e" placeholder="Prioridad">
-									<?php 
-										$prioridades = ControladorUtilidades::getData('sc_prioridades', null, null);
-										foreach($prioridades as $key => $value){
-											echo '<option value="'.$value['pri_id_i'].'">'.$value['pri_desc_v'].'</option>';
-										}
-									?>
-
-								</select>
-							</div>
-						</div>
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="sol_id_tps_i_e">Tipo Requerimiento</label>
-								<select class="form-control" id="sol_id_tps_i_e" name="sol_id_tps_i_e" placeholder="Tipo Requerimiento">
-									<?php 
-										$prioridades = ControladorUtilidades::getData('sc_tipo_servicio', null, null);
-										foreach($prioridades as $key => $value){
-											echo '<option value="'.$value['id_tps_i'].'">'.$value['desc_tps_v'].'</option>';
-										}
-									?>
-
-								</select>
-							</div>
-						</div>
-						<?php
-							if ($_SESSION['perfil'] != '3') {
-						?>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="sol_tec_usu_id_i_e">Tecnico</label>
-								<select class="form-control" id="sol_tec_usu_id_i_e" name="sol_tec_usu_id_i_e" placeholder="Tecnico">
-									<option value="0">Seleccione</option>
-									<?php 
-										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
-										foreach($tecnicos as $key => $value){
-											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>	
-						<div class="col-md-3">
-							<div class="form-group">
-								<label for="sol_estado_e">Estado</label>
-								<select class="form-control" id="sol_estado_e" name="sol_estado_e" placeholder="Estado">
-									<option value="4">Asignado</option>
-									<option value="7">En curso</option>
-									<option value="5">Solucionado</option>
-									<option value="6">Cerrado sin Solución</option>
-
-								</select>
-							</div>
-						</div>
-						<?php
-							}
-						?>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_requerimiento_t_e">Requerimientos</label>
-								<textarea class="form-control" id="sol_requerimiento_t_e" name="sol_requerimiento_t_e" placeholder="Requerimientos"></textarea>
+				  	<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">Para quien es el servicio</h6>
+				        </div>
+        				<div class="card-body">
+							<div class="row">
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_sol_tip_sol_id_i">Para quién es el requerimiento</label>
+										<select class="form-control" disabled  id="e_sol_tip_sol_id_i" name="e_sol_tip_sol_id_i" placeholder="Para quién es el requerimiento">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['tip_sol_id'].'">'.$value['tip_sol_descripcion'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_identificacion_v">Identificación</label>
+										<input type="text" disabled name="e_cli_identificacion_v" id="e_cli_identificacion_v" class="form-control" placeholder="Identificación">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_nombres">Nombre Completo</label>
+										<input type="text" name="e_cli_nombres" disabled id="e_cli_nombres" class="form-control cliente" placeholder="Nombre Completo">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_fecha_ingreso_d">Fecha de Ingreso</label>
+										<input type="text" disabled name="e_cli_fecha_ingreso_d" id="e_cli_fecha_ingreso_d" class="form-control cliente" placeholder="YYYY-MM-DD">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_numero_empleado_v">Numero de Empleado</label>
+										<input type="text" disabled name="e_cli_numero_empleado_v" id="e_cli_numero_empleado_v" class="form-control cliente" placeholder="Numero de Empleado">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_usuario_red_v">Usuario de Red</label>
+										<input type="text" disabled name="e_cli_usuario_red_v" id="e_cli_usuario_red_v" class="form-control cliente" placeholder="Usuario de Red">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_usuario_sap_v">Usuario de SAP</label>
+										<input type="text" disabled name="e_cli_usuario_sap_v" id="e_cli_usuario_sap_v" class="form-control cliente" placeholder="Usuario de SAP">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_cargo_v">Nombre del Cargo</label>
+										<input type="text" disabled name="e_cli_cargo_v" id="e_cli_cargo_v" class="form-control cliente" placeholder="Nombre del Cargo">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_area_i">Area/Dirección</label>
+										<select class="form-control cliente" disabled id="e_cli_area_i" name="e_cli_area_i" placeholder="Area/Dirección">
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_areas_cool', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['are_id_i'].'">'.$value['are_desc_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_cli_planta_id_i">Planta/Sucursal</label>
+										<select class="form-control cliente" disabled id="e_cli_planta_id_i" name="e_cli_planta_id_i" placeholder="Ciudad">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_oficinas', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['ofi_id_i'].'">'.$value['ofi_direccion_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_observaciones_t_e">Observaciones</label>
-								<textarea class="form-control" id="sol_observaciones_t_e" name="sol_observaciones_t_e" placeholder="Observaciones"></textarea>
-							</div>
-						</div>
-					</div>	
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_imagen_datos_e">Imagen Orden de Trabajo</label>
-								<input type="file" class="form-control NuevaFoto" id="sol_imagen_datos_e" name="sol_imagen_datos_e" placeholder="Imagen / Documento">
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_imagen_datos_e_evidencia">Evidencia</label>
-								<input type="file" class="form-control NuevaFoto" id="sol_imagen_datos_e_evidencia" name="sol_imagen_datos_e_evidencia" placeholder="Imagen / Documento">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<a href="#" id="hrefVerEvidencia" >Ver OT Cargada</a>
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<a href="#" id="hrefVerEvidencia2" >Ver Evidencia Cargada</a>
-							</div>
-						</div>
-					</div>
+					<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">
+				            	QUE NECESITA
+				            </h6>
+				        </div>
+        				<div class="card-body">
+        					<div class="row">
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="1" id="e_che_usuario_R" 	name="e_che_usuario_R"> Usuario de red
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="2" id="e_che_correo" 	name="e_che_correo"> Correo
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="3" id="e_che_usuario_S" 	name="e_che_usuario_S"> Usuario SAP
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="4" id="e_che_Biman" name="e_che_Biman"> Biman
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="1" id="e_che_acceso_inter" 	name="e_che_acceso_inter"> Acceso a Internet
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="1" id="e_che_acceso_consignates" 	name="e_che_acceso_consignates"> Consignantes
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="1" id="e_che_acceso_gil" 	name="e_che_acceso_gil"> GIL
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="1" id="e_che_acceso_query" 	name="e_che_acceso_query"> Query
+										</label>
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleUsuarioRed" style="display:none;">
+        						<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_usu_red">Detalle Usu Red.</label>
+										<select class="form-control" id="e_detalle_usu_red" name="e_detalle_usu_red" placeholder="Detalle Requerimiento">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_servicio', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['id_tps_i'].'">'.$value['desc_tps_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="e_detalle_obse_usu_re">Observacion Usuario de Red</label>
+										<input type="text" class="form-control" id="e_detalle_obse_usu_re" name="e_detalle_obse_usu_re" placeholder="Observacion Usuario de Red">
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleCorreo" style="display:none;">
+        						<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_correo">Detalle Correo</label>
+										<select class="form-control" id="e_detalle_correo" name="e_detalle_correo" placeholder="Detalle Requerimiento">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_servicio', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['id_tps_i'].'">'.$value['desc_tps_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="e_detalle_obse_correo">Grupos de correo en los que debe darse de alta:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_correo" name="e_detalle_obse_correo" placeholder="Grupos de correo en los que debe darse de alta:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleSAP" style="display:none;">
+        						<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_Sap">Detalle SAP</label>
+										<select class="form-control" id="e_detalle_Sap" name="e_detalle_Sap" placeholder="Detalle Requerimiento">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_servicio', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['id_tps_i'].'">'.$value['desc_tps_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="detalle_obse_sap">Transacciones requeridas:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_sap" name="e_detalle_obse_sap" placeholder="Transacciones requeridas:">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="detalle_Sap_acc">Accesos SAP:</label>
+										<select class="form-control" id="e_detalle_Sap_acc" name="e_detalle_Sap_acc" placeholder="Accesos SAP">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_servicio_sap', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['tip_ser_sap_id_i'].'">'.$value['tip_desc_sap_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="1" id="e_che_sap_prod" 	name="e_che_sap_prod"> SAP Productivo
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="2" id="e_che_sap_des" 	name="e_che_sap_des"> SAP Desarrollo
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input type="checkbox" value="3" id="e_che_sap_cal" 	name="e_che_sap_cal"> SAP Calidad
+										</label>
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleAccesoInternet" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e_detalle_obse_accesoIn">Observaciones Acceso Internet:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_accesoIn" name="e_detalle_obse_accesoIn" placeholder="Observaciones:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleBiman" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e_detalle_obse_Biman">Observaciones Biman:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_Biman" name="e_detalle_obse_Biman" placeholder="Observaciones:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleGil" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e_detalle_obse_Gil">Observaciones GIL:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_Gil" name="e_detalle_obse_Gil" placeholder="Observaciones:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleConsignates" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e_detalle_obse_Consignates">Observaciones Consignantes:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_Consignates" name="e_detalle_obse_Consignates" placeholder="Observaciones:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row" id="e_DetalleQuery" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e_detalle_obse_Query">Observaciones Query:</label>
+										<input type="text" class="form-control" id="e_detalle_obse_Query" name="e_detalle_obse_Query" placeholder="Observaciones:">
+									</div>
+								</div>
+        					</div>
+        				</div>
+        			</div>
 
-					<?php
-						if ($_SESSION['perfil'] == '1' || $_SESSION['perfil'] == '2') {
-					?>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_fecha_cita_d_e">Fecha Atención</label>
-								<input type="text" name="sol_fecha_cita_d_e" id="sol_fecha_cita_d_e" class="form-control" placeholder="YYYY-MM-DD">
+        			<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">
+				            	ACTIVOS REQUERIDOS
+				            </h6>
+				        </div>
+        				<div class="card-body">
+        					<div class="row">
+        						<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_equipo_C">Equipo de cómputo</label>
+										<select class="form-control" id="e_detalle_equipo_C" name="e_detalle_equipo_C" placeholder="Detalle Requerimiento">
+											<option value="0">Seleccione</option>
+											<option value="ESCRITORIO">Escritorio</option>
+											<option value="PORTATIL">Portatil</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="e_detalle_obse_equipo_C">Equipo de cómputo Observación</label>
+										<input type="text" class="form-control" id="e_detalle_obse_equipo_C" disabled name="e_detalle_obse_equipo_C" placeholder="Equipo de cómputo Observación">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_soft_espe">Software especial: </label>
+										<select class="form-control" id="e_detalle_soft_espe" name="e_detalle_soft_espe" placeholder="Software especial: ">
+											<option value="0">Seleccione</option>
+											<option value="SI">Si</option>
+											<option value="NO">No</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="e_detalle_obse_soft_espe">Justificación Software Especial</label>
+										<input type="text" class="form-control" id="e_detalle_obse_soft_espe" disabled name="e_detalle_obse_soft_espe" placeholder="Justificación Software Especial">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_vpn">VPN: </label>
+										<select class="form-control" id="e_detalle_vpn" name="e_detalle_vpn" placeholder="Software especial: ">
+											<option value="0">Seleccione</option>
+											<option value="SI">Si</option>
+											<option value="NO">No</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="e_detalle_obse_vpn">Justificación VPN</label>
+										<input type="text" class="form-control" id="e_detalle_obse_vpn" name="e_detalle_obse_vpn" disabled placeholder="Justificación VPN">
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_detalle_Otro">Otros requerimientos: </label>
+										<select class="form-control" id="e_detalle_Otro" name="e_detalle_Otro" placeholder="Software especial: ">
+											<option value="0">Seleccione</option>
+											<option value="SI">Si</option>
+											<option value="NO">No</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="form-group">
+										<label for="e_detalle_obse_Otro">Justificación Otros Requerimientos</label>
+										<input type="text" class="form-control" disabled id="e_detalle_obse_Otro" name="e_detalle_obse_Otro" placeholder="Justificación Otros Requerimientos">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_detalle_telefonia">Telefonía fija:</label>
+										<select class="form-control" id="e_detalle_telefonia" name="e_detalle_telefonia" placeholder="Telefonía fija:">
+											<option value="0">Seleccione</option>
+											<option value="LOCAL">Llamadas Local</option>
+											<option value="CELULAR">Llamadas a Celular</option>
+											<option value="INTERNACIONAL">Llamadas Internacionales</option>
+											<option value="TODAS">Todas</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_detalle_celular_">Celular:</label>
+										<select class="form-control" id="e_detalle_celular_" name="e_detalle_celular_" placeholder="Celular">
+											<option value="0">Seleccione</option>
+											<option value="NUEVO">Nuevo</option>
+											<option value="REPOSICION">Reposición</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_detalle_impr">Configuracion Impresora:</label>
+										<select class="form-control" id="e_detalle_impr" name="e_detalle_impr" placeholder="Configuracion Impresora:">
+											<option value="0">Seleccione</option>
+											<option value="BLAYNEG">Blanco y Negro</option>
+											<option value="COLOR">Color</option>
+											<option value="AMBAS">Ambas</option>
+										</select>
+									</div>
+								</div>
 							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_hora_cita_v_e">Hora Atención</label>
-								<select name="sol_hora_cita_v_e" id="sol_hora_cita_v_e" class="form-control" placeholder="Hora Atención">
+        				</div>
+        			</div>
 
-								</select>
+        			<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">
+				            	OTROS DETALLES
+				            </h6>
+				        </div>
+        				<div class="card-body">
+        					<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<label for="e_sol_imagen_datos">Imagen Evidencia 1</label>
+										<input type="file" class="form-control NuevaFoto" id="e_sol_imagen_datos" name="e_sol_imagen_datos" placeholder="Imagen Evidencia 1">
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<label for="e_sol_imagen_datos_evidencia">Imagen Evidencia 2</label>
+										<input type="file" class="form-control NuevaFoto" id="e_sol_imagen_datos_evidencia" name="e_sol_imagen_datos_evidencia" placeholder="Imagen Evidencia 2">
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>	
-					<?php 
-					}
-					?>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_aplica_i_e">
-								<input type="checkbox" value="1" id="sol_aplica_i_e" name="sol_aplica_i_e">
-								Serv Aplic o Cur (AV VILLAS)</label>
+							<div class="row">
+								<div class="col">
+									<div class="form-group">
+										<a href="#" id="hrefVerEvidencia" >Ver Evidencia Cargada</a>
+									</div>
+								</div>
+								<div class="col">
+									<div class="form-group">
+										<a href="#" id="hrefVerEvidencia2" >Ver Evidencia Cargada</a>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>	
-					<div class="row">
-						<div class="col">
-							<table class="table table-bordered table-hover">
-								<thead>
-									<tr>
-										<td>#</td>
-										<td>Observación</td>
-										<td>Realizada Por</td>
-										<td>Fecha</td>
-									</tr>
-								</thead>
-								<tbody id="cuerpoObservaciones">
-									
-								</tbody>
-							</table>
-						</div>
-					</div>		
+							<div class="row">
+								<div class="col-md-3"> 
+									<div class="form-group">
+										<label for="e_sol_prio_id_i">Prioridad</label>
+										<select class="form-control" id="e_sol_prio_id_i" name="e_sol_prio_id_i" placeholder="Prioridad">
+											<?php 
+												$prioridades = ControladorUtilidades::getData('sc_prioridades', null, null);
+												foreach($prioridades as $key => $value){
+													echo '<option value="'.$value['pri_id_i'].'">'.$value['pri_desc_v'].'</option>';
+												}
+											?>
+
+										</select>
+									</div>
+								</div>
+								<div class="col-md-6"> 
+									<div class="form-group">
+										<label for="e_sol_tec_usu_id_i_i">Asignar A</label>
+										<select class="form-control" id="e_sol_tec_usu_id_i_i" name="e_sol_tec_usu_id_i_i" placeholder="Tecnico">
+											<option value="0">Seleccione</option>
+											<?php 
+												$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
+												foreach($tecnicos as $key => $value){
+													echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="e_sol_estado_e">Estado</label>
+										<select class="form-control" id="e_sol_estado_e" name="e_sol_estado_e" placeholder="Estado">
+											<option value="3">Pendiente</option>
+											<option value="4">Asignado</option>
+											<option value="7">En curso</option>
+											<option value="5">Solucionado</option>
+											<option value="6">Cerrado sin Solución</option>
+
+										</select>
+									</div>
+								</div>
+							</div>
+        				</div>
+        			</div>
 				</div>
 				<div class="modal-footer">
-					<input type="hidden" name="sol_id_i_e" id="sol_id_i_editar">
-					<button type="button" class="btn btn-primary" id="enviarFormEditar">Guardar</button>
+					<input type="hidden" name="sol_id_i_e" id="sol_id_i_e">
+					<button type="button" class="btn btn-primary" id="e_enviarFormNuevo">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
 			</form>
@@ -758,68 +1067,6 @@
 	</div>
 </div>
 
-<!-- nuevo usuario -->
-<div class="modal" tabindex="-1" role="dialog" id="modalAsignarSolicitudes">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<form id="nuevaAsignacion" autocomplete="off" method="post" enctype="multipart/form-data">
-				<div class="modal-header">
-					<h5 class="modal-title">Asignar Técnico</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_tec_usu_id_i">Tecnico</label>
-								<select class="form-control" id="sol_tec_usu_id_i" name="sol_tec_usu_id_i" placeholder="Tecnico">
-									<option value="0">Seleccione</option>
-									<?php 
-										$tecnicos = ControladorUtilidades::getDataFromLsql('usu_id_i, CONCAT(usu_nombre_v, \' \', usu_apellido_v) as nombres', 'sc_usuarios', 'usu_per_id_i = 4', null, 'ORDER BY usu_nombre_v ASC', null);
-										foreach($tecnicos as $key => $value){
-											echo '<option value="'.$value['usu_id_i'].'">'.$value['nombres'].'</option>';
-										}
-									?>
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_fecha_cita_d">Fecha Atención</label>
-								<input type="text" name="sol_fecha_cita_d" id="sol_fecha_cita_d" class="form-control" placeholder="YYYY-MM-DD">
-							</div>
-						</div>
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_hora_cita_v">Hora Atención</label>
-								<select name="sol_hora_cita_v" id="sol_hora_cita_v" class="form-control" placeholder="Hora Atención">
-
-								</select>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<div class="form-group">
-								<label for="sol_observaciones_t_i">Observaciones</label>
-								<textarea class="form-control" id="sol_observaciones_t_i_A" name="sol_observaciones_t_i" placeholder="Observaciones"></textarea>
-							</div>
-						</div>
-					</div>					
-				</div>
-				<div class="modal-footer">
-					<input type="hidden" name="sol_id_i_e" id="sol_id_i_eAsi">
-					<button type="button" class="btn btn-primary" id="enviarFormNuevoAsignacion">Guardar</button>
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 <!-- Page level plugins -->
 <script src="views/assets/StartBoots/vendor/datatables/jquery.dataTables.min.js"></script>
@@ -876,7 +1123,7 @@
 		},
 
 		updateSolicitudes:function(dataTableEmpresas){
-			var FormUpdate = new FormData($("#editarSolcicitud")[0]);
+			var FormUpdate = new FormData($("#editarSolicitud")[0]);
 	        $.ajax({
 	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
@@ -911,7 +1158,7 @@
 	                    alertify.success('Proceso terminado, '+data.message);
 	                }
 	                dataTableEmpresas.ajax.reload();
-	                $("#editarSolcicitud")[0].reset();
+	                $("#editarSolicitud")[0].reset();
 	                $("#modalEditarSolicitudes").modal('hide');
 	            },
 	            //si ha ocurrido un error
@@ -988,77 +1235,158 @@
 	            //una vez finalizado correctamente
 	            success: function(data){
 	            	if(data != false){
-	            		$("#sol_ban_id_e").val(data.sol_ban_id_i).change();
-		                Solicitudes.getDatosSucursales(data.sol_ban_id_i, data.sol_suc_id_i, 1);
-		                $("#sol_suc_id_i_e").val(data.sol_suc_id_i);
-		                $("#sol_requerimiento_t_e").val(data.sol_requerimiento_t);
-		                $("#sol_id_i_editar").val(data.sol_id_i);
-		                $("#sol_prio_id_e").val(data.sol_prio_id);
-		                $("#sol_estado_e").val(data.sol_est_id_i);
-		                if(data.sol_ruta_ot_v != '' && data.sol_ruta_ot_v != null){
-		                	$("#hrefVerEvidencia").attr("href", data.sol_ruta_ot_v);
-		                	$("#hrefVerEvidencia").attr("target", '_blank');
-		                	$("#hrefVerEvidencia").show();
+	            
+		                $("#e_sol_tip_sol_id_i").val(data.sol_tip_sol_id_i);
+		                $("#e_cli_identificacion_v").val(data.cli_documento_v);
+		                $("#e_cli_nombres").val(data.cli_nombre_v);
+		                $("#e_cli_fecha_ingreso_d").val(data.cli_fecha_ingreso_d);
+		                $("#e_cli_numero_empleado_v").val(data.cli_numero_empleado_v);
+		                $("#e_cli_usuario_red_v").val(data.cli_usuario_red_v);
+		                $("#e_cli_usuario_sap_v").val(data.cli_usuario_sap_v);
+		                $("#e_cli_cargo_v").val(data.cli_cargo_v);
+		                $("#e_cli_area_i").val(data.cli_area_i);
+		                $("#e_cli_planta_id_i").val(data.cli_planta_id_i);
+
+		                /*Parte de otros Requerimientos*/
+		                $("#e_detalle_equipo_C").val(data.sol_equipo_v).change();
+		                $("#e_detalle_obse_equipo_C").val(data.sol_equipo_observacion_t);
+		                $("#e_detalle_soft_espe").val(data.sol_soft_especial_v).change();
+		                $("#e_detalle_obse_soft_espe").val(data.sol_observacion_software_t);
+
+		                $("#e_detalle_vpn").val(data.sol_vpn_v).change();
+		                $("#e_detalle_obse_vpn").val(data.sol_observacion_vpn_t);
+		                $("#e_detalle_Otro").val(data.sol_otro_req_v).change();
+		                $("#e_detalle_obse_Otro").val(data.sol_observacion_otro_r_t);
+
+		                $("#e_detalle_telefonia").val(data.sol_telefonia_fija_v).change();
+		                $("#e_detalle_celular_").val(data.sol_celular_v).change();
+		                $("#e_detalle_impr").val(data.sol_configura_imp_v).change();
+
+		                /*Prioriodad y asigancion*/
+	                 	$("#e_sol_prio_id_i").val(data.sol_prioridad_i).change();
+		                $("#e_sol_tec_usu_id_i_i").val(data.sol_asignado_a_i).change();
+		                $("#e_sol_estado_e").val(data.sol_estado_i).change();
+
+		                if(data.inc_ruta_evi_p_v != null && data.inc_ruta_evi_p_v != ''){
+		                	$("#hrefVerEvidencia").attr('href', data.inc_ruta_evi_p_v);
 		                }else{
-		                	$("#hrefVerEvidencia").attr("href", "#");
-		                	$("#hrefVerEvidencia").hide();
+		                	$("#hrefVerEvidencia").attr('href', '#');
 		                }
 
-		          		if(data.sol_ruta_ev_v != '' && data.sol_ruta_ev_v != null){
-		                	$("#hrefVerEvidencia2").attr("href", data.sol_ruta_ev_v);
-		                	$("#hrefVerEvidencia2").attr("target", '_blank');
-		                	$("#hrefVerEvidencia2").show();
+		                if(data.inc_ruta_evi_s_v != null && data.inc_ruta_evi_s_v != ''){
+		                	$("#hrefVerEvidencia2").attr('href', data.inc_ruta_evi_s_v);
 		                }else{
-		                	$("#hrefVerEvidencia2").attr("href", "#");
-		                	$("#hrefVerEvidencia2").hide();
+		                	$("#hrefVerEvidencia2").attr('href', '#');
 		                }
-		                $("#sol_id_tps_i_e").val(data.sol_id_tps_i);
-		                if(data.sol_aplica_i == '1'){
-		                	$("#sol_aplica_i_e").attr('checked', true);
+
+		                if(data.inc_req_usuario_red_i != 0){
+		                	$("#e_che_usuario_R").attr('checked', true);
+		                	$("#e_DetalleUsuarioRed").show();
+		                	$("#e_detalle_usu_red").val(data.inc_req_det_usu_red_i);
+		                	$("#e_detalle_obse_usu_re").val(data.inc_req_obs_usu_red_observ_v);
 		                }else{
-		                	$("#sol_aplica_i_e").attr('checked', false);
+		                	$("#e_che_usuario_R").attr('checked', false);
+		                	$("#e_DetalleUsuarioRed").hide();
+		                	$("#e_detalle_usu_red").val(0);
+		                	$("#e_detalle_obse_usu_re").val('');
 		                }
-		                
-		                Solicitudes.getObservaciones(data.sol_id_i);
-		                Solicitudes.getSolicitudAsignada(data.sol_id_i, 'edicion');
 
-		                <?php 
-		                if ($_SESSION['perfil'] == '4'){
-	                	?>
-		                	$("#sol_ban_id_e").attr('disabled', true);
-		                	$("#sol_suc_id_i_e").attr('disabled', true);
-		                	$("#sol_requerimiento_t_e").attr('readonly', true);
-		                	$("#sol_prio_id_e").attr('disabled', true);
-		                	$("#sol_tec_usu_id_i_e").attr('disabled', true);
-		                	//$("#sol_imagen_datos_e").attr('disabled', true);
-		                	//$("#sol_imagen_datos_e_evidencia").attr('disabled', true);
-		                	$("#sol_id_tps_i_e").attr('disabled', true);
-		                	$("#sol_aplica_i_e").attr('disabled', true);
+		                if(data.inc_req_correo_i != 0){
+		                	$("#e_che_correo").attr('checked', true);
+		                	$("#e_DetalleCorreo").show();
+		                	$("#e_detalle_correo").val(data.inc_req_det_correo_i);
+		                	$("#e_detalle_obse_correo").val(data.inc_req_det_correo_obse_v);
+		                }else{
+		                	$("#e_che_correo").attr('checked', false);
+		                	$("#e_DetalleCorreo").hide();
+		                	$("#e_detalle_correo").val(0);
+		                	$("#e_detalle_obse_correo").val('');
+		                }
 
-		                	if(data.sol_est_id_i == '5'){
-		                		$("#sol_observaciones_t_e").attr('readonly', true);
-		                		$("#sol_estado_e").attr('disabled', true);
-		                		$("#enviarFormEditar").attr('disabled', true);
+		                if(data.inc_req_biman_i != 0){
+		                	$("#e_che_Biman").attr('checked', true);
+		                	$("#e_DetalleBiman").show();
+		                	$("#e_detalle_obse_Biman").val(data.inc_req_det_obser_biman_v);
+		                }else{
+		                	$("#e_che_Biman").attr('checked', false);
+		                	$("#e_DetalleBiman").hide();
+		                	$("#e_detalle_obse_Biman").val('');
+		                }
+
+		                if(data.inc_req_consig_i != 0){
+		                	$("#e_che_acceso_consignates").attr('checked', true);
+		                	$("#e_DetalleConsignates").show();
+		                	$("#e_detalle_obse_Consignates").val(data.inc_req_det_obser_consign_v);
+		                }else{
+		                	$("#e_che_acceso_consignates").attr('checked', false);
+		                	$("#e_DetalleConsignates").hide();
+		                	$("#e_detalle_obse_Consignates").val('');
+		                }
+
+		                if(data.inc_req_gil_i != 0){
+		                	$("#e_che_acceso_gil").attr('checked', true);
+		                	$("#e_DetalleGil").show();
+		                	$("#e_detalle_obse_Gil").val(data.inc_req_det_obser_gil_v);
+		                }else{
+		                	$("#e_che_acceso_gil").attr('checked', false);
+		                	$("#e_DetalleGil").hide();
+		                	$("#e_detalle_obse_Gil").val('');
+		                }
+
+		                if(data.inc_req_query_i != 0){
+		                	$("#e_che_acceso_query").attr('checked', true);
+		                	$("#e_DetalleQuery").show();
+		                	$("#e_detalle_obse_Query").val(data.inc_req_det_obser_query_v);
+		                }else{
+		                	$("#e_che_acceso_query").attr('checked', false);
+		                	$("#e_DetalleQuery").hide();
+		                	$("#e_detalle_obse_Query").val('');
+		                }
+
+		                if(data.inc_req_acceso_in_i != 0){
+		                	$("#e_che_acceso_inter").attr('checked', true);
+		                	$("#E_DetalleAccesoInternet").show();
+		                	$("#e_detalle_obse_accesoIn").val(data.inc_req_det_obser_internet_acc_v);
+		                }else{
+		                	$("#e_che_acceso_inter").attr('checked', false);
+		                	$("#E_DetalleAccesoInternet").hide();
+		                	$("#e_detalle_obse_accesoIn").val('');
+		                }
+
+		                if(data.inc_req_usuario_sap_i != 0){
+		                	$("#e_che_usuario_S").attr('checked', true);
+		                	$("#e_DetalleSAP").show();
+		                	$("#e_detalle_Sap").val(data.inc_req_det_sap)
+		                	$("#e_detalle_obse_sap").val(data.inc_req_det_sap_obser_v);
+		                	$("#e_detalle_Sap_acc").val(data.inc_req_det_sap_accesos_i);
+
+		                	if(data.inc_req_det_sap_produc_i == 1){
+		                		$("#e_che_sap_prod").attr('checked', true);
 		                	}else{
-		                		$("#sol_observaciones_t_e").attr('readonly', false);
-		                		$("#sol_estado_e").attr('disabled', false);
-		                		$("#enviarFormEditar").attr('disabled', false);
+		                		$("#e_che_sap_prod").attr('checked', false);
 		                	}
-		                <?php 
-	            		}else{
-	                	?>
-	                		$("#sol_ban_id_e").attr('disabled', false);
-		                	$("#sol_suc_id_i_e").attr('disabled', false);
-		                	$("#sol_requerimiento_t_e").attr('readonly', true);
-		                	$("#sol_prio_id_e").attr('disabled', false);
-		                	$("#sol_tec_usu_id_i_e").attr('disabled', false);
-		                	//$("#sol_imagen_datos_e").attr('disabled', false);
-		                	//$("#sol_imagen_datos_e_evidencia").attr('disabled', false);
-		                	$("#sol_id_tps_i_e").attr('disabled', false);
-		                	$("#sol_aplica_i_e").attr('disabled', false);
-	                	<?php 
-	            		}
-	                	?>
+		                	if(data.inc_req_det_sap_desarr_i == 1){
+		                		$("#e_che_sap_des").attr('checked', true);
+		                	}else{
+		                		$("#e_che_sap_des").attr('checked', false);
+		                	}
+		                	if(data.inc_req_det_sap_cali_i == 1){
+		                		$("#e_che_sap_cal").attr('checked', true);
+		                	}else{
+		                		$("#e_che_sap_cal").attr('checked', false);
+		                	}
+		                }else{
+		                	$("#e_che_usuario_S").attr('checked', false);
+		                	$("#e_DetalleSAP").hide();
+		                	$("#e_detalle_Sap").val(0)
+		                	$("#e_detalle_obse_sap").val('');
+		                	$("#e_detalle_Sap_acc").val(0);
+	                		$("#e_che_sap_prod").attr('checked', false);
+	                		$("#e_che_sap_des").attr('checked', false);
+	                		$("#e_che_sap_cal").attr('checked', false);
+		                }
+		                //Solicitudes.getObservaciones(data.sol_id_i);    
+		                $("#sol_id_i_e").val(data.sol_id_i);
 	            	}
 	            },
 	            //si ha ocurrido un error
@@ -1474,7 +1802,7 @@
 			Solicitudes.insertSolicitudes(dataTableEmpresas);
 		});
 
-		$("#enviarFormEditar").click(function(){
+		$("#e_enviarFormNuevo").click(function(){
 			Solicitudes.updateSolicitudes(dataTableEmpresas);
 		});
 
@@ -1733,5 +2061,103 @@
 	            },
             });
 		});
+
+
+		$("#e_che_usuario_R").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleUsuarioRed").show();
+			}else{
+				$("#e_DetalleUsuarioRed").hide();
+			}
+		});
+
+		$("#e_che_correo").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleCorreo").show();
+			}else{
+				$("#e_DetalleCorreo").hide();
+			}
+		});
+
+		$("#e_che_usuario_S").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleSAP").show();
+			}else{
+				$("#e_DetalleSAP").hide();
+			}
+		});
+
+		$("#e_che_Biman").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleBiman").show();
+			}else{
+				$("#e_DetalleBiman").hide();
+			}
+		});
+
+		$("#e_che_acceso_consignates").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleConsignates").show();
+			}else{
+				$("#e_DetalleConsignates").hide();
+			}
+		});
+
+		$("#e_che_acceso_gil").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleGil").show();
+			}else{
+				$("#e_DetalleGil").hide();
+			}
+		});
+
+		$("#e_che_acceso_query").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleQuery").show();
+			}else{
+				$("#e_DetalleQuery").hide();
+			}
+		});
+
+		$("#e_che_acceso_inter").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e_DetalleAccesoInternet").show();
+			}else{
+				$("#e_DetalleAccesoInternet").hide();
+			}
+		});
+
+		$("#e_detalle_equipo_C").on('change', function(){
+			if($(this).val() != '0'){
+				$("#e_detalle_obse_equipo_C").attr('disabled', false);
+			}else{
+				$("#e_detalle_obse_equipo_C").attr('disabled', true);
+			}
+		});
+
+		$("#e_detalle_soft_espe").on('change', function(){
+			if($(this).val() == 'SI'){
+				$("#e_detalle_obse_soft_espe").attr('disabled', false);
+			}else{
+				$("#e_detalle_obse_soft_espe").attr('disabled', true);
+			}
+		});
+
+		$("#e_detalle_vpn").on('change', function(){
+			if($(this).val() == 'SI'){
+				$("#e_detalle_obse_vpn").attr('disabled', false);
+			}else{
+				$("#e_detalle_obse_vpn").attr('disabled', true);
+			}
+		});
+
+		$("#e_detalle_Otro").on('change', function(){
+			if($(this).val() == 'SI'){
+				$("#e_detalle_obse_Otro").attr('disabled', false);
+			}else{
+				$("#e_detalle_obse_Otro").attr('disabled', true);
+			}
+		});
+
 	});
 </script>

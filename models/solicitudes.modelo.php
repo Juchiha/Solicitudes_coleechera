@@ -154,7 +154,6 @@ class SolicitudesModelo extends ModeloDAO
 					sc_solicitudes_coolechera 
 				SET 
 					sol_tip_sol_id_i = :sol_tip_sol_id_i
-				 	,sol_clie_id_i = :sol_clie_id_i
 				 	,sol_fecha_solicitud = :sol_fecha_solicitud
 				 	,sol_asignado_a_i = :sol_asignado_a_i
 				 	,sol_estado_i = :sol_estado_i				
@@ -200,7 +199,6 @@ class SolicitudesModelo extends ModeloDAO
 					sol_id_i = :sol_id_i");
 
 			$stmt->bindParam(":sol_tip_sol_id_i", $datos['sol_tip_sol_id_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_clie_id_i", $datos['sol_clie_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_fecha_solicitud", $datos['sol_fecha_solicitud'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_asignado_a_i", $datos['sol_asignado_a_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_equipo_v", $datos['sol_equipo_v'], PDO::PARAM_STR);
@@ -214,7 +212,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_observacion_vpn_t",  $datos['sol_observacion_vpn_t'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_otro_req_v", $datos['sol_otro_req_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_observacion_otro_r_t", $datos['sol_observacion_otro_r_t'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_requerimiento_t", $datos['sol_requerimiento_t'], PDO::PARAM_STR);
+			
 			$stmt->bindParam(":inc_req_usuario_red_i", $datos['inc_req_usuario_red_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":inc_req_det_usu_red_i", $datos['inc_req_det_usu_red_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":inc_req_obs_usu_red_observ_v",$datos['inc_req_obs_usu_red_observ_v'], PDO::PARAM_STR);
@@ -241,6 +239,8 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":inc_ruta_evi_p_v", $datos['inc_ruta_evi_p_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":inc_ruta_evi_s_v", $datos['inc_ruta_evi_s_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_id_i", $datos['sol_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_prioridad_i", $datos['sol_prioridad_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_estado_i", $datos['sol_estado_i'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';

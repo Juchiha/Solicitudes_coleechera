@@ -28,7 +28,7 @@
 		}
 
 		public function getDatos($idUsuario){
-			echo json_encode(ControladorSolicitudes::getData('sc_solicitudes', 'sol_id_i', $idUsuario));
+			echo json_encode(ControladorSolicitudes::getData('sc_solicitudes_coolechera JOIN sc_clientes ON cli_id_i=sol_clie_id_i', 'sol_id_i', $idUsuario));
 		}
 
 		public function getObservaciones($idUsuario){
