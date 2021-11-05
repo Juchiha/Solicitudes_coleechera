@@ -472,7 +472,7 @@
 					$("#usu_id_i_e").val(data.usu_id_i);
 					$("#usu_usuario_v_e").val(data.usu_usuario_v);
 					$("#usu_password_v_actual_e").val(data.usu_password_v);
-					$("#usu_correo_v").val(data.usu_correo_v);
+					$("#usu_correo_v_e").val(data.usu_correo_v);
 
 	            },
 	            //si ha ocurrido un error
