@@ -325,13 +325,13 @@
 				if($respuesta != "error"){
 					$orden = SolicitudesModelo::getTotalSolicitudesDay();
 
-					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes_coolechera', 'sol_orden_trabajo_v', date('Ymd').$orden['total'], 'sol_id_i', $respuesta);
+					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes_coolechera', 'sol_orden_trabajo_v', date('dmY').$orden['total'], 'sol_id_i', $respuesta);
 
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
-					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('Ymd').$orden['total']);
+					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total']);
 					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
-						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], date('Ymd').$orden['total']);
+						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], date('dmY').$orden['total']);
 					}
 
 					if(isset($_POST['observaciones_usuarios_finales']) && $_POST['observaciones_usuarios_finales'] != ''){
