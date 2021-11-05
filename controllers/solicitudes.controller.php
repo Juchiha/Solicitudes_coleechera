@@ -333,6 +333,16 @@
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
 						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], date('Ymd').$orden['total']);
 					}
+
+					if(isset($_POST['observaciones_usuarios_finales']) && $_POST['observaciones_usuarios_finales'] != ''){
+						$datos = array (
+							'obs_desc_v'      => $_POST['observaciones_usuarios_finales'], //observacion
+							'obs_usu_id_i'      => $_SESSION['codigo'],//quien hace la observacion
+							'obs_sol_id_i'      => $respuesta, //codigo solicitud
+							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
+						);
+						$observacion = SolicitudesModelo::insertObservaciones($datos);	
+					}
 					
 					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
 				}else{	
@@ -645,10 +655,21 @@
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
 				if($respuesta == "ok"){
 					
-					/*if(isset($_POST['sol_estado_e']) && $_POST['sol_estado_e'] == '5'){
+					if(isset($_POST['e_sol_estado_e']) && $_POST['e_sol_estado_e'] == '5'){
 						//Solucionado
 						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes', 'sol_fecha_solucion=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
-					}*/
+					}
+
+					if(isset($_POST['e_observaciones_usuarios_finales']) && $_POST['e_observaciones_usuarios_finales'] != ''){
+						$datos = array (
+							'obs_desc_v'       => $_POST['e_observaciones_usuarios_finales'], //observacion
+							'obs_usu_id_i'     => $_SESSION['codigo'],//quien hace la observacion
+							'obs_sol_id_i'     => $_POST['sol_id_i_e'], //codigo solicitud
+							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
+						);
+						$observacion = SolicitudesModelo::insertObservaciones($datos);	
+					}
+
 					return json_encode(array('code' => 1, 'message' => 'Solicitud actualizada con exito'));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no actualizada'));
