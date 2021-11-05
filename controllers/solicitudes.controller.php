@@ -39,7 +39,8 @@
 						'cli_planta_id_i' 		=> $_POST['cli_planta_id_i'],
 						'cli_direccion_v' 		=> 0,
 						'cli_est_id_i' 			=> 1,
-						'cli_tip_sol_id_i'		=> $_POST['sol_tip_sol_id_i']
+						'cli_tip_sol_id_i'		=> $_POST['sol_tip_sol_id_i'],
+						'cli_correo_v'			=> $_POST['sol_cli_correo_v']
 					);
 
 					$id_Cliente = ClientesModelo::insertDatos($datosCliente);
@@ -326,6 +327,13 @@
 
 					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes_coolechera', 'sol_orden_trabajo_v', date('Ymd').$orden['total'], 'sol_id_i', $respuesta);
 
+					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
+					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('Ymd').$orden['total']);
+					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
+						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
+						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], date('Ymd').$orden['total']);
+					}
+					
 					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no guardadado'));
@@ -709,6 +717,80 @@
 			    }else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no Eliminada'));
 				}
+			}
+		}
+
+
+		/**
+		*Desc.  => Enviar un correo de notificación al correo del cliente para enterarlo de su proceso 
+		*Method => POST
+		*Return => boolean : True => False
+		**/	
+		public static function notificarCliente($correoCliente, $numeroOrden){
+			
+
+			$para  = $correoCliente;
+			$titulo = 'Notificación Proceso / Incidencia #'.$numeroOrden;
+			$mensaje = '
+<html>
+	<head>
+		<title>Notificaci&oacute;n Proceso / Incidencia #'.$numeroOrden.'</title>
+	</head>
+	<body style="text-align:justify;">
+  		<p>Saludos cordiales,</p>
+  		<p style="text-align:justify;">
+  			Su solicitud ha sido recibida y se le asignó el numero '.$numeroOrden.'. Estaremos en contacto con usted para mantenerle informado lo antes posible.
+  		</p>
+  		<p>Cordialmente,</p>
+  		<p>
+  			Tecnolog&iacute;a y Transformaci&oacute;n Digital, Coolechera
+  		</p>
+  	</body>
+</html>';
+
+			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, null );
+			if($respueta == 'ok'){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		/**
+		*Desc.  => Enviar un correo de notificación al equipo  para enterarlo de su proceso de asignacion de un caso 
+		*Method => POST
+		*Return => boolean : True => False
+		**/	
+		public static function notificarEquipo($correoEquipo, $numeroOrden){
+
+			$respuestacliente = SolicitudesModelo::getDatos('sc_solicitudes_coolechera', 'sol_orden_trabajo_v', $numeroOrden);
+			$asignacion = ',';
+			if($respuestacliente['sol_estado_i'] == '4'){
+				$para  = $correoEquipo;
+				$titulo = 'Notificación, Asignación Proceso / Incidencia #'.$numeroOrden;
+				$mensaje = '
+<html>
+	<head>
+		<title>Notificaci&oacute;n Asignaci&oacute;n Proceso / Incidencia #'.$numeroOrden.'</title>
+	</head>
+	<body style="text-align:justify;">
+  		<p>Saludos cordiales,</p>
+  		<p style="text-align:justify;">
+  			la solicitud con el numero '.$numeroOrden.', le fue asignada a usted, por favor atiendalo lo mas pronto posible.
+  		</p>
+  		<p>Cordialmente,</p>
+  		<p>
+  			Tecnolog&iacute;a y Transformaci&oacute;n Digital, Coolechera
+  		</p>
+  	</body>
+</html>';
+				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, null );
+				if($respueta == 'ok'){
+					return true;
+				}else{
+					return false;
+				}
+
 			}
 		}
 		

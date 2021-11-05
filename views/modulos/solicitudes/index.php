@@ -160,6 +160,12 @@
 										</select>
 									</div>
 								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="sol_cli_correo_v">Correo Electronico</label>
+										<input type="text" disabled name="sol_cli_correo_v" id="sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -1236,7 +1242,7 @@
 	            success: function(data){
 	            	if(data != false){
 	            
-		                $("#e_sol_tip_sol_id_i").val(data.sol_tip_sol_id_i);
+		                $("#e_sol_tip_sol_id_i").val(2);
 		                $("#e_cli_identificacion_v").val(data.cli_documento_v);
 		                $("#e_cli_nombres").val(data.cli_nombre_v);
 		                $("#e_cli_fecha_ingreso_d").val(data.cli_fecha_ingreso_d);
@@ -2029,6 +2035,7 @@
                        	$("#cli_area_i").val(respuesta.cli_area_i).change();
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i);
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
+                       	$("#sol_cli_correo_v").val(respuesta.cli_correo_v);
                        	if(respuesta.cli_tip_sol_id_i == 1){
                        	 	$("#sol_tip_sol_id_i").val(2).change();
                        	}else{

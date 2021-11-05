@@ -1,5 +1,7 @@
 <?php 
 date_default_timezone_set('America/Bogota');
+require_once __DIR__."/../ext/PHPMailer/class.phpmailer.php";
+require_once __DIR__."/../ext/PHPMailer/class.smtp.php";
 
 class ctrMail{
 	public static function EnviarMail($asunto, $cuerpo, $correos, $adjuntos, $CopiaOculta = null, $usuario = null){
@@ -128,22 +130,19 @@ class ctrMail{
 		}
 	}
 
-	public function EnviarMailWithEmailAndPass($correo, $password, $empresa, $asunto, $cuerpo, $correos, $adjuntos, $CopiaOculta = null, $usuario = null){
-		
-		$email_user = $correo;
-  		$email_password = $password;
+	public function EnviarMailWithEmailAndPass($empresa, $asunto, $cuerpo, $correos, $adjuntos, $CopiaOculta = null, $usuario = null){
 		
 		$from_name = $empresa;
 		$phpmailer = new PHPMailer(); 
 		$phpmailer->CharSet = 'UTF-8';
 		// ---------- datos de la cuenta de Gmail -------------------------------
-		$phpmailer->Username = $email_user;
-		$phpmailer->Password = $email_password; 
+		$phpmailer->Username = 'Helpdesk@coolechera.com';
+		$phpmailer->Password = 'Cambio2021'; 
 		//-----------------------------------------------------------------------
-		// $phpmailer->SMTPDebug = 1;
-		$phpmailer->SMTPSecure = 'tls';
-		$phpmailer->Host = "smtp.hostinger.co";
-		$phpmailer->Port = 587;
+		//$phpmailer->SMTPDebug = 1;
+		$phpmailer->SMTPSecure = '';
+		$phpmailer->Host = "smtp.office365.com";
+		$phpmailer->Port = 25;
 		$phpmailer->IsSMTP();
 		$phpmailer->SMTPAuth = true;
 		$phpmailer->setFrom($phpmailer->Username,$from_name);
