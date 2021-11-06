@@ -44,9 +44,9 @@
 			$where = null;
 			
 			if ($_SESSION['perfil'] == '4') {
-				$where = 'asi_usu_tec_id_i = '.$_SESSION['codigo'];
+				$where = 'sol_asignado_a_i = '.$_SESSION['codigo'];
 			}else if($_SESSION['perfil'] == '3'){
-				$where = 'sol_ban_id_i = '.$_SESSION['bnco_id'];
+				//$where = 'sol_ban_id_i = '.$_SESSION['bnco_id'];
 			}else{
 				$where = null;
 			}

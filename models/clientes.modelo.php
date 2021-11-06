@@ -18,7 +18,8 @@ class ClientesModelo extends ModeloDAO
 					cli_planta_id_i,
 					cli_direccion_v,
 					cli_est_id_i,
-					cli_tip_sol_id_i)
+					cli_tip_sol_id_i, 
+					cli_correo_v)
 				VALUES(	
 					:cli_documento_v,
 					:cli_nombre_v,
@@ -32,7 +33,8 @@ class ClientesModelo extends ModeloDAO
 					:cli_planta_id_i,
 					:cli_direccion_v,
 					:cli_est_id_i,
-					:cli_tip_sol_id_i)");
+					:cli_tip_sol_id_i,
+					:cli_correo_v)");
 			$stmt->bindParam(":cli_documento_v", $datos['cli_documento_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_nombre_v", $datos['cli_nombre_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_fecha_ingreso_d", $datos['cli_fecha_ingreso_d'], PDO::PARAM_STR);
@@ -46,6 +48,7 @@ class ClientesModelo extends ModeloDAO
 			$stmt->bindParam(":cli_direccion_v", $datos['cli_direccion_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_est_id_i", $datos['cli_est_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_tip_sol_id_i", $datos['cli_tip_sol_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":cli_correo_v", $datos['cli_correo_v'], PDO::PARAM_STR);
 			
 			if($stmt->execute()){
 				$stmt = null;

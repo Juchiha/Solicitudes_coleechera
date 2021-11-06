@@ -160,6 +160,12 @@
 										</select>
 									</div>
 								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="sol_cli_correo_v">Correo Electronico</label>
+										<input type="text" disabled name="sol_cli_correo_v" id="sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -547,6 +553,25 @@
 							</div>
         				</div>
         			</div>
+        			<?php if($_SESSION['perfil'] == '4'){ ?>
+        			<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">
+				            	Observaciones
+				            </h6>
+				        </div>
+        				<div class="card-body">
+        					<div class="row">
+        						<div class="col">
+        							<div class="form-group">
+										<label for="observaciones_usuarios_finales">Documentación Caso</label>
+										<textarea class="form-control" id="observaciones_usuarios_finales" disabled name="observaciones_usuarios_finales" placeholder="Documentación Caso"></textarea>
+									</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			<?php } ?>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
@@ -556,6 +581,8 @@
 		</div>
 	</div>
 </div>
+
+
 <!-- editar usuario -->
 <div class="modal" tabindex="-1" role="dialog" id="modalEditarSolicitudes">
 	<div class="modal-dialog modal-lg" role="document">
@@ -1056,6 +1083,52 @@
 							</div>
         				</div>
         			</div>
+
+        			<?php if($_SESSION['perfil'] == '4'){ ?>
+        			<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">
+				            	OBSERVACIONES
+				            </h6>
+				        </div>
+        				<div class="card-body">
+        					<div class="row">
+        						<div class="col">
+        							<div class="form-group">
+										<label for="e_observaciones_usuarios_finales">Documentación Caso</label>
+										<textarea class="form-control" id="e_observaciones_usuarios_finales" name="e_observaciones_usuarios_finales" placeholder="Documentación Caso"></textarea>
+									</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			<?php } ?>
+        			<div class="card shadow mb-4">
+				        <div class="card-header py-3">
+				            <h6 class="m-0 font-weight-bold text-primary">
+				            	SEGUIMIENTO
+				            </h6>
+				        </div>
+        				<div class="card-body">
+        					<div class="row">
+        						<div class="col">
+        							<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<td>#</td>
+												<td>Observación</td>
+												<td>Realizada Por</td>
+												<td>Fecha</td>
+											</tr>
+										</thead>
+										<tbody id="cuerpoObservaciones">
+											
+										</tbody>
+									</table>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="sol_id_i_e" id="sol_id_i_e">
@@ -1236,7 +1309,7 @@
 	            success: function(data){
 	            	if(data != false){
 	            
-		                $("#e_sol_tip_sol_id_i").val(data.sol_tip_sol_id_i);
+		                $("#e_sol_tip_sol_id_i").val(2);
 		                $("#e_cli_identificacion_v").val(data.cli_documento_v);
 		                $("#e_cli_nombres").val(data.cli_nombre_v);
 		                $("#e_cli_fecha_ingreso_d").val(data.cli_fecha_ingreso_d);
@@ -1385,7 +1458,7 @@
 	                		$("#e_che_sap_des").attr('checked', false);
 	                		$("#e_che_sap_cal").attr('checked', false);
 		                }
-		                //Solicitudes.getObservaciones(data.sol_id_i);    
+		                Solicitudes.getObservaciones(data.sol_id_i);    
 		                $("#sol_id_i_e").val(data.sol_id_i);
 	            	}
 	            },
@@ -2029,6 +2102,7 @@
                        	$("#cli_area_i").val(respuesta.cli_area_i).change();
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i);
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
+                       	$("#sol_cli_correo_v").val(respuesta.cli_correo_v);
                        	if(respuesta.cli_tip_sol_id_i == 1){
                        	 	$("#sol_tip_sol_id_i").val(2).change();
                        	}else{
