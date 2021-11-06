@@ -75,7 +75,7 @@ echo '
                     break;
 
                      case 'clientes':
-                    include "modulos/bancos/index.php";
+                    include "modulos/clientes/index.php";
                     echo "<script>$('#clientes').addClass('active');</script>";
                     break;
 

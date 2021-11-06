@@ -76,7 +76,7 @@ class ClientesModelo extends ModeloDAO
 					cli_est_id_i = :cli_est_id_i
 				WHERE 
 					cli_id_i = :cli_id_i");
-
+           
 			$stmt->bindParam(":cli_documento_v", $datos['cli_documento_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_nombre_v", $datos['cli_nombre_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_fecha_ingreso_d", $datos['cli_fecha_ingreso_d'], PDO::PARAM_STR);
