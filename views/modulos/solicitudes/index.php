@@ -2124,13 +2124,13 @@
 
 		$("#che_usuario_R").on('change', function(){
 			if($(this).is(':checked')){
-				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+				if($("#sol_tipo_sol_id_tipo").val() != '1'){
 					$("#DetalleUsuarioRed_2").show();
 				}else{
 					$("#DetalleUsuarioRed").show();
 				}
 			}else{
-				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+				if($("#sol_tipo_sol_id_tipo").val() != '1'){
 					$("#DetalleUsuarioRed_2").hide();
 				}else{
 					$("#DetalleUsuarioRed").hide();
@@ -2141,13 +2141,13 @@
 
 		$("#che_correo").on('change', function(){
 			if($(this).is(':checked')){
-				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+				if($("#sol_tipo_sol_id_tipo").val() != '1'){
 					$("#DetalleCorreo_2").show();
 				}else{
 					$("#DetalleCorreo").show();
 				}
 			}else{
-				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+				if($("#sol_tipo_sol_id_tipo").val() != '1'){
 					$("#DetalleCorreo_2").hide();
 				}else{
 					$("#DetalleCorreo").hide();
@@ -2157,13 +2157,13 @@
 
 		$("#che_usuario_S").on('change', function(){
 			if($(this).is(':checked')){
-				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+				if($("#sol_tipo_sol_id_tipo").val() != '1'){
 					$("#DetalleSap_2").show();
 				}else{
 					$("#DetalleSAP").show();
 				}
 			}else{
-				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+				if($("#sol_tipo_sol_id_tipo").val() != '1'){
 					$("#DetalleSap_2").hide();
 				}else{
 					$("#DetalleSAP").hide();
