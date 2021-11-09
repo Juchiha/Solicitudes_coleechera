@@ -170,7 +170,6 @@
 									<div class="form-group">
 										<label for="sol_tipo_sol_id_tipo">Tipo de Solicitud</label>
 										<select class="form-control" id="sol_tipo_sol_id_tipo" name="sol_tipo_sol_id_tipo" placeholder="Ciudad">
-											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
 												foreach($bancos as $key => $value){
