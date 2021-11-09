@@ -42,17 +42,17 @@
                 <thead>
                     <tr>
                         <th style="width: 12%;">Identificacion</th>
-                        <th style="width: 36%">Nombre Clientes</th>
-                        <th style="width: 12%;"># Empleado</th>
+                        <th style="width: 30%">Nombre Clientes</th>
+                        <th style="width: 18%;"># Empleado</th>
                         <th style="width: 30%;">Area</th>
                         <th style="width: 10%;"></th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                         <th style="width: 12%;">Identificacion</th>
-                        <th style="width: 36%">Nombre Clientes</th>
-                        <th style="width: 12%;"># Empleado</th>
+                        <th style="width: 12%;">Identificacion</th>
+                        <th style="width: 30%">Nombre Clientes</th>
+                        <th style="width: 18%;"># Empleado</th>
                         <th style="width: 30%;">Area</th>
                         <th style="width: 10%;"></th>
                     </tr>
@@ -153,7 +153,8 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										
+										<label for="sol_cli_correo_v">Correo Electronico</label>
+										<input type="text" name="sol_cli_correo_v" id="sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
 									</div>
 								</div>
 							</div>
@@ -256,6 +257,12 @@
 												}
 											?>
 										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="sol_cli_correo_v_e">Correo Electronico</label>
+										<input type="text" name="sol_cli_correo_v_e" id="sol_cli_correo_v_e" class="form-control cliente" placeholder="Correo Electronico">
 									</div>
 								</div>
 							</div>
@@ -452,7 +459,8 @@
 		                $("#cli_usuario_sap_v_e").val(data.cli_usuario_sap_v);
 		                $("#cli_cargo_v_e").val(data.cli_cargo_v);
 		                $("#cli_usuario_red_v_e").val(data.cli_usuario_red_v);
-		                $("#cli_planta_id_i_e").val(data.cli_planta_id_i)
+		                $("#cli_planta_id_i_e").val(data.cli_planta_id_i);
+		                $("#sol_cli_correo_v_e").val(data.cli_correo_v);
 	            	}
 	            },
 	            //si ha ocurrido un error

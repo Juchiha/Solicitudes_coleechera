@@ -177,6 +177,9 @@
 				if(isset($_POST['detalle_obse_usu_re'])){
 					$_detalle_obse_usu_re = $_POST['detalle_obse_usu_re'];
 				}
+				if(isset($_POST['detalle_obse_usuarioRed2'])){
+					$_detalle_obse_usu_re = $_POST['detalle_obse_usuarioRed2'];
+				}
 				if(isset($_POST['detalle_usu_red'])){
 					$_detalle_usu_red = $_POST['detalle_usu_red'];
 				}
@@ -190,6 +193,9 @@
 				}
 				if(isset($_POST['detalle_obse_correo'])){
 					$_detalle_obse_correo = $_POST['detalle_obse_correo'];
+				}
+				if(isset($_POST['detalle_obse_Correo_2'])){
+					$_detalle_obse_correo = $_POST['detalle_obse_Correo_2'];
 				}
 				if(isset($_POST['detalle_correo'])){
 					$_detalle_correo = $_POST['detalle_correo'];
@@ -211,6 +217,9 @@
 				}
 				if(isset($_POST['detalle_obse_sap'])){
 					$_detalle_obse_sap = $_POST['detalle_obse_sap'];
+				}
+				if(isset($_POST['detalle_obse_sap_2'])){
+					$_detalle_obse_sap = $_POST['detalle_obse_sap_2'];
 				}
 				if(isset($_POST['detalle_Sap_acc'])){
 					$_detalle_Sap_acc = 1;
@@ -276,20 +285,74 @@
 				}
 
 
+				$_vpn = null;
+				$_observacionVpn = null;
+				$_equipoComputo = null;
+				$_observacionEquipoCom = null;
+				$_softwareEspecial = null;
+				$_observacionSoftEspecial = null;
+				$_telefoniaFija = null;
+				$_observacionTelefoniaFija = null;
+				$_telefoniaCelular = null;
+				$_observacionTelefoniaCelu = null;
+				$_impresora = null;
+				$_observacionImpresora = null;
+				if(isset($_POST['che_equipo_computo'])){
+					$_equipoComputo = 1;
+					$detalle_obse_equipo_C = $_POST['detalle_obse_EquipoComputo_Check'];
+				}else{
+					$_equipoComputo = $_POST['detalle_equipo_C'];
+				}
+
+				if(isset($_POST['che_software_especial'])){
+					$_softwareEspecial = 1;
+					$detalle_obse_soft_espe = $_POST['detalle_obse_soft_especial_che'];
+				}else{
+					$_softwareEspecial = $_POST['detalle_soft_espe'];
+				}
+
+				if(isset($_POST['che_vpn'])){
+					$_vpn = 1;
+					$detalle_obse_vpn = $_POST['detalle_obse_Vpn_che'];
+				}else{
+					$_vpn = $_POST['detalle_vpn'];
+				}
+
+				if(isset($_POST['che_telefonia_fija'])){
+					$_telefoniaFija = 1;
+					$_observacionTelefoniaFija = $_POST['detalle_obse_Telefonia_fija_che'];
+				}else{
+					$_telefoniaFija = $_POST['detalle_telefonia'];
+				}
+
+				if(isset($_POST['che_telefonia_celular'])){
+					$_telefoniaCelular = 1;
+					$_observacionTelefoniaCelu = $_POST['detalle_obse_Telefonia_celualr_che'];
+				}else{
+					$_telefoniaCelular = $_POST['detalle_celular_'];
+				}
+
+				if(isset($_POST['che_perifericos'])){
+					$_impresora = 1;
+					$_observacionImpresora = $_POST['detalle_obse_Perifericos_che'];
+				}else{
+					$_impresora = $_POST['detalle_impr'];
+				}
+
 				$datos = array(
 					'sol_tip_sol_id_i' 				=> $_POST['sol_tip_sol_id_i'], 
 					'sol_clie_id_i'  				=> $id_Cliente,
 					'sol_fecha_solicitud'			=> date('Y-m-d'),
 					'sol_asignado_a_i'				=> $_POST['sol_tec_usu_id_i_i'],
 					'sol_estado_i'					=> $_POST['sol_estado_e'],
-					'sol_equipo_v'					=> $_POST['detalle_equipo_C'],
+					'sol_equipo_v'					=> $_equipoComputo,
 					'sol_equipo_observacion_t'		=> $detalle_obse_equipo_C,
-					'sol_soft_especial_v'			=> $_POST['detalle_soft_espe'],
-					'sol_configura_imp_v'			=> $_POST['detalle_impr'],
+					'sol_soft_especial_v'			=> $_softwareEspecial,
+					'sol_configura_imp_v'			=> $_impresora,
 					'sol_observacion_software_t'	=> $detalle_obse_soft_espe,
-					'sol_telefonia_fija_v' 			=> $_POST['detalle_telefonia'], 
-					'sol_celular_v'  				=> $_POST['detalle_celular_'],
-					'sol_vpn_v'						=> $_POST['detalle_vpn'],
+					'sol_telefonia_fija_v' 			=> $_telefoniaFija, 
+					'sol_celular_v'  				=> $_telefoniaCelular,
+					'sol_vpn_v'						=> $_vpn,
 					'sol_observacion_vpn_t'			=> $detalle_obse_vpn,
 					'sol_otro_req_v'				=> $_POST['detalle_Otro'],
 					'sol_observacion_otro_r_t'		=> $detalle_obse_Otro,
@@ -318,7 +381,11 @@
 					'inc_req_det_sap_desarr_i'			=> $_che_sap_des,
 					'inc_req_det_sap_cali_i'			=> $_che_sap_cal,
 					'inc_ruta_evi_p_v'					=> $ruta,
-					'inc_ruta_evi_s_v'					=> $ruta_2
+					'inc_ruta_evi_s_v'					=> $ruta_2,
+					'sol_tipo_sol_id_i'		     		=> $_POST['sol_tipo_sol_id_tipo'],
+					'sol_obser_impresora_v'				=> $_observacionImpresora,
+					'sol_obser_telefonia_fija_v'		=> $_observacionTelefoniaFija,
+					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);

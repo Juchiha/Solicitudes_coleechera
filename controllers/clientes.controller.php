@@ -79,7 +79,8 @@
 					'cli_planta_id_i' 		=> $_POST['cli_planta_id_i_i'],
 					'cli_direccion_v' 		=> 0,
 					'cli_est_id_i' 			=> 1,
-					'cli_tip_sol_id_i'		=> 2
+					'cli_tip_sol_id_i'		=> 2,
+					'cli_correo_v'			=> $_POST['sol_cli_correo_v']
 				);
 
 				$id_Cliente = ClientesModelo::insertDatos($datosCliente);
@@ -117,8 +118,9 @@
 					'cli_direccion_v' 		=> 0,
 					'cli_est_id_i' 			=> 1,
 					'cli_tip_sol_id_i'		=> 2,
-					'cli_id_i'				=> $_POST['cli_id_i_e']
-						);
+					'cli_id_i'				=> $_POST['cli_id_i_e'],
+					'cli_correo_v'			=> $_POST['sol_cli_correo_v_e']
+				);
 					
 				$respuesta = ClientesModelo::UpdateDatos($datos);
 				if($respuesta == 'ok'){

@@ -73,7 +73,7 @@
 				<div class="modal-body">
 				  	<div class="card shadow mb-4">
 				        <div class="card-header py-3">
-				            <h6 class="m-0 font-weight-bold text-primary">Para quien es el servicio</h6>
+				            <h6 class="m-0 font-weight-bold text-primary">PARA QUIÉN ES EL SERVICIO</h6>
 				        </div>
         				<div class="card-body">
 							<div class="row">
@@ -166,6 +166,20 @@
 										<input type="text" disabled name="sol_cli_correo_v" id="sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
 									</div>
 								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="sol_tipo_sol_id_tipo">Tipo de Solicitud</label>
+										<select class="form-control" id="sol_tipo_sol_id_tipo" name="sol_tipo_sol_id_tipo" placeholder="Ciudad">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['tipo_sol_id_i'].'">'.$value['tipo_desc_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -180,61 +194,105 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="che_usuario_R" 	name="che_usuario_R"> Usuario de red
+											<input class="requeCheck" type="checkbox" value="1" id="che_usuario_R" name="che_usuario_R"> Usuario de red
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="2" id="che_correo" 	name="che_correo"> Correo
+											<input class="requeCheck" type="checkbox" value="2" id="che_correo" name="che_correo"> Correo
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="3" id="che_usuario_S" 	name="che_usuario_S"> Usuario SAP
+											<input class="requeCheck" type="checkbox" value="3" id="che_usuario_S" name="che_usuario_S"> SAP
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="4" id="che_Biman" name="che_Biman"> Biman
+											<input class="requeCheck" type="checkbox" value="4" id="che_Biman" name="che_Biman"> Biman
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="che_acceso_inter" 	name="che_acceso_inter"> Acceso a Internet
+											<input class="requeCheck" type="checkbox" value="1" id="che_acceso_inter" name="che_acceso_inter"> Acceso a Internet
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="che_acceso_consignates" 	name="che_acceso_consignates"> Consignantes
+											<input class="requeCheck" type="checkbox" value="1" id="che_acceso_consignates" name="che_acceso_consignates"> Consignantes
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="che_acceso_gil" 	name="che_acceso_gil"> GIL
+											<input class="requeCheck" type="checkbox" value="1" id="che_acceso_gil" name="che_acceso_gil"> GIL
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="che_acceso_query" 	name="che_acceso_query"> Query
+											<input class="requeCheck" type="checkbox" value="1" id="che_acceso_query" name="che_acceso_query"> Query
+										</label>
+									</div>
+								</div>
+
+								<div class="col-md-3 incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="che_equipo_computo" name="che_equipo_computo"> Equipo de Cómputo
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="che_software_especial" name="che_software_especial"> Software especial
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="che_vpn" name="che_vpn"> VPN
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="che_telefonia_fija" name="che_telefonia_fija"> Telefonía Fija
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="che_telefonia_celular" name="che_telefonia_celular"> Telefonía Celular
+										</label>
+									</div>
+								</div>
+								<div class="col-md-5 incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="che_perifericos" name="che_perifericos"> Periféricos (Impresoras, scanner, etc.)
 										</label>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleUsuarioRed" style="display:none;">
+
+        					<div class="row ocultosPorRequerimientos" id="DetalleUsuarioRed" style="display:none;">
         						<div class="col-md-3">
 									<div class="form-group">
 										<label for="detalle_usu_red">Detalle Usu Red.</label>
@@ -256,7 +314,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleCorreo" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleCorreo" style="display:none;">
         						<div class="col-md-3">
 									<div class="form-group">
 										<label for="detalle_correo">Detalle Correo</label>
@@ -278,7 +336,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleSAP" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleSAP" style="display:none;">
         						<div class="col-md-3">
 									<div class="form-group">
 										<label for="detalle_Sap">Detalle SAP</label>
@@ -335,7 +393,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleAccesoInternet" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleAccesoInternet" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_accesoIn">Observaciones Acceso Internet:</label>
@@ -343,7 +401,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleBiman" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleBiman" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Biman">Observaciones Biman:</label>
@@ -351,7 +409,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleGil" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleGil" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Gil">Observaciones GIL:</label>
@@ -359,7 +417,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleConsignates" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleConsignates" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Consignates">Observaciones Consignantes:</label>
@@ -367,7 +425,7 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="DetalleQuery" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="DetalleQuery" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Query">Observaciones Query:</label>
@@ -375,10 +433,82 @@
 									</div>
 								</div>
         					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleUsuarioRed_2" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_usuarioRed2">Observaciones Usuario Red:</label>
+										<input type="text" class="form-control" id="detalle_obse_usuarioRed2" name="detalle_obse_usuarioRed2" placeholder="Observaciones Usuario Red:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleCorreo_2" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_Correo_2">Observaciones Correo:</label>
+										<input type="text" class="form-control" id="detalle_obse_Correo_2" name="detalle_obse_Correo_2" placeholder="Observaciones Correo:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleSap_2" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_sap_2">Observaciones SAP:</label>
+										<input type="text" class="form-control" id="detalle_obse_sap_2" name="detalle_obse_sap_2" placeholder="Observaciones SAP:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleEquipoComputo_Check" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_EquipoComputo_Check">Observaciones para equipo de computo:</label>
+										<input type="text" class="form-control" id="detalle_obse_EquipoComputo_Check" name="detalle_obse_EquipoComputo_Check" placeholder="Observaciones para equipo de computo:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="Detallesoft_especial_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_soft_especial_che">Observaciones Software Especial:</label>
+										<input type="text" class="form-control" id="detalle_obse_soft_especial_che" name="detalle_obse_soft_especial_che" placeholder="Observaciones Software Especial:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleVpn_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_Vpn_che">Observaciones VPN:</label>
+										<input type="text" class="form-control" id="detalle_obse_Vpn_che" name="detalle_obse_Vpn_che" placeholder="Observaciones VPN:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetallePerifericos_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_Perifericos_che">Observaciones Perifericos:</label>
+										<input type="text" class="form-control" id="detalle_obse_Perifericos_che" name="detalle_obse_Perifericos_che" placeholder="Observaciones Perifericos:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleTelefonia_fija_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_Telefonia_fija_che">Observaciones Telefonia Fija:</label>
+										<input type="text" class="form-control" id="detalle_obse_Telefonia_fija_che" name="detalle_obse_Telefonia_fija_che" placeholder="Observaciones Telefonia Fija:">
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="DetalleTelefonia_celular_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="detalle_obse_Telefonia_celualr_che">Observaciones Telefonia Celular:</label>
+										<input type="text" class="form-control" id="detalle_obse_Telefonia_celualr_che" name="detalle_obse_Telefonia_celualr_che" placeholder="Observaciones Telefonia Celular:">
+									</div>
+								</div>
+        					</div>
         				</div>
         			</div>
 
-        			<div class="card shadow mb-4">
+        			<div class="card shadow mb-4" id="activosRequeridosIn">
 				        <div class="card-header py-3">
 				            <h6 class="m-0 font-weight-bold text-primary">
 				            	ACTIVOS REQUERIDOS
@@ -597,7 +727,7 @@
 				<div class="modal-body">
 				  	<div class="card shadow mb-4">
 				        <div class="card-header py-3">
-				            <h6 class="m-0 font-weight-bold text-primary">Para quien es el servicio</h6>
+				            <h6 class="m-0 font-weight-bold text-primary">PARA QUIÉN ES EL SERVICIO</h6>
 				        </div>
         				<div class="card-body">
 							<div class="row">
@@ -672,13 +802,33 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="e_cli_planta_id_i">Planta/Sucursal</label>
-										<select class="form-control cliente" disabled id="e_cli_planta_id_i" name="e_cli_planta_id_i" placeholder="Ciudad">
+										<label for="e_sol_tipo_sol_id_tipo">Tipo de solicitud</label>
+										<select class="form-control cliente" id="e_sol_tipo_sol_id_tipo" name="e_sol_tipo_sol_id_tipo" placeholder="Ciudad">
 											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_oficinas', null, null);
 												foreach($bancos as $key => $value){
 													echo '<option value="'.$value['ofi_id_i'].'">'.$value['ofi_direccion_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_sol_cli_correo_v">Correo Electronico</label>
+										<input type="text" disabled name="e_sol_cli_correo_v" id="e_sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="cli_planta_id_i">Tipo de Solicitud</label>
+										<select class="form-control cliente" disabled id="cli_planta_id_i" name="cli_planta_id_i" placeholder="Ciudad">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['tipo_sol_id_i'].'">'.$value['tipo_desc_v'].'</option>';
 												}
 											?>
 										</select>
@@ -1974,25 +2124,50 @@
 
 		$("#che_usuario_R").on('change', function(){
 			if($(this).is(':checked')){
-				$("#DetalleUsuarioRed").show();
+				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+					$("#DetalleUsuarioRed_2").show();
+				}else{
+					$("#DetalleUsuarioRed").show();
+				}
 			}else{
-				$("#DetalleUsuarioRed").hide();
+				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+					$("#DetalleUsuarioRed_2").hide();
+				}else{
+					$("#DetalleUsuarioRed").hide();
+				}
+				
 			}
 		});
 
 		$("#che_correo").on('change', function(){
 			if($(this).is(':checked')){
-				$("#DetalleCorreo").show();
+				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+					$("#DetalleCorreo_2").show();
+				}else{
+					$("#DetalleCorreo").show();
+				}
 			}else{
-				$("#DetalleCorreo").hide();
+				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+					$("#DetalleCorreo_2").hide();
+				}else{
+					$("#DetalleCorreo").hide();
+				}
 			}
 		});
 
 		$("#che_usuario_S").on('change', function(){
 			if($(this).is(':checked')){
-				$("#DetalleSAP").show();
+				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+					$("#DetalleSap_2").show();
+				}else{
+					$("#DetalleSAP").show();
+				}
 			}else{
-				$("#DetalleSAP").hide();
+				if($("#sol_tipo_sol_id_tipo").val() == '3'){
+					$("#DetalleSap_2").hide();
+				}else{
+					$("#DetalleSAP").hide();
+				}
 			}
 		});
 
@@ -2232,6 +2407,74 @@
 				$("#e_detalle_obse_Otro").attr('disabled', true);
 			}
 		});
+
+		/*Parte de Incidentes y lo otro nuevo 09-11-2021*/
+		$("#sol_tipo_sol_id_tipo").on('change', function() {
+			$(".ocultosPorRequerimientos").hide();
+			$(".requeCheck").each(function(){
+				$(this).prop('checked', false);
+			});
+			if($(this).val() == '1'){
+				$(".incidente").hide();
+				$("#activosRequeridosIn").show();
+			}else if($(this).val() == '2'){
+				$(".incidente").show();
+				$("#activosRequeridosIn").hide();
+			}else if($(this).val() == '3'){
+				$(".incidente").hide();
+				$("#activosRequeridosIn").hide();
+			}
+		});
+
+
+		$("#che_equipo_computo").on('change', function(){
+			if($(this).is(':checked')){
+				$("#DetalleEquipoComputo_Check").show();
+			}else{
+				$("#DetalleEquipoComputo_Check").hide();
+			}
+		});
+
+		$("#che_software_especial").on('change', function(){
+			if($(this).is(':checked')){
+				$("#Detallesoft_especial_che").show();
+			}else{
+				$("#Detallesoft_especial_che").hide();
+			}
+		});
+
+		$("#che_vpn").on('change', function(){
+			if($(this).is(':checked')){
+				$("#DetalleVpn_che").show();
+			}else{
+				$("#DetalleVpn_che").hide();
+			}
+		});
+
+		$("#che_telefonia_fija").on('change', function(){
+			if($(this).is(':checked')){
+				$("#DetalleTelefonia_fija_che").show();
+			}else{
+				$("#DetalleTelefonia_fija_che").hide();
+			}
+		});
+
+		$("#che_telefonia_celular").on('change', function(){
+			if($(this).is(':checked')){
+				$("#DetalleTelefonia_celular_che").show();
+			}else{
+				$("#DetalleTelefonia_celular_che").hide();
+			}
+		});
+
+		$("#che_perifericos").on('change', function(){
+			if($(this).is(':checked')){
+				$("#DetallePerifericos_che").show();
+			}else{
+				$("#DetallePerifericos_che").hide();
+			}
+		});
+
 
 	});
 </script>

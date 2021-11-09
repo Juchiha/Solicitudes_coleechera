@@ -76,7 +76,8 @@ class ClientesModelo extends ModeloDAO
 					cli_ciu_id_i = :cli_ciu_id_i ,
 					cli_planta_id_i = :cli_planta_id_i,
 					cli_direccion_v = :cli_direccion_v ,
-					cli_est_id_i = :cli_est_id_i
+					cli_est_id_i = :cli_est_id_i,
+					cli_correo_v = :cli_correo_v
 				WHERE 
 					cli_id_i = :cli_id_i");
            
@@ -93,6 +94,7 @@ class ClientesModelo extends ModeloDAO
 			$stmt->bindParam(":cli_direccion_v", $datos['cli_direccion_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_est_id_i", $datos['cli_est_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":cli_id_i", $datos['cli_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":cli_correo_v", $datos['cli_correo_v'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
