@@ -1178,12 +1178,12 @@
 							<div class="row">
 								<div class="col">
 									<div class="form-group">
-										<a href="#" id="hrefVerEvidencia" >Ver Evidencia Cargada</a>
+										<a href="#" target="_blank" id="hrefVerEvidencia" >Ver Evidencia Cargada</a>
 									</div>
 								</div>
 								<div class="col">
 									<div class="form-group">
-										<a href="#" id="hrefVerEvidencia2" >Ver Evidencia Cargada</a>
+										<a href="#" target="_blank" id="hrefVerEvidencia2" >Ver Evidencia Cargada</a>
 									</div>
 								</div>
 							</div>
