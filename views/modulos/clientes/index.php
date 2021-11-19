@@ -1,7 +1,4 @@
 <!-- Page Heading -->
-<?php 
-
-?>
 <link href="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
   	<h1 class="h3 mb-0 text-gray-800">Registrar Clientes</h1>

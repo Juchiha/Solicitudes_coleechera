@@ -340,6 +340,7 @@
 				}
 
 				$datos = array(
+					
 					'sol_tip_sol_id_i' 				=> $_POST['sol_tip_sol_id_i'], 
 					'sol_clie_id_i'  				=> $id_Cliente,
 					'sol_fecha_solicitud'			=> date('Y-m-d'),
@@ -396,9 +397,11 @@
 
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
 					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total']);
-					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
+					print_r($respuestaCorreoClien);
+					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_'] == 4){
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
 						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], date('dmY').$orden['total']);
+						print_r($respuestaEquipo);
 					}
 
 					if(isset($_POST['observaciones_usuarios_finales']) && $_POST['observaciones_usuarios_finales'] != ''){

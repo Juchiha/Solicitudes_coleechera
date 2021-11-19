@@ -28,7 +28,7 @@
 		}
 
 		public function getDatosByCc($cc){
-			echo json_encode(ControladorClientes::getData('sc_clientes', 'cli_documento_v', $cc));
+			echo json_encode(ControladorClientes::getData('sc_clientes', 'cli_correo_v', $cc));
 		}
 
 		public function validarUsuarioSap($sap){

@@ -93,8 +93,14 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
+										<label for="sol_cli_correo_v">Correo Electronico</label>
+										<input type="text"  name="sol_cli_correo_v" id="sol_cli_correo_v" class="form-control" placeholder="Correo Electronico">
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
 										<label for="cli_identificacion_v">Identificación</label>
-										<input type="text" name="cli_identificacion_v" id="cli_identificacion_v" class="form-control" placeholder="Identificación">
+										<input type="text" disabled name="cli_identificacion_v" id="cli_identificacion_v" class="form-control cliente" placeholder="Identificación">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -158,12 +164,6 @@
 												}
 											?>
 										</select>
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="sol_cli_correo_v">Correo Electronico</label>
-										<input type="text" disabled name="sol_cli_correo_v" id="sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -309,7 +309,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="detalle_obse_usu_re">Observacion Usuario de Red</label>
-										<input type="text" class="form-control" id="detalle_obse_usu_re" name="detalle_obse_usu_re" placeholder="Observacion Usuario de Red">
+										<textarea class="form-control" id="detalle_obse_usu_re" name="detalle_obse_usu_re" placeholder="Observacion Usuario de Red"></textarea>
 									</div>
 								</div>
         					</div>
@@ -331,7 +331,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="detalle_obse_correo">Grupos de correo en los que debe darse de alta:</label>
-										<input type="text" class="form-control" id="detalle_obse_correo" name="detalle_obse_correo" placeholder="Grupos de correo en los que debe darse de alta:">
+										<textarea class="form-control" id="detalle_obse_correo" name="detalle_obse_correo" placeholder="Grupos de correo en los que debe darse de alta:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -353,7 +353,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="detalle_obse_sap">Transacciones requeridas:</label>
-										<input type="text" class="form-control" id="detalle_obse_sap" name="detalle_obse_sap" placeholder="Transacciones requeridas:">
+										<textarea class="form-control" id="detalle_obse_sap" name="detalle_obse_sap" placeholder="Transacciones requeridas:"></textarea>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -396,7 +396,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_accesoIn">Observaciones Acceso Internet:</label>
-										<input type="text" class="form-control" id="detalle_obse_accesoIn" name="detalle_obse_accesoIn" placeholder="Observaciones:">
+										<textarea class="form-control" id="detalle_obse_accesoIn" name="detalle_obse_accesoIn" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -404,7 +404,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Biman">Observaciones Biman:</label>
-										<input type="text" class="form-control" id="detalle_obse_Biman" name="detalle_obse_Biman" placeholder="Observaciones:">
+										<textarea class="form-control" id="detalle_obse_Biman" name="detalle_obse_Biman" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -412,7 +412,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Gil">Observaciones GIL:</label>
-										<input type="text" class="form-control" id="detalle_obse_Gil" name="detalle_obse_Gil" placeholder="Observaciones:">
+										<textarea class="form-control" id="detalle_obse_Gil" name="detalle_obse_Gil" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -420,7 +420,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Consignates">Observaciones Consignantes:</label>
-										<input type="text" class="form-control" id="detalle_obse_Consignates" name="detalle_obse_Consignates" placeholder="Observaciones:">
+										<textarea class="form-control" id="detalle_obse_Consignates" name="detalle_obse_Consignates" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -428,7 +428,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Query">Observaciones Query:</label>
-										<input type="text" class="form-control" id="detalle_obse_Query" name="detalle_obse_Query" placeholder="Observaciones:">
+										<textarea class="form-control" id="detalle_obse_Query" name="detalle_obse_Query" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -436,7 +436,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_usuarioRed2">Observaciones Usuario Red:</label>
-										<input type="text" class="form-control" id="detalle_obse_usuarioRed2" name="detalle_obse_usuarioRed2" placeholder="Observaciones Usuario Red:">
+										<textarea class="form-control" id="detalle_obse_usuarioRed2" name="detalle_obse_usuarioRed2" placeholder="Observaciones Usuario Red:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -444,7 +444,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Correo_2">Observaciones Correo:</label>
-										<input type="text" class="form-control" id="detalle_obse_Correo_2" name="detalle_obse_Correo_2" placeholder="Observaciones Correo:">
+										<textarea class="form-control" id="detalle_obse_Correo_2" name="detalle_obse_Correo_2" placeholder="Observaciones Correo:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -452,7 +452,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_sap_2">Observaciones SAP:</label>
-										<input type="text" class="form-control" id="detalle_obse_sap_2" name="detalle_obse_sap_2" placeholder="Observaciones SAP:">
+										<textarea class="form-control" id="detalle_obse_sap_2" name="detalle_obse_sap_2" placeholder="Observaciones SAP:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -460,7 +460,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_EquipoComputo_Check">Observaciones para equipo de computo:</label>
-										<input type="text" class="form-control" id="detalle_obse_EquipoComputo_Check" name="detalle_obse_EquipoComputo_Check" placeholder="Observaciones para equipo de computo:">
+										<textarea class="form-control" id="detalle_obse_EquipoComputo_Check" name="detalle_obse_EquipoComputo_Check" placeholder="Observaciones para equipo de computo:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -468,7 +468,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_soft_especial_che">Observaciones Software Especial:</label>
-										<input type="text" class="form-control" id="detalle_obse_soft_especial_che" name="detalle_obse_soft_especial_che" placeholder="Observaciones Software Especial:">
+										<textarea class="form-control" id="detalle_obse_soft_especial_che" name="detalle_obse_soft_especial_che" placeholder="Observaciones Software Especial:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -476,7 +476,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Vpn_che">Observaciones VPN:</label>
-										<input type="text" class="form-control" id="detalle_obse_Vpn_che" name="detalle_obse_Vpn_che" placeholder="Observaciones VPN:">
+										<textarea class="form-control" id="detalle_obse_Vpn_che" name="detalle_obse_Vpn_che" placeholder="Observaciones VPN:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -484,7 +484,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Perifericos_che">Observaciones Perifericos:</label>
-										<input type="text" class="form-control" id="detalle_obse_Perifericos_che" name="detalle_obse_Perifericos_che" placeholder="Observaciones Perifericos:">
+										<textarea class="form-control" id="detalle_obse_Perifericos_che" name="detalle_obse_Perifericos_che" placeholder="Observaciones Perifericos:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -492,7 +492,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Telefonia_fija_che">Observaciones Telefonia Fija:</label>
-										<input type="text" class="form-control" id="detalle_obse_Telefonia_fija_che" name="detalle_obse_Telefonia_fija_che" placeholder="Observaciones Telefonia Fija:">
+										<textarea class="form-control" id="detalle_obse_Telefonia_fija_che" name="detalle_obse_Telefonia_fija_che" placeholder="Observaciones Telefonia Fija:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -500,7 +500,7 @@
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="detalle_obse_Telefonia_celualr_che">Observaciones Telefonia Celular:</label>
-										<input type="text" class="form-control" id="detalle_obse_Telefonia_celualr_che" name="detalle_obse_Telefonia_celualr_che" placeholder="Observaciones Telefonia Celular:">
+										<textarea class="form-control" id="detalle_obse_Telefonia_celualr_che" name="detalle_obse_Telefonia_celualr_che" placeholder="Observaciones Telefonia Celular:"></textarea>
 									</div>
 								</div>
         					</div>
@@ -718,7 +718,7 @@
 		<div class="modal-content">
 			<form id="editarSolicitud" autocomplete="off" method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-					<h5 class="modal-title">Nueva Incidencia</h5>
+					<h5 class="modal-title">Editar Incidencia</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -742,6 +742,12 @@
 												}
 											?>
 										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_sol_cli_correo_v">Correo Electronico</label>
+										<input type="text" disabled name="e_sol_cli_correo_v" id="e_sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -801,8 +807,8 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="e_sol_tipo_sol_id_tipo">Tipo de solicitud</label>
-										<select class="form-control cliente" id="e_sol_tipo_sol_id_tipo" name="e_sol_tipo_sol_id_tipo" placeholder="Ciudad">
+										<label for="e_cli_planta_id_i">Planta / Oficina</label>
+										<select class="form-control cliente" disabled id="e_cli_planta_id_i" name="e_cli_planta_id_i" placeholder="Ciudad">
 											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_oficinas', null, null);
@@ -813,16 +819,11 @@
 										</select>
 									</div>
 								</div>
+								
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="e_sol_cli_correo_v">Correo Electronico</label>
-										<input type="text" disabled name="e_sol_cli_correo_v" id="e_sol_cli_correo_v" class="form-control cliente" placeholder="Correo Electronico">
-									</div>
-								</div>
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="cli_planta_id_i">Tipo de Solicitud</label>
-										<select class="form-control cliente" disabled id="cli_planta_id_i" name="cli_planta_id_i" placeholder="Ciudad">
+										<label for="e_sol_tipo_sol_id_tipo">Tipo de Solicitud</label>
+										<select class="form-control cliente"  id="e_sol_tipo_sol_id_tipo" name="e_sol_tipo_sol_id_tipo" placeholder="Ciudad">
 											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
@@ -861,7 +862,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="3" id="e_che_usuario_S" 	name="e_che_usuario_S"> Usuario SAP
+											<input type="checkbox" value="3" id="e_che_usuario_S" 	name="e_che_usuario_S"> SAP
 										</label>
 									</div>
 								</div>
@@ -900,8 +901,52 @@
 										</label>
 									</div>
 								</div>
+
+								<div class="col-md-3 e-incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="e-che_equipo_computo" name="e-che_equipo_computo"> Equipo de Cómputo
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 e-incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="e-che_software_especial" name="e-che_software_especial"> Software especial
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 e-incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="e-che_vpn" name="e-che_vpn"> VPN
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 e-incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="e-che_telefonia_fija" name="e-che_telefonia_fija"> Telefonía Fija
+										</label>
+									</div>
+								</div>
+								<div class="col-md-3 e-incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="e-che_telefonia_celular" name="e-che_telefonia_celular"> Telefonía Celular
+										</label>
+									</div>
+								</div>
+								<div class="col-md-5 e-incidente" style="display:none;">
+									<div class="form-group">
+										<label for="serv_id_i">
+											<input class="requeCheck" type="checkbox" value="1" id="e-che_perifericos" name="e-che_perifericos"> Periféricos (Impresoras, scanner, etc.)
+										</label>
+									</div>
+								</div>
+
         					</div>
-        					<div class="row" id="e_DetalleUsuarioRed" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleUsuarioRed" style="display:none;">
         						<div class="col-md-3">
 									<div class="form-group">
 										<label for="e_detalle_usu_red">Detalle Usu Red.</label>
@@ -919,11 +964,11 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="e_detalle_obse_usu_re">Observacion Usuario de Red</label>
-										<input type="text" class="form-control" id="e_detalle_obse_usu_re" name="e_detalle_obse_usu_re" placeholder="Observacion Usuario de Red">
+										<textarea class="form-control" id="e_detalle_obse_usu_re" name="e_detalle_obse_usu_re" placeholder="Observacion Usuario de Red"></textarea>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleCorreo" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleCorreo" style="display:none;">
         						<div class="col-md-3">
 									<div class="form-group">
 										<label for="e_detalle_correo">Detalle Correo</label>
@@ -941,11 +986,11 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="e_detalle_obse_correo">Grupos de correo en los que debe darse de alta:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_correo" name="e_detalle_obse_correo" placeholder="Grupos de correo en los que debe darse de alta:">
+										<textarea class="form-control" id="e_detalle_obse_correo" name="e_detalle_obse_correo" placeholder="Grupos de correo en los que debe darse de alta:"></textarea>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleSAP" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleSAP" style="display:none;">
         						<div class="col-md-3">
 									<div class="form-group">
 										<label for="e_detalle_Sap">Detalle SAP</label>
@@ -963,7 +1008,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="detalle_obse_sap">Transacciones requeridas:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_sap" name="e_detalle_obse_sap" placeholder="Transacciones requeridas:">
+										<textarea class="form-control" id="e_detalle_obse_sap" name="e_detalle_obse_sap" placeholder="Transacciones requeridas:"></textarea>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -1002,50 +1047,122 @@
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleAccesoInternet" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleAccesoInternet" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="e_detalle_obse_accesoIn">Observaciones Acceso Internet:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_accesoIn" name="e_detalle_obse_accesoIn" placeholder="Observaciones:">
+										<textarea class="form-control" id="e_detalle_obse_accesoIn" name="e_detalle_obse_accesoIn" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleBiman" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleBiman" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="e_detalle_obse_Biman">Observaciones Biman:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_Biman" name="e_detalle_obse_Biman" placeholder="Observaciones:">
+										<textarea class="form-control" id="e_detalle_obse_Biman" name="e_detalle_obse_Biman" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleGil" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleGil" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="e_detalle_obse_Gil">Observaciones GIL:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_Gil" name="e_detalle_obse_Gil" placeholder="Observaciones:">
+										<textarea class="form-control" id="e_detalle_obse_Gil" name="e_detalle_obse_Gil" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleConsignates" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleConsignates" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="e_detalle_obse_Consignates">Observaciones Consignantes:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_Consignates" name="e_detalle_obse_Consignates" placeholder="Observaciones:">
+										<textarea class="form-control" id="e_detalle_obse_Consignates" name="e_detalle_obse_Consignates" placeholder="Observaciones:"></textarea>
 									</div>
 								</div>
         					</div>
-        					<div class="row" id="e_DetalleQuery" style="display:none;">
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleQuery" style="display:none;">
 								<div class="col-md-12">
 									<div class="form-group">
 										<label for="e_detalle_obse_Query">Observaciones Query:</label>
-										<input type="text" class="form-control" id="e_detalle_obse_Query" name="e_detalle_obse_Query" placeholder="Observaciones:">
+										<textarea class="form-control" id="e_detalle_obse_Query" name="e_detalle_obse_Query" placeholder="Observaciones:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e_DetalleUsuarioRed_2" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_usuarioRed2">Observaciones Usuario Red:</label>
+										<textarea class="form-control" id="e-detalle_obse_usuarioRed2" name="e-detalle_obse_usuarioRed2" placeholder="Observaciones Usuario Red:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetalleCorreo_2" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_Correo_2">Observaciones Correo:</label>
+										<textarea class="form-control" id="e-detalle_obse_Correo_2" name="e-detalle_obse_Correo_2" placeholder="Observaciones Correo:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetalleSap_2" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_sap_2">Observaciones SAP:</label>
+										<textarea class="form-control" id="e-detalle_obse_sap_2" name="e-detalle_obse_sap_2" placeholder="Observaciones SAP:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetalleEquipoComputo_Check" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_EquipoComputo_Check">Observaciones para equipo de computo:</label>
+										<textarea class="form-control" id="e-detalle_obse_EquipoComputo_Check" name="e-detalle_obse_EquipoComputo_Check" placeholder="Observaciones para equipo de computo:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-Detallesoft_especial_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_soft_especial_che">Observaciones Software Especial:</label>
+										<textarea class="form-control" id="e-detalle_obse_soft_especial_che" name="e-detalle_obse_soft_especial_che" placeholder="Observaciones Software Especial:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetalleVpn_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_Vpn_che">Observaciones VPN:</label>
+										<textarea class="form-control" id="e-detalle_obse_Vpn_che" name="e-detalle_obse_Vpn_che" placeholder="Observaciones VPN:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetallePerifericos_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_Perifericos_che">Observaciones Perifericos:</label>
+										<textarea class="form-control" id="e-detalle_obse_Perifericos_che" name="e-detalle_obse_Perifericos_che" placeholder="Observaciones Perifericos:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetalleTelefonia_fija_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_Telefonia_fija_che">Observaciones Telefonia Fija:</label>
+										<textarea class="form-control" id="e-detalle_obse_Telefonia_fija_che" name="e-detalle_obse_Telefonia_fija_che" placeholder="Observaciones Telefonia Fija:"></textarea>
+									</div>
+								</div>
+        					</div>
+        					<div class="row ocultosPorRequerimientos" id="e-DetalleTelefonia_celular_che" style="display:none;">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="e-detalle_obse_Telefonia_celualr_che">Observaciones Telefonia Celular:</label>
+										<textarea class="form-control" id="e-detalle_obse_Telefonia_celualr_che" name="e-detalle_obse_Telefonia_celualr_che" placeholder="Observaciones Telefonia Celular:"></textarea>
 									</div>
 								</div>
         					</div>
         				</div>
         			</div>
 
-        			<div class="card shadow mb-4">
+        			<div class="card shadow mb-4" id="e-activosRequeridosIn">
 				        <div class="card-header py-3">
 				            <h6 class="m-0 font-weight-bold text-primary">
 				            	ACTIVOS REQUERIDOS
@@ -1066,7 +1183,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="e_detalle_obse_equipo_C">Equipo de cómputo Observación</label>
-										<input type="text" class="form-control" id="e_detalle_obse_equipo_C" disabled name="e_detalle_obse_equipo_C" placeholder="Equipo de cómputo Observación">
+										<textarea class="form-control" id="e_detalle_obse_equipo_C" disabled name="e_detalle_obse_equipo_C" placeholder="Equipo de cómputo Observación"></textarea>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -1082,7 +1199,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="e_detalle_obse_soft_espe">Justificación Software Especial</label>
-										<input type="text" class="form-control" id="e_detalle_obse_soft_espe" disabled name="e_detalle_obse_soft_espe" placeholder="Justificación Software Especial">
+										<textarea class="form-control" id="e_detalle_obse_soft_espe" disabled name="e_detalle_obse_soft_espe" placeholder="Justificación Software Especial"></textarea>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -1098,7 +1215,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="e_detalle_obse_vpn">Justificación VPN</label>
-										<input type="text" class="form-control" id="e_detalle_obse_vpn" name="e_detalle_obse_vpn" disabled placeholder="Justificación VPN">
+										<textarea class="form-control" id="e_detalle_obse_vpn" name="e_detalle_obse_vpn" disabled placeholder="Justificación VPN"></textarea>
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -1114,7 +1231,7 @@
 								<div class="col-md-9">
 									<div class="form-group">
 										<label for="e_detalle_obse_Otro">Justificación Otros Requerimientos</label>
-										<input type="text" class="form-control" disabled id="e_detalle_obse_Otro" name="e_detalle_obse_Otro" placeholder="Justificación Otros Requerimientos">
+										<textarea class="form-control" disabled id="e_detalle_obse_Otro" name="e_detalle_obse_Otro" placeholder="Justificación Otros Requerimientos"></textarea>
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -1468,6 +1585,7 @@
 		                $("#e_cli_cargo_v").val(data.cli_cargo_v);
 		                $("#e_cli_area_i").val(data.cli_area_i);
 		                $("#e_cli_planta_id_i").val(data.cli_planta_id_i);
+		                $("#e_sol_cli_correo_v").val(data.cli_correo_v);
 
 		                /*Parte de otros Requerimientos*/
 		                $("#e_detalle_equipo_C").val(data.sol_equipo_v).change();
@@ -1501,114 +1619,32 @@
 		                	$("#hrefVerEvidencia2").attr('href', '#');
 		                }
 
-		                if(data.inc_req_usuario_red_i != 0){
-		                	$("#e_che_usuario_R").attr('checked', true);
-		                	$("#e_DetalleUsuarioRed").show();
-		                	$("#e_detalle_usu_red").val(data.inc_req_det_usu_red_i);
-		                	$("#e_detalle_obse_usu_re").val(data.inc_req_obs_usu_red_observ_v);
+		                /*Desde aqui empieza la muestra y desmuestra de DIv de edicion*/
+	               	 	if(data.inc_req_usuario_red_i != 0){
+		                	if(data.sol_tipo_sol_id_i != '1'){
+		                		console.log("Entramos");
+								$("#e_DetalleUsuarioRed_2").show();
+								$("#e-detalle_obse_usuarioRed2").val(data.inc_req_obs_usu_red_observ_v);
+							}else{
+								$("#e_DetalleUsuarioRed").show();
+			                	$("#e_detalle_usu_red").val(data.inc_req_det_usu_red_i);
+			                	$("#e_detalle_obse_usu_re").val(data.inc_req_obs_usu_red_observ_v);
+							}
+							$("#e_che_usuario_R").attr('checked', true);
 		                }else{
 		                	$("#e_che_usuario_R").attr('checked', false);
 		                	$("#e_DetalleUsuarioRed").hide();
+		                	$("#e-DetalleUsuarioRed_2").hide();
 		                	$("#e_detalle_usu_red").val(0);
 		                	$("#e_detalle_obse_usu_re").val('');
+		                	$("#e-detalle_obse_usuarioRed2").val('');
 		                }
 
-		                if(data.inc_req_correo_i != 0){
-		                	$("#e_che_correo").attr('checked', true);
-		                	$("#e_DetalleCorreo").show();
-		                	$("#e_detalle_correo").val(data.inc_req_det_correo_i);
-		                	$("#e_detalle_obse_correo").val(data.inc_req_det_correo_obse_v);
-		                }else{
-		                	$("#e_che_correo").attr('checked', false);
-		                	$("#e_DetalleCorreo").hide();
-		                	$("#e_detalle_correo").val(0);
-		                	$("#e_detalle_obse_correo").val('');
-		                }
 
-		                if(data.inc_req_biman_i != 0){
-		                	$("#e_che_Biman").attr('checked', true);
-		                	$("#e_DetalleBiman").show();
-		                	$("#e_detalle_obse_Biman").val(data.inc_req_det_obser_biman_v);
-		                }else{
-		                	$("#e_che_Biman").attr('checked', false);
-		                	$("#e_DetalleBiman").hide();
-		                	$("#e_detalle_obse_Biman").val('');
-		                }
-
-		                if(data.inc_req_consig_i != 0){
-		                	$("#e_che_acceso_consignates").attr('checked', true);
-		                	$("#e_DetalleConsignates").show();
-		                	$("#e_detalle_obse_Consignates").val(data.inc_req_det_obser_consign_v);
-		                }else{
-		                	$("#e_che_acceso_consignates").attr('checked', false);
-		                	$("#e_DetalleConsignates").hide();
-		                	$("#e_detalle_obse_Consignates").val('');
-		                }
-
-		                if(data.inc_req_gil_i != 0){
-		                	$("#e_che_acceso_gil").attr('checked', true);
-		                	$("#e_DetalleGil").show();
-		                	$("#e_detalle_obse_Gil").val(data.inc_req_det_obser_gil_v);
-		                }else{
-		                	$("#e_che_acceso_gil").attr('checked', false);
-		                	$("#e_DetalleGil").hide();
-		                	$("#e_detalle_obse_Gil").val('');
-		                }
-
-		                if(data.inc_req_query_i != 0){
-		                	$("#e_che_acceso_query").attr('checked', true);
-		                	$("#e_DetalleQuery").show();
-		                	$("#e_detalle_obse_Query").val(data.inc_req_det_obser_query_v);
-		                }else{
-		                	$("#e_che_acceso_query").attr('checked', false);
-		                	$("#e_DetalleQuery").hide();
-		                	$("#e_detalle_obse_Query").val('');
-		                }
-
-		                if(data.inc_req_acceso_in_i != 0){
-		                	$("#e_che_acceso_inter").attr('checked', true);
-		                	$("#E_DetalleAccesoInternet").show();
-		                	$("#e_detalle_obse_accesoIn").val(data.inc_req_det_obser_internet_acc_v);
-		                }else{
-		                	$("#e_che_acceso_inter").attr('checked', false);
-		                	$("#E_DetalleAccesoInternet").hide();
-		                	$("#e_detalle_obse_accesoIn").val('');
-		                }
-
-		                if(data.inc_req_usuario_sap_i != 0){
-		                	$("#e_che_usuario_S").attr('checked', true);
-		                	$("#e_DetalleSAP").show();
-		                	$("#e_detalle_Sap").val(data.inc_req_det_sap)
-		                	$("#e_detalle_obse_sap").val(data.inc_req_det_sap_obser_v);
-		                	$("#e_detalle_Sap_acc").val(data.inc_req_det_sap_accesos_i);
-
-		                	if(data.inc_req_det_sap_produc_i == 1){
-		                		$("#e_che_sap_prod").attr('checked', true);
-		                	}else{
-		                		$("#e_che_sap_prod").attr('checked', false);
-		                	}
-		                	if(data.inc_req_det_sap_desarr_i == 1){
-		                		$("#e_che_sap_des").attr('checked', true);
-		                	}else{
-		                		$("#e_che_sap_des").attr('checked', false);
-		                	}
-		                	if(data.inc_req_det_sap_cali_i == 1){
-		                		$("#e_che_sap_cal").attr('checked', true);
-		                	}else{
-		                		$("#e_che_sap_cal").attr('checked', false);
-		                	}
-		                }else{
-		                	$("#e_che_usuario_S").attr('checked', false);
-		                	$("#e_DetalleSAP").hide();
-		                	$("#e_detalle_Sap").val(0)
-		                	$("#e_detalle_obse_sap").val('');
-		                	$("#e_detalle_Sap_acc").val(0);
-	                		$("#e_che_sap_prod").attr('checked', false);
-	                		$("#e_che_sap_des").attr('checked', false);
-	                		$("#e_che_sap_cal").attr('checked', false);
-		                }
 		                Solicitudes.getObservaciones(data.sol_id_i);    
 		                $("#sol_id_i_e").val(data.sol_id_i);
+		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i);
+		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i).change();
 	            	}
 	            },
 	            //si ha ocurrido un error
@@ -2251,7 +2287,7 @@
 		});
 
 		/*Para capturar la cedula y validarla*/
-		$("#cli_identificacion_v").on('change', function(){
+		$("#sol_cli_correo_v").on('change', function(){
 			var cedula = $(this).val();
             var datos = new FormData();
             datos.append('cedulaCliente', cedula);
@@ -2276,7 +2312,7 @@
                        	$("#cli_area_i").val(respuesta.cli_area_i).change();
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i);
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
-                       	$("#sol_cli_correo_v").val(respuesta.cli_correo_v);
+                       	$("#cli_identificacion_v").val(respuesta.cli_documento_v);
                        	if(respuesta.cli_tip_sol_id_i == 1){
                        	 	$("#sol_tip_sol_id_i").val(2).change();
                        	}else{
@@ -2474,6 +2510,71 @@
 			}
 		});
 
+		/*Edicion*/
+		$("#e_sol_tipo_sol_id_tipo").on('change', function() {
+			$(".ocultosPorRequerimientos").hide();
+			$(".requeCheck").each(function(){
+				$(this).prop('checked', false);
+			});
+			if($(this).val() == '1'){
+				$(".e-incidente").hide();
+				$("#e-activosRequeridosIn").show();
+			}else if($(this).val() == '2'){
+				$(".e-incidente").show();
+				$("#e-activosRequeridosIn").hide();
+			}else if($(this).val() == '3'){
+				$(".e-incidente").hide();
+				$("#e-activosRequeridosIn").hide();
+			}
+		});
 
+
+		$("#e-che_equipo_computo").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e-DetalleEquipoComputo_Check").show();
+			}else{
+				$("#e-DetalleEquipoComputo_Check").hide();
+			}
+		});
+
+		$("#e-che_software_especial").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e-Detallesoft_especial_che").show();
+			}else{
+				$("#e-Detallesoft_especial_che").hide();
+			}
+		});
+
+		$("#e-che_vpn").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e-DetalleVpn_che").show();
+			}else{
+				$("#e-DetalleVpn_che").hide();
+			}
+		});
+
+		$("#e-che_telefonia_fija").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e-DetalleTelefonia_fija_che").show();
+			}else{
+				$("#e-DetalleTelefonia_fija_che").hide();
+			}
+		});
+
+		$("#e-che_telefonia_celular").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e-DetalleTelefonia_celular_che").show();
+			}else{
+				$("#e-DetalleTelefonia_celular_che").hide();
+			}
+		});
+
+		$("#e-che_perifericos").on('change', function(){
+			if($(this).is(':checked')){
+				$("#e-DetallePerifericos_che").show();
+			}else{
+				$("#e-DetallePerifericos_che").hide();
+			}
+		});
 	});
 </script>

@@ -25,8 +25,8 @@
 		static public function putImage($fila, $typo, $ruta, $rutaReal, $extension = null){
             if($typo == "image/jpeg" || $typo == "image/png"){
                 list($ancho, $alto) = getimagesize($fila);
-                $nuevoAncho = 900;
-                $nuevoAlto  = 500;
+                $nuevoAncho = $ancho;
+                $nuevoAlto  = $alto;
             }
             
             if (!file_exists($ruta)) {
