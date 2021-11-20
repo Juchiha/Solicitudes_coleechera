@@ -340,7 +340,7 @@
 				}
 
 				$datos = array(
-					
+
 					'sol_tip_sol_id_i' 				=> $_POST['sol_tip_sol_id_i'], 
 					'sol_clie_id_i'  				=> $id_Cliente,
 					'sol_fecha_solicitud'			=> date('Y-m-d'),
@@ -443,8 +443,11 @@
 				$ruta_2 = $inicidencia['inc_ruta_evi_s_v'];
 				$tipoIni = $inicidencia['sol_tip_sol_id_i'];
 
-
+				/*---JGM--- Este es el metodo que carga las imagenes*/
+				/*---JGM--- Aqui preguntas se viene o no viene imagen cargada en el input type File*/
 				if(isset($_FILES['e_sol_imagen_datos']['tmp_name']) && !empty($_FILES['e_sol_imagen_datos']['tmp_name']) ){
+					/*---JGM--- el metodo putImage recibe, el tmpName que vienen en el Type File, el Type tyambien del File, la ruta real y la ruta que guardamos en la BD*/
+					/*---JGM--- Retorna la RUTA que vamos a guardar en la Base de datos*/
 	                $ruta = self::putImage($_FILES['e_sol_imagen_datos']['tmp_name'], $_FILES["e_sol_imagen_datos"]["type"] , __DIR__."/../views/inicidencias_img/", 'views/inicidencias_img/');
 	            }
 

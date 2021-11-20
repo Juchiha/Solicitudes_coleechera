@@ -1639,7 +1639,109 @@
 		                	$("#e_detalle_obse_usu_re").val('');
 		                	$("#e-detalle_obse_usuarioRed2").val('');
 		                }
+		                
+		                if(data.inc_req_correo_i != 0){
+		                	if(data.sol_tipo_sol_id_i != '1'){
+								$("#e-DetalleCorreo_2").show();
+								$("#e_detalle_correo").val(data.inc_req_det_correo_obse_v);
+							}else{
+								$("#e_DetalleUsuarioRed").show();
+								$("#e_DetalleCorreo").show();
+		                		$("#e_detalle_correo").val(data.inc_req_det_correo_i);
+		                		$("#e_detalle_obse_correo").val(data.inc_req_det_correo_obse_v);
+							}
+		                	$("#e_che_correo").attr('checked', true);
+		                }else{
+		                	$("#e_che_correo").attr('checked', false);
+		                	$("#e_DetalleCorreo").hide();
+		                	$("#e_detalle_correo").val(0);
+		                	$("#e_detalle_obse_correo").val('');
+		                	$("#e-DetalleCorreo_2").hide();
+							$("#e_detalle_correo").val('');
+		                }
 
+		                if(data.inc_req_biman_i != 0){
+							$("#e_DetalleBiman").show();
+	                		$("#e_detalle_obse_Biman").val(data.inc_req_det_obser_biman_v);
+		                	$("#e_che_Biman").attr('checked', true);
+		                }else{
+		                	$("#e_che_Biman").attr('checked', false);
+		                	$("#e_DetalleBiman").hide();
+		                	$("#e_detalle_obse_Biman").val('');
+		                }
+
+		                if(data.inc_req_consig_i != 0){
+		                	$("#e_che_acceso_consignates").attr('checked', true);
+		                	$("#e_DetalleConsignates").show();
+		                	$("#e_detalle_obse_Consignates").val(data.inc_req_det_obser_consign_v);
+		                }else{
+		                	$("#e_che_acceso_consignates").attr('checked', false);
+		                	$("#e_DetalleConsignates").hide();
+		                	$("#e_detalle_obse_Consignates").val('');
+		                }
+
+		                if(data.inc_req_gil_i != 0){
+		                	$("#e_che_acceso_gil").attr('checked', true);
+		                	$("#e_DetalleGil").show();
+		                	$("#e_detalle_obse_Gil").val(data.inc_req_det_obser_gil_v);
+		                }else{
+		                	$("#e_che_acceso_gil").attr('checked', false);
+		                	$("#e_DetalleGil").hide();
+		                	$("#e_detalle_obse_Gil").val('');
+		                }
+
+		                if(data.inc_req_query_i != 0){
+		                	$("#e_che_acceso_query").attr('checked', true);
+		                	$("#e_DetalleQuery").show();
+		                	$("#e_detalle_obse_Query").val(data.inc_req_det_obser_query_v);
+		                }else{
+		                	$("#e_che_acceso_query").attr('checked', false);
+		                	$("#e_DetalleQuery").hide();
+		                	$("#e_detalle_obse_Query").val('');
+		                }
+
+		                if(data.inc_req_acceso_in_i != 0){
+		                	$("#e_che_acceso_inter").attr('checked', true);
+		                	$("#E_DetalleAccesoInternet").show();
+		                	$("#e_detalle_obse_accesoIn").val(data.inc_req_det_obser_internet_acc_v);
+		                }else{
+		                	$("#e_che_acceso_inter").attr('checked', false);
+		                	$("#E_DetalleAccesoInternet").hide();
+		                	$("#e_detalle_obse_accesoIn").val('');
+		                }
+
+		                if(data.inc_req_usuario_sap_i != 0){
+		                	$("#e_che_usuario_S").attr('checked', true);
+		                	$("#e_DetalleSAP").show();
+		                	$("#e_detalle_Sap").val(data.inc_req_det_sap)
+		                	$("#e_detalle_obse_sap").val(data.inc_req_det_sap_obser_v);
+		                	$("#e_detalle_Sap_acc").val(data.inc_req_det_sap_accesos_i);
+
+		                	if(data.inc_req_det_sap_produc_i == 1){
+		                		$("#e_che_sap_prod").attr('checked', true);
+		                	}else{
+		                		$("#e_che_sap_prod").attr('checked', false);
+		                	}
+		                	if(data.inc_req_det_sap_desarr_i == 1){
+		                		$("#e_che_sap_des").attr('checked', true);
+		                	}else{
+		                		$("#e_che_sap_des").attr('checked', false);
+		                	}
+		                	if(data.inc_req_det_sap_cali_i == 1){
+		                		$("#e_che_sap_cal").attr('checked', true);
+		                	}else{
+		                		$("#e_che_sap_cal").attr('checked', false);
+		                	}
+		                }else{
+		                	$("#e_che_usuario_S").attr('checked', false);
+		                	$("#e_DetalleSAP").hide();
+		                	$("#e_detalle_Sap").val(0)
+		                	$("#e_detalle_obse_sap").val('');
+		                	$("#e_detalle_Sap_acc").val(0);
+	                		$("#e_che_sap_prod").attr('checked', false);
+	                		$("#e_che_sap_des").attr('checked', false);
+	                		$("#e_che_sap_cal").attr('checked', false);
+		                }
 
 		                Solicitudes.getObservaciones(data.sol_id_i);    
 		                $("#sol_id_i_e").val(data.sol_id_i);
