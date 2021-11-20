@@ -450,6 +450,7 @@
 					/*---JGM--- Retorna la RUTA que vamos a guardar en la Base de datos*/
 	                $ruta = self::putImage($_FILES['e_sol_imagen_datos']['tmp_name'], $_FILES["e_sol_imagen_datos"]["type"] , __DIR__."/../views/inicidencias_img/", 'views/inicidencias_img/');
 	            }
+	            /*---JGM--- HASTA AQUI*/
 
 	            if(isset($_FILES['e_sol_imagen_datos_evidencia']['tmp_name']) && !empty($_FILES['e_sol_imagen_datos_evidencia']['tmp_name']) ){
 	                $ruta_2 = self::putImage($_FILES['e_sol_imagen_datos_evidencia']['tmp_name'], $_FILES["e_sol_imagen_datos_evidencia"]["type"] , __DIR__."/../views/evidencias_img/", 'views/evidencias_img/');
@@ -734,6 +735,10 @@
 					}
 
 					if(isset($_POST['e_observaciones_usuarios_finales']) && $_POST['e_observaciones_usuarios_finales'] != ''){
+
+						/*---JGM--- AQUI ES DONDE VAS A PONER EL PROCESO DE SUBIDA DE IMAGEN*/
+
+						/*---JGM---HASTA AQUI*/
 						$datos = array (
 							'obs_desc_v'       => $_POST['e_observaciones_usuarios_finales'], //observacion
 							'obs_usu_id_i'     => $_SESSION['codigo'],//quien hace la observacion

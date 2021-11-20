@@ -1,0 +1,11 @@
+Usuario para pruebas jgiron password 123456
+Ya esta creado el campo en la tabla observaciones
+Debes modificar el proceso Editar, revisa los comentarios que empiezan por /*---JGM-- */
+Ojo que debes guardar es la ruta
+y debes modificar el procedimiento de guardado tanto en el controlador como en el MOdelo
+COntroller SOlicitudes
+Modelo solicitudes
+Index solicitudes
+EL type del campo es FILE
+\(o____0)/
+Saludos
