@@ -585,6 +585,9 @@
 				if(isset($_POST['e_detalle_usu_red'])){
 					$_detalle_usu_red = $_POST['e_detalle_usu_red'];
 				}
+				if(isset($_POST['e-detalle_obse_usuarioRed2'])){
+					$_detalle_obse_usu_re = $_POST['e-detalle_obse_usuarioRed2'];
+				}
 
 				/*Validacion Correo*/
 				$_che_correo = 0;
@@ -598,6 +601,9 @@
 				}
 				if(isset($_POST['e_detalle_correo'])){
 					$_detalle_correo = $_POST['e_detalle_correo'];
+				}
+				if(isset($_POST['e-detalle_obse_Correo_2'])){
+					$_detalle_obse_correo = $_POST['e-detalle_obse_Correo_2'];
 				}
 
 				/*Validacion Usuario SAP*/
@@ -616,6 +622,9 @@
 				}
 				if(isset($_POST['e_detalle_obse_sap'])){
 					$_detalle_obse_sap = $_POST['e_detalle_obse_sap'];
+				}
+				if(isset($_POST['e-detalle_obse_sap_2'])){
+					$_detalle_obse_sap = $_POST['e-detalle_obse_sap_2'];
 				}
 				if(isset($_POST['e_detalle_Sap_acc'])){
 					$_detalle_Sap_acc = 1;
@@ -680,20 +689,65 @@
 					$_detalle_obse_Query = $_POST['e_detalle_obse_Query'];
 				}
 
+				/*Validaciones nuevas*/
+				if(isset($_POST['e-che_equipo_computo'])){
+					$_equipoComputo = 1;
+					$detalle_obse_equipo_C = $_POST['e-detalle_obse_EquipoComputo_Check'];
+				}else{
+					$_equipoComputo = $_POST['e_detalle_equipo_C'];
+				}
+
+				if(isset($_POST['e-che_software_especial'])){
+					$_softwareEspecial = 1;
+					$detalle_obse_soft_espe = $_POST['e-detalle_obse_soft_especial_che'];
+				}else{
+					$_softwareEspecial = $_POST['e_detalle_soft_espe'];
+				}
+
+				if(isset($_POST['e-che_vpn'])){
+					$_vpn = 1;
+					$detalle_obse_vpn = $_POST['e-detalle_obse_Vpn_che'];
+				}else{
+					$_vpn = $_POST['e_detalle_vpn'];
+				}
+
+				$_observacionTelefoniaFija = null;
+				if(isset($_POST['e-che_telefonia_fija'])){
+					$_telefoniaFija = 1;
+					$_observacionTelefoniaFija = $_POST['e-detalle_obse_Telefonia_fija_che'];
+				}else{
+					$_telefoniaFija = $_POST['e_detalle_telefonia'];
+				}
+
+				$_observacionTelefoniaCelu  = null;
+				if(isset($_POST['e-che_telefonia_celular'])){
+					$_telefoniaCelular = 1;
+					$_observacionTelefoniaCelu = $_POST['e-detalle_obse_Telefonia_celualr_che'];
+				}else{
+					$_telefoniaCelular = $_POST['e_detalle_celular_'];
+				}
+
+				$_observacionImpresora = null;
+				if(isset($_POST['e-che_perifericos'])){
+					$_impresora = 1;
+					$_observacionImpresora = $_POST['e-detalle_obse_Perifericos_che'];
+				}else{
+					$_impresora = $_POST['e_detalle_impr'];
+				}
 
 				$datos = array(
 					'sol_tip_sol_id_i' 				=> $tipoIni, 
 					'sol_fecha_solicitud'			=> date('Y-m-d'),
 					'sol_asignado_a_i'				=> $_POST['e_sol_tec_usu_id_i_i'],
 					'sol_estado_i'					=> $_POST['e_sol_estado_e'],
-					'sol_equipo_v'					=> $_POST['e_detalle_equipo_C'],
+					'sol_equipo_v'					=> $_equipoComputo,
 					'sol_equipo_observacion_t'		=> $detalle_obse_equipo_C,
-					'sol_soft_especial_v'			=> $_POST['e_detalle_soft_espe'],
-					'sol_configura_imp_v'			=> $_POST['e_detalle_impr'],
+					'sol_soft_especial_v'			=> $_softwareEspecial,
+					'sol_configura_imp_v'			=> $_impresora,
 					'sol_observacion_software_t'	=> $detalle_obse_soft_espe,
-					'sol_telefonia_fija_v' 			=> $_POST['e_detalle_telefonia'], 
-					'sol_celular_v'  				=> $_POST['e_detalle_celular_'],
-					'sol_vpn_v'						=> $_POST['e_detalle_vpn'],
+					'sol_telefonia_fija_v' 			=> $_telefoniaFija, 
+					'sol_celular_v'  				=> $_telefoniaCelular,
+					'sol_vpn_v'						=> $_vpn,
 					'sol_observacion_vpn_t'			=> $detalle_obse_vpn,
 					'sol_otro_req_v'				=> $_POST['e_detalle_Otro'],
 					'sol_observacion_otro_r_t'		=> $detalle_obse_Otro,
@@ -723,7 +777,11 @@
 					'inc_req_det_sap_cali_i'			=> $_che_sap_cal,
 					'inc_ruta_evi_p_v'					=> $ruta,
 					'inc_ruta_evi_s_v'					=> $ruta_2,
-					'sol_id_i'							=> $_POST['sol_id_i_e']
+					'sol_id_i'							=> $_POST['sol_id_i_e'],
+					'sol_tipo_sol_id_i'					=> $_POST['e_sol_tipo_sol_id_tipo'],
+					'sol_obser_impresora_v'				=> $_observacionImpresora,
+					'sol_obser_telefonia_fija_v'		=> $_observacionTelefoniaFija,
+					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
@@ -737,13 +795,20 @@
 					if(isset($_POST['e_observaciones_usuarios_finales']) && $_POST['e_observaciones_usuarios_finales'] != ''){
 
 						/*---JGM--- AQUI ES DONDE VAS A PONER EL PROCESO DE SUBIDA DE IMAGEN*/
-
+						$ruta_3 = null;
+						
+						if(isset($_FILES['txtFileEvidenciaTec']['tmp_name']) && !empty($_FILES['txtFileEvidenciaTec']['tmp_name']) ){
+							/*---JGM--- el metodo putImage recibe, el tmpName que vienen en el Type File, el Type tyambien del File, la ruta real y la ruta que guardamos en la BD*/
+							/*---JGM--- Retorna la RUTA que vamos a guardar en la Base de datos*/
+			                $ruta_3 = self::putImage($_FILES['txtFileEvidenciaTec']['tmp_name'], $_FILES["txtFileEvidenciaTec"]["type"] , __DIR__."/../views/inicidencias_img/", 'views/inicidencias_img/');
+			            }
 						/*---JGM---HASTA AQUI*/
 						$datos = array (
 							'obs_desc_v'       => $_POST['e_observaciones_usuarios_finales'], //observacion
 							'obs_usu_id_i'     => $_SESSION['codigo'],//quien hace la observacion
 							'obs_sol_id_i'     => $_POST['sol_id_i_e'], //codigo solicitud
-							'obs_fecha_d'      => date('Y-m-d H:i:s') //fecha Observacion
+							'obs_fecha_d'      => date('Y-m-d H:i:s'), //fecha Observacion
+							'obs_ruta_evidencia' => $ruta_3
 						);
 						$observacion = SolicitudesModelo::insertObservaciones($datos);	
 					}

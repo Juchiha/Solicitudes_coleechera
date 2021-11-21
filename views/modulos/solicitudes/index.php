@@ -823,7 +823,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="e_sol_tipo_sol_id_tipo">Tipo de Solicitud</label>
-										<select class="form-control cliente"  id="e_sol_tipo_sol_id_tipo" name="e_sol_tipo_sol_id_tipo" placeholder="Ciudad">
+										<select readonly class="form-control cliente" id="e_sol_tipo_sol_id_tipo" name="e_sol_tipo_sol_id_tipo" placeholder="Ciudad">
 											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
@@ -848,56 +848,56 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="e_che_usuario_R" 	name="e_che_usuario_R"> Usuario de red
+											<input type="checkbox"  value="1" id="e_che_usuario_R" 	name="e_che_usuario_R"> Usuario de red
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="2" id="e_che_correo" 	name="e_che_correo"> Correo
+											<input type="checkbox"  value="2" id="e_che_correo" 	name="e_che_correo"> Correo
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="3" id="e_che_usuario_S" 	name="e_che_usuario_S"> SAP
+											<input type="checkbox"  value="3" id="e_che_usuario_S" 	name="e_che_usuario_S"> SAP
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="4" id="e_che_Biman" name="e_che_Biman"> Biman
+											<input type="checkbox"  value="4" id="e_che_Biman" name="e_che_Biman"> Biman
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="e_che_acceso_inter" 	name="e_che_acceso_inter"> Acceso a Internet
+											<input type="checkbox"  value="1" id="e_che_acceso_inter" 	name="e_che_acceso_inter"> Acceso a Internet
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="e_che_acceso_consignates" 	name="e_che_acceso_consignates"> Consignantes
+											<input type="checkbox"  value="1" id="e_che_acceso_consignates" 	name="e_che_acceso_consignates"> Consignantes
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="e_che_acceso_gil" 	name="e_che_acceso_gil"> GIL
+											<input type="checkbox"  value="1" id="e_che_acceso_gil" 	name="e_che_acceso_gil"> GIL
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input type="checkbox" value="1" id="e_che_acceso_query" 	name="e_che_acceso_query"> Query
+											<input type="checkbox"  value="1" id="e_che_acceso_query" 	name="e_che_acceso_query"> Query
 										</label>
 									</div>
 								</div>
@@ -905,42 +905,42 @@
 								<div class="col-md-3 e-incidente" style="display:none;">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input class="requeCheck" type="checkbox" value="1" id="e-che_equipo_computo" name="e-che_equipo_computo"> Equipo de Cómputo
+											<input type="checkbox" value="1" id="e-che_equipo_computo" name="e-che_equipo_computo"> Equipo de Cómputo
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3 e-incidente" style="display:none;">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input class="requeCheck" type="checkbox" value="1" id="e-che_software_especial" name="e-che_software_especial"> Software especial
+											<input type="checkbox" value="1" id="e-che_software_especial" name="e-che_software_especial"> Software especial
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3 e-incidente" style="display:none;">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input class="requeCheck" type="checkbox" value="1" id="e-che_vpn" name="e-che_vpn"> VPN
+											<input type="checkbox" value="1" id="e-che_vpn" name="e-che_vpn"> VPN
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3 e-incidente" style="display:none;">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input class="requeCheck" type="checkbox" value="1" id="e-che_telefonia_fija" name="e-che_telefonia_fija"> Telefonía Fija
+											<input type="checkbox" value="1" id="e-che_telefonia_fija" name="e-che_telefonia_fija"> Telefonía Fija
 										</label>
 									</div>
 								</div>
 								<div class="col-md-3 e-incidente" style="display:none;">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input class="requeCheck" type="checkbox" value="1" id="e-che_telefonia_celular" name="e-che_telefonia_celular"> Telefonía Celular
+											<input type="checkbox" value="1" id="e-che_telefonia_celular" name="e-che_telefonia_celular"> Telefonía Celular
 										</label>
 									</div>
 								</div>
 								<div class="col-md-5 e-incidente" style="display:none;">
 									<div class="form-group">
 										<label for="serv_id_i">
-											<input class="requeCheck" type="checkbox" value="1" id="e-che_perifericos" name="e-che_perifericos"> Periféricos (Impresoras, scanner, etc.)
+											<input type="checkbox" value="1" id="e-che_perifericos" name="e-che_perifericos"> Periféricos (Impresoras, scanner, etc.)
 										</label>
 									</div>
 								</div>
@@ -1366,6 +1366,14 @@
 									</div>
         						</div>
         					</div>
+        					<div class="row">
+        						<div class="col">
+        							<div class="form-group">
+										<label for="txtFileEvidenciaTec">Evidencia Adjunta</label>
+										<input type="file" class="form-control NuevaFoto" id="txtFileEvidenciaTec" name="txtFileEvidenciaTec">
+									</div>
+        						</div>
+        					</div>
         				</div>
         			</div>
         			<?php } ?>
@@ -1381,10 +1389,9 @@
         							<table class="table table-bordered table-hover">
 										<thead>
 											<tr>
-												<td>#</td>
-												<td>Observación</td>
-												<td>Realizada Por</td>
-												<td>Fecha</td>
+												<th>Observación</th>		
+												<th>Fecha</th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody id="cuerpoObservaciones">
@@ -1586,21 +1593,63 @@
 		                $("#e_cli_area_i").val(data.cli_area_i);
 		                $("#e_cli_planta_id_i").val(data.cli_planta_id_i);
 		                $("#e_sol_cli_correo_v").val(data.cli_correo_v);
+		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i).change();
 
 		                /*Parte de otros Requerimientos*/
-		                $("#e_detalle_equipo_C").val(data.sol_equipo_v).change();
-		                $("#e_detalle_obse_equipo_C").val(data.sol_equipo_observacion_t);
-		                $("#e_detalle_soft_espe").val(data.sol_soft_especial_v).change();
-		                $("#e_detalle_obse_soft_espe").val(data.sol_observacion_software_t);
+		                if(data.sol_equipo_v == '1'){
+		                	$("#e-che_equipo_computo").attr('checked', true);
+		                	$("#e-che_equipo_computo").trigger("change");
+		                	$("#e-detalle_obse_EquipoComputo_Check").val(data.sol_equipo_observacion_t);
+		                }else{
+		                	$("#e_detalle_equipo_C").val(data.sol_equipo_v).change();	
+		                	$("#e_detalle_obse_equipo_C").val(data.sol_equipo_observacion_t);
+		                }
+		                
+		                if(data.sol_soft_especial_v == '1'){
+		                	$("#e-che_software_especial").attr('checked', true);
+		                	$("#e-che_software_especial").trigger("change");
+		                	$("#e-detalle_obse_soft_especial_che").val(data.sol_observacion_software_t);
+		                }else{
+		                	$("#e_detalle_soft_espe").val(data.sol_soft_especial_v).change();
+		                	$("#e_detalle_obse_soft_espe").val(data.sol_observacion_software_t);
+		                }
+		                	
+		                if(data.sol_vpn_v == "1"){
+		                	$("#e-che_vpn").attr('checked', true);
+		                	$("#e-che_vpn").trigger("change");
+		                	$("#e-detalle_obse_Vpn_che").val(data.sol_observacion_vpn_t);
+		                }else{
+		                	$("#e_detalle_vpn").val(data.sol_vpn_v).change();
+		                	$("#e_detalle_obse_vpn").val(data.sol_observacion_vpn_t);
+		                }
 
-		                $("#e_detalle_vpn").val(data.sol_vpn_v).change();
-		                $("#e_detalle_obse_vpn").val(data.sol_observacion_vpn_t);
+						if(data.sol_telefonia_fija_v == '1'){
+		                	$("#e-che_telefonia_fija").attr('checked', true);
+		                	$("#e-che_telefonia_fija").trigger("change");
+		                	$("#e-detalle_obse_Telefonia_fija_che").val(data.sol_obser_telefonia_fija_v);
+		                }else{
+		                	$("#e_detalle_telefonia").val(data.sol_telefonia_fija_v).change();
+		                }
+
+		                if(data.sol_celular_v == '1'){
+		                	$("#e-che_telefonia_celular").attr('checked', true);
+		                	$("#e-che_telefonia_celular").trigger("change");
+		                	$("#e-detalle_obse_Telefonia_celualr_che").val(data.sol_obser_telefonia_cel_v);
+		                }else{
+		                	$("#e_detalle_celular_").val(data.sol_celular_v).change();
+		                }
+
+		                if(data.sol_configura_imp_v == '1'){
+		                	$("#e-che_perifericos").attr('checked', true);
+		                	$("#e-che_perifericos").trigger("change");
+		                	$("#e-detalle_obse_Perifericos_che").val(data.sol_obser_impresora_v);
+		                }else{
+	                	 	$("#e_detalle_impr").val(data.sol_configura_imp_v).change();
+		                }
+
+
 		                $("#e_detalle_Otro").val(data.sol_otro_req_v).change();
 		                $("#e_detalle_obse_Otro").val(data.sol_observacion_otro_r_t);
-
-		                $("#e_detalle_telefonia").val(data.sol_telefonia_fija_v).change();
-		                $("#e_detalle_celular_").val(data.sol_celular_v).change();
-		                $("#e_detalle_impr").val(data.sol_configura_imp_v).change();
 
 		                /*Prioriodad y asigancion*/
 	                 	$("#e_sol_prio_id_i").val(data.sol_prioridad_i).change();
@@ -1621,16 +1670,12 @@
 
 		                /*Desde aqui empieza la muestra y desmuestra de DIv de edicion*/
 	               	 	if(data.inc_req_usuario_red_i != 0){
-		                	if(data.sol_tipo_sol_id_i != '1'){
-		                		console.log("Entramos");
-								$("#e_DetalleUsuarioRed_2").show();
-								$("#e-detalle_obse_usuarioRed2").val(data.inc_req_obs_usu_red_observ_v);
-							}else{
-								$("#e_DetalleUsuarioRed").show();
-			                	$("#e_detalle_usu_red").val(data.inc_req_det_usu_red_i);
-			                	$("#e_detalle_obse_usu_re").val(data.inc_req_obs_usu_red_observ_v);
-							}
-							$("#e_che_usuario_R").attr('checked', true);
+	               	 		$("#e_che_usuario_R").attr('checked', true);
+	               	 		$("#e_che_usuario_R").trigger("change");
+		                	
+							$("#e-detalle_obse_usuarioRed2").val(data.inc_req_obs_usu_red_observ_v);
+		                	$("#e_detalle_usu_red").val(data.inc_req_det_usu_red_i);
+		                	$("#e_detalle_obse_usu_re").val(data.inc_req_obs_usu_red_observ_v);	
 		                }else{
 		                	$("#e_che_usuario_R").attr('checked', false);
 		                	$("#e_DetalleUsuarioRed").hide();
@@ -1641,29 +1686,25 @@
 		                }
 		                
 		                if(data.inc_req_correo_i != 0){
-		                	if(data.sol_tipo_sol_id_i != '1'){
-								$("#e-DetalleCorreo_2").show();
-								$("#e_detalle_correo").val(data.inc_req_det_correo_obse_v);
-							}else{
-								$("#e_DetalleUsuarioRed").show();
-								$("#e_DetalleCorreo").show();
-		                		$("#e_detalle_correo").val(data.inc_req_det_correo_i);
-		                		$("#e_detalle_obse_correo").val(data.inc_req_det_correo_obse_v);
-							}
 		                	$("#e_che_correo").attr('checked', true);
+		                	$("#e_che_correo").trigger("change");
+							$("#e-detalle_obse_Correo_2").val(data.inc_req_det_correo_obse_v);
+	                		$("#e_detalle_correo").val(data.inc_req_det_correo_i);
+	                		$("#e_detalle_obse_correo").val(data.inc_req_det_correo_obse_v);
 		                }else{
 		                	$("#e_che_correo").attr('checked', false);
 		                	$("#e_DetalleCorreo").hide();
 		                	$("#e_detalle_correo").val(0);
 		                	$("#e_detalle_obse_correo").val('');
 		                	$("#e-DetalleCorreo_2").hide();
-							$("#e_detalle_correo").val('');
+							$("#e-detalle_obse_Correo_2").val('');
 		                }
 
 		                if(data.inc_req_biman_i != 0){
+		                	$("#e_che_Biman").attr('checked', true);
+	               	 		$("#e_che_Biman").trigger("change");
 							$("#e_DetalleBiman").show();
 	                		$("#e_detalle_obse_Biman").val(data.inc_req_det_obser_biman_v);
-		                	$("#e_che_Biman").attr('checked', true);
 		                }else{
 		                	$("#e_che_Biman").attr('checked', false);
 		                	$("#e_DetalleBiman").hide();
@@ -1671,7 +1712,10 @@
 		                }
 
 		                if(data.inc_req_consig_i != 0){
+
 		                	$("#e_che_acceso_consignates").attr('checked', true);
+	               	 		$("#e_che_acceso_consignates").trigger("change");
+
 		                	$("#e_DetalleConsignates").show();
 		                	$("#e_detalle_obse_Consignates").val(data.inc_req_det_obser_consign_v);
 		                }else{
@@ -1682,6 +1726,8 @@
 
 		                if(data.inc_req_gil_i != 0){
 		                	$("#e_che_acceso_gil").attr('checked', true);
+	               	 		$("#e_che_acceso_gil").trigger("change");
+
 		                	$("#e_DetalleGil").show();
 		                	$("#e_detalle_obse_Gil").val(data.inc_req_det_obser_gil_v);
 		                }else{
@@ -1692,6 +1738,8 @@
 
 		                if(data.inc_req_query_i != 0){
 		                	$("#e_che_acceso_query").attr('checked', true);
+	               	 		$("#e_che_acceso_query").trigger("change");
+
 		                	$("#e_DetalleQuery").show();
 		                	$("#e_detalle_obse_Query").val(data.inc_req_det_obser_query_v);
 		                }else{
@@ -1702,6 +1750,7 @@
 
 		                if(data.inc_req_acceso_in_i != 0){
 		                	$("#e_che_acceso_inter").attr('checked', true);
+	               	 		$("#e_che_acceso_inter").trigger("change");
 		                	$("#E_DetalleAccesoInternet").show();
 		                	$("#e_detalle_obse_accesoIn").val(data.inc_req_det_obser_internet_acc_v);
 		                }else{
@@ -1712,9 +1761,12 @@
 
 		                if(data.inc_req_usuario_sap_i != 0){
 		                	$("#e_che_usuario_S").attr('checked', true);
-		                	$("#e_DetalleSAP").show();
+	               	 		$("#e_che_usuario_S").trigger("change");
+		                	
+		                	
 		                	$("#e_detalle_Sap").val(data.inc_req_det_sap)
 		                	$("#e_detalle_obse_sap").val(data.inc_req_det_sap_obser_v);
+		                	$("#e-detalle_obse_sap_2").val(data.inc_req_det_sap_obser_v);
 		                	$("#e_detalle_Sap_acc").val(data.inc_req_det_sap_accesos_i);
 
 		                	if(data.inc_req_det_sap_produc_i == 1){
@@ -1746,7 +1798,7 @@
 		                Solicitudes.getObservaciones(data.sol_id_i);    
 		                $("#sol_id_i_e").val(data.sol_id_i);
 		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i);
-		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i).change();
+		               
 	            	}
 	            },
 	            //si ha ocurrido un error
@@ -1976,10 +2028,14 @@
 	            		$.each(data, function(item, i){
 	            			console.log(i);
 		               		tabla += '<tr>';
-		               		tabla += '<td>'+(Number(item)+1)+'</td>';
 		               		tabla += '<td>'+i.obs_desc_v+'</td>';
-		               		tabla += '<td>'+i.usu_nombre_v+' '+ i.usu_apellido_v +'</td>';
 		               		tabla += '<td>'+i.obs_fecha_d+'</td>';
+		               		if(i.obs_ruta_evidencia != null){
+		               			tabla += '<td><a href="'+i.obs_ruta_evidencia+'" target="_blank">Evid.</a></td>';
+		               		}else{
+		               			tabla += '<td></td>';
+		               		}
+		               		
 		               		tabla += '</tr>';
 		                });	
 		                $("#cuerpoObservaciones").html(tabla);
@@ -2451,25 +2507,45 @@
 
 		$("#e_che_usuario_R").on('change', function(){
 			if($(this).is(':checked')){
-				$("#e_DetalleUsuarioRed").show();
+				if($("#e_sol_tipo_sol_id_tipo").val() != '1'){
+					$("#e_DetalleUsuarioRed_2").show();
+				}else{
+					$("#e_DetalleUsuarioRed").show();
+				}
 			}else{
-				$("#e_DetalleUsuarioRed").hide();
+				if($("#e_sol_tipo_sol_id_tipo").val() != '1'){
+					$("#e_DetalleUsuarioRed_2").hide();
+				}else{
+					$("#e_DetalleUsuarioRed").hide();
+				}
 			}
 		});
 
 		$("#e_che_correo").on('change', function(){
 			if($(this).is(':checked')){
-				$("#e_DetalleCorreo").show();
+				if($("#e_sol_tipo_sol_id_tipo").val() != '1'){
+					$("#e-DetalleCorreo_2").show();
+				}else{
+					$("#e_DetalleCorreo").show();
+				}
+				
 			}else{
 				$("#e_DetalleCorreo").hide();
+				$("#e-DetalleCorreo_2").hide();
 			}
 		});
 
 		$("#e_che_usuario_S").on('change', function(){
 			if($(this).is(':checked')){
-				$("#e_DetalleSAP").show();
+				if($("#e_sol_tipo_sol_id_tipo").val() != '1'){
+					$("#e-DetalleSap_2").show();
+				}else{
+					$("#e_DetalleSAP").show();
+				}
+				
 			}else{
 				$("#e_DetalleSAP").hide();
+				$("#e-DetalleSap_2").hide();
 			}
 		});
 

@@ -206,6 +206,10 @@ class SolicitudesModelo extends ModeloDAO
 					,inc_req_det_sap_cali_i = :inc_req_det_sap_cali_i
 					,inc_ruta_evi_p_v = :inc_ruta_evi_p_v
 					,inc_ruta_evi_s_v = :inc_ruta_evi_s_v
+					,sol_tipo_sol_id_i = :sol_tipo_sol_id_i
+					,sol_obser_impresora_v = :sol_obser_impresora_v
+					,sol_obser_telefonia_cel_v = :sol_obser_telefonia_cel_v
+					,sol_obser_telefonia_fija_v = :sol_obser_telefonia_fija_v
 
 				WHERE 
 					sol_id_i = :sol_id_i");
@@ -253,6 +257,10 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_id_i", $datos['sol_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_prioridad_i", $datos['sol_prioridad_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_estado_i", $datos['sol_estado_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_tipo_sol_id_i", $datos['sol_tipo_sol_id_i'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_obser_impresora_v", $datos['sol_obser_impresora_v'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_obser_telefonia_fija_v", $datos['sol_obser_telefonia_fija_v'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_obser_telefonia_cel_v", $datos['sol_obser_telefonia_cel_v'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
@@ -290,17 +298,19 @@ class SolicitudesModelo extends ModeloDAO
 					obs_desc_v,
 				 	obs_usu_id_i,
 				 	obs_sol_id_i,
-				 	obs_fecha_d)
+				 	obs_fecha_d,
+				 	obs_ruta_evidencia)
 				   VALUES(
 				   :obs_desc_v,
 				   :obs_usu_id_i,
 				   :obs_sol_id_i,
-				   :obs_fecha_d)");
+				   :obs_fecha_d,
+					:obs_ruta_evidencia)");
 			$stmt->bindParam(":obs_desc_v", $datos['obs_desc_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":obs_usu_id_i", $datos['obs_usu_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":obs_sol_id_i", $datos['obs_sol_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":obs_fecha_d", $datos['obs_fecha_d'], PDO::PARAM_STR);
-
+			$stmt->bindParam(":obs_ruta_evidencia", $datos['obs_ruta_evidencia'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';
