@@ -48,7 +48,7 @@
 						echo json_encode(array('code' => -1, "Message" => 'No se pudo crear el cliente'));
 					}
 				}else{
-					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_documento_v', $_POST['cli_identificacion_v']);
+					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_correo_v', $_POST['sol_cli_correo_v']);
 					$id_Cliente = $resp['cli_id_i'];
 				}
 
@@ -396,12 +396,13 @@
 					$respuestaX = ModeloAuth:: actualizarUsuarioPostLogin('sc_solicitudes_coolechera', 'sol_orden_trabajo_v', date('dmY').$orden['total'], 'sol_id_i', $respuesta);
 
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
+
 					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total']);
-					print_r($respuestaCorreoClien);
-					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_'] == 4){
+					/*print_r($respuestaCorreoClien);*/
+					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
 						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], date('dmY').$orden['total']);
-						print_r($respuestaEquipo);
+						/*print_r($respuestaEquipo);*/
 					}
 
 					if(isset($_POST['observaciones_usuarios_finales']) && $_POST['observaciones_usuarios_finales'] != ''){
@@ -913,6 +914,7 @@
 </html>';
 
 			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, null );
+			/*print_r($respueta);*/
 			if($respueta == 'ok'){
 				return true;
 			}else{
@@ -949,6 +951,7 @@
   	</body>
 </html>';
 				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, null );
+				/*print_r($respueta);*/
 				if($respueta == 'ok'){
 					return true;
 				}else{
