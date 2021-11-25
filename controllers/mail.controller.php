@@ -136,8 +136,8 @@ class ctrMail{
 		$phpmailer = new PHPMailer(); 
 		$phpmailer->CharSet = 'UTF-8';
 		// ---------- datos de la cuenta de Gmail -------------------------------
-		$phpmailer->Username = 'Helpdesk@coolechera.com';
-		$phpmailer->Password = 'Cambio2021'; 
+		$phpmailer->Username = 'sos@coolechera.com';
+		$phpmailer->Password = '47Y@FuH55uti'; 
 		//-----------------------------------------------------------------------
 		//$phpmailer->SMTPDebug = 1;
 		$phpmailer->SMTPSecure = '';

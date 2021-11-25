@@ -27,8 +27,12 @@
 			echo json_encode(ControladorClientes::getData('sc_clientes', 'cli_id_i', $idClientes));
 		}
 
-		public function getDatosByCc($cc){
+		public function getDatosByCorreo($cc){
 			echo json_encode(ControladorClientes::getData('sc_clientes', 'cli_correo_v', $cc));
+		}
+
+		public function getDatosByCc($cc){
+			echo json_encode(ControladorClientes::getData('sc_clientes', 'cli_documento_v', $cc));
 		}
 
 		public function validarUsuarioSap($sap){
@@ -61,6 +65,11 @@
 	if(isset($_POST['cedulaCliente']) && $_POST['cedulaCliente'] != ''){
 		$ajax = new AjaxClientes();
 		$ajax->getDatosByCc($_POST['cedulaCliente']);
+	}
+
+	if(isset($_POST['correoCliente']) && $_POST['correoCliente'] != ''){
+		$ajax = new AjaxClientes();
+		$ajax->getDatosByCorreo($_POST['correoCliente']);
 	}
 
 	if(isset($_GET['allDatos'])){

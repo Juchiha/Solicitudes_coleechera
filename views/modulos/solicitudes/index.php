@@ -77,20 +77,7 @@
 				        </div>
         				<div class="card-body">
 							<div class="row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="sol_tip_sol_id_i">Para quién es el requerimiento</label>
-										<select class="form-control" id="sol_tip_sol_id_i" name="sol_tip_sol_id_i" placeholder="Para quién es el requerimiento">
-											<option value="0">Seleccione</option>
-											<?php 
-												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
-												foreach($bancos as $key => $value){
-													echo '<option value="'.$value['tip_sol_id'].'">'.$value['tip_sol_descripcion'].'</option>';
-												}
-											?>
-										</select>
-									</div>
-								</div>
+								
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="sol_cli_correo_v">Correo Electronico</label>
@@ -100,7 +87,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="cli_identificacion_v">Identificación</label>
-										<input type="text" disabled name="cli_identificacion_v" id="cli_identificacion_v" class="form-control cliente" placeholder="Identificación">
+										<input type="text" name="cli_identificacion_v" id="cli_identificacion_v" class="form-control cliente" placeholder="Identificación">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -161,6 +148,20 @@
 												$bancos = ControladorUtilidades::getData('sc_oficinas', null, null);
 												foreach($bancos as $key => $value){
 													echo '<option value="'.$value['ofi_id_i'].'">'.$value['ofi_direccion_v'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="sol_tip_sol_id_i">Tipo Empleado</label>
+										<select class="form-control cliente" id="sol_tip_sol_id_i" name="sol_tip_sol_id_i" placeholder="Para quién es el requerimiento">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['tip_sol_id'].'">'.$value['tip_sol_descripcion'].'</option>';
 												}
 											?>
 										</select>
@@ -1582,7 +1583,7 @@
 	            success: function(data){
 	            	if(data != false){
 	            
-		                $("#e_sol_tip_sol_id_i").val(2);
+		                $("#e_sol_tip_sol_id_i").val(data.cli_tip_sol_id_i).change();
 		                $("#e_cli_identificacion_v").val(data.cli_documento_v);
 		                $("#e_cli_nombres").val(data.cli_nombre_v);
 		                $("#e_cli_fecha_ingreso_d").val(data.cli_fecha_ingreso_d);
@@ -1594,7 +1595,7 @@
 		                $("#e_cli_planta_id_i").val(data.cli_planta_id_i);
 		                $("#e_sol_cli_correo_v").val(data.cli_correo_v);
 		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i).change();
-
+		              
 		                /*Parte de otros Requerimientos*/
 		                if(data.sol_equipo_v == '1'){
 		                	$("#e-che_equipo_computo").attr('checked', true);
@@ -2436,16 +2437,66 @@
 			}
 		});
 
-		$("#sol_tip_sol_id_i").on('change', function(){
-			if($(this).val() == '1' || $(this).val() == '3'){
-				$(".cliente").attr('disabled', false);
-			}else{
-				$(".cliente").attr('disabled', true);
-			}
-		});
-
 		/*Para capturar la cedula y validarla*/
 		$("#sol_cli_correo_v").on('change', function(){
+			var cedula = $(this).val();
+            var datos = new FormData();
+            datos.append('correoCliente', cedula);
+            $.ajax({
+                url   : 'ajax/clientes.ajax.php',
+                method: 'post',
+                data  : datos,
+                cache : false,
+                contentType : false,
+                processData : false,
+                dataType    : 'json',
+                success     : function(respuesta){
+                    if(respuesta != false){
+                       /*El cliente existe*/ 
+                      	$("#cli_nombres").val(respuesta.cli_nombre_v);
+                      	$("#cli_fecha_ingreso_d").val(respuesta.cli_fecha_ingreso_d);                 
+                      	$("#cli_numero_empleado_v").val(respuesta.cli_numero_empleado_v);
+                       	$("#cli_usuario_red_v").val(respuesta.cli_usuario_red_v);
+                       	$("#cli_usuario_sap_v").val(respuesta.cli_usuario_sap_v);
+                       	$("#cli_cargo_v").val(respuesta.cli_cargo_v);
+                       	$("#cli_area_i").val(respuesta.cli_area_i);
+                       	$("#cli_area_i").val(respuesta.cli_area_i).change();
+                       	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i);
+                       	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
+                       	$("#cli_identificacion_v").val(respuesta.cli_documento_v);
+                       	$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
+                       	$(".cliente").attr('disabled', true);
+                    }else{
+                    	/*Cliente no registrado*/
+                    	console.log("cliente no registrado");
+                    	alertify.error("Colaborador no registrado, por favor Ingrese sus datos")
+						$(".cliente").attr('disabled', false);
+                    }
+                },
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+            });
+		});
+
+
+		/*Para capturar la cedula y validarla*/
+		$("#cli_identificacion_v").on('change', function(){
 			var cedula = $(this).val();
             var datos = new FormData();
             datos.append('cedulaCliente', cedula);
@@ -2470,17 +2521,14 @@
                        	$("#cli_area_i").val(respuesta.cli_area_i).change();
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i);
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
-                       	$("#cli_identificacion_v").val(respuesta.cli_documento_v);
-                       	if(respuesta.cli_tip_sol_id_i == 1){
-                       	 	$("#sol_tip_sol_id_i").val(2).change();
-                       	}else{
-                       		$("#sol_tip_sol_id_i").val(4).change();
-                       	}
+                       	$("#sol_cli_correo_v").val(respuesta.cli_correo_v);
+                   		$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
+                   		$(".cliente").attr('disabled', true);
                     }else{
                     	/*Cliente no registrado*/
                     	console.log("cliente no registrado");
-                       	$("#sol_tip_sol_id_i").val(1).change();
-                       	
+                       	alertify.error("Colaborador no registrado, por favor Ingrese sus datos")
+						$(".cliente").attr('disabled', false);
                     }
                 },
 	            beforeSend:function(){
