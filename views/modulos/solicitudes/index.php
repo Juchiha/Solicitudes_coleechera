@@ -155,8 +155,8 @@
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label for="sol_tip_sol_id_i">Tipo Empleado</label>
-										<select class="form-control cliente" id="sol_tip_sol_id_i" name="sol_tip_sol_id_i" placeholder="Para quién es el requerimiento">
+										<label for="sol_tip_sol_id_i">Tipo Colaborador</label>
+										<select class="form-control cliente" id="sol_tip_sol_id_i" name="sol_tip_sol_id_i" placeholder="Tipo Colaborador">
 											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
@@ -731,20 +731,7 @@
 				        </div>
         				<div class="card-body">
 							<div class="row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label for="e_sol_tip_sol_id_i">Para quién es el requerimiento</label>
-										<select class="form-control" disabled  id="e_sol_tip_sol_id_i" name="e_sol_tip_sol_id_i" placeholder="Para quién es el requerimiento">
-											<option value="0">Seleccione</option>
-											<?php 
-												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
-												foreach($bancos as $key => $value){
-													echo '<option value="'.$value['tip_sol_id'].'">'.$value['tip_sol_descripcion'].'</option>';
-												}
-											?>
-										</select>
-									</div>
-								</div>
+								
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="e_sol_cli_correo_v">Correo Electronico</label>
@@ -820,7 +807,20 @@
 										</select>
 									</div>
 								</div>
-								
+								<div class="col-md-4">
+									<div class="form-group">
+										<label for="e_sol_tip_sol_id_i">Tipo Colaborador</label>
+										<select class="form-control" disabled  id="e_sol_tip_sol_id_i" name="e_sol_tip_sol_id_i" placeholder="Tipo Colaborador">
+											<option value="0">Seleccione</option>
+											<?php 
+												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
+												foreach($bancos as $key => $value){
+													echo '<option value="'.$value['tip_sol_id'].'">'.$value['tip_sol_descripcion'].'</option>';
+												}
+											?>
+										</select>
+									</div>
+								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="e_sol_tipo_sol_id_tipo">Tipo de Solicitud</label>
@@ -1595,7 +1595,7 @@
 		                $("#e_cli_planta_id_i").val(data.cli_planta_id_i);
 		                $("#e_sol_cli_correo_v").val(data.cli_correo_v);
 		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i).change();
-		              
+
 		                /*Parte de otros Requerimientos*/
 		                if(data.sol_equipo_v == '1'){
 		                	$("#e-che_equipo_computo").attr('checked', true);
