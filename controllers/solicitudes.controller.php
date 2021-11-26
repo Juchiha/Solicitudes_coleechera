@@ -4,7 +4,7 @@
 		
 			
 		public static function insertDatos(){
-			if(isset($_POST['sol_tip_sol_id_i'])){ //les coloco i al final para saber que es insercion
+			if(isset($_POST['insertarR'])){ //les coloco i al final para saber que es insercion
 				$tecnico = 0;
 				$estado = 3;
 				$ruta = '';
@@ -432,7 +432,7 @@
 		*}
 		**/	
 		public static function UpdateDatos(){
-			if(isset($_POST['sol_id_i_e'])){ 
+			if(isset($_POST['editarR'])){ 
 				$tecnico = 0;
 				if(isset($_POST['sol_tec_usu_id_i_e'])){
 					$tecnico = $_POST['sol_tec_usu_id_i_e'] ;
@@ -874,8 +874,8 @@
 		*}
 		**/	
 		public static function deleteDatos(){
-		    if(isset($_POST['usu_id_i_d'])){ 
-			    $datos = $_POST["usu_id_i_d"];
+		    if(isset($_POST['eliminarR'])){ 
+			    $datos = $_POST["eliminarR"];
 			    $respuesta = SolicitudesModelo::deleteDatos($datos);
 				if($respuesta == "ok"){
 					return json_encode(array('code' => 1, 'message' => 'Solicitud Eliminada con exito'));
