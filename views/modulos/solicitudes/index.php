@@ -156,7 +156,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label for="sol_tip_sol_id_i">Tipo Colaborador</label>
-										<select class="form-control cliente" id="sol_tip_sol_id_i" name="sol_tip_sol_id_i" placeholder="Tipo Colaborador">
+										<select class="form-control cliente" id="sol_tip_sol_id_i" name="sol_tip_sol_id_i" readonly placeholder="Tipo Colaborador">
 											<option value="0">Seleccione</option>
 											<?php 
 												$bancos = ControladorUtilidades::getData('sc_tipo_solicitante', null, null);
@@ -2527,6 +2527,7 @@
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
                        	$("#sol_cli_correo_v").val(respuesta.cli_correo_v);
                    		$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
+
                    		$(".cliente").attr('disabled', true);
                     }else{
                     	/*Cliente no registrado*/
