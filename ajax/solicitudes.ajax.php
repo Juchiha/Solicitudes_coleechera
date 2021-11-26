@@ -78,7 +78,7 @@ echo '{
 	}
 
 
-	if(isset($_POST['sol_tip_sol_id_i'])){
+	if(isset($_POST['insertarR'])){
 		$AjaxSolicitudes = new AjaxSolicitudes();
 		$AjaxSolicitudes->insertDatos();
 	}
@@ -88,12 +88,12 @@ echo '{
 		$AjaxSolicitudes->insertDatosAsignacion();
 	}
 
-	if(isset($_POST['sol_id_i_e'])){
+	if(isset($_POST['editarR'])){
 		$AjaxSolicitudes = new AjaxSolicitudes();
 		$AjaxSolicitudes->updateDatos();
 	}
 
-	if(isset($_POST['usu_id_i_d'])){
+	if(isset($_POST['eliminarR'])){
 		$AjaxSolicitudes = new AjaxSolicitudes();
 		$AjaxSolicitudes->deleteDatos();
 	}

@@ -704,6 +704,7 @@
         			<?php } ?>
 				</div>
 				<div class="modal-footer">
+					<input type="hidden" name="insertarR" value="1">
 					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
@@ -1405,6 +1406,7 @@
         			</div>
 				</div>
 				<div class="modal-footer">
+					<input type="hidden" name="editarR" value="1">
 					<input type="hidden" name="sol_id_i_e" id="sol_id_i_e">
 					<button type="button" class="btn btn-primary" id="e_enviarFormNuevo">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -1519,7 +1521,7 @@
 			$.ajax({
 	            url: 'ajax/solicitudes.ajax.php',
 	            type  : 'post',
-	            data: { usu_id_i_d : idUsuario},
+	            data: { eliminarR : idUsuario},
 	            dataType : 'json',
 	            beforeSend:function(){
 	                $.blockUI({ 
