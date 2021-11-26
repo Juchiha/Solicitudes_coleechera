@@ -2469,6 +2469,8 @@
                        	$("#cli_identificacion_v").val(respuesta.cli_documento_v);
                        	$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
                        	$(".cliente").attr('disabled', true);
+                       	$("#sol_tip_sol_id_i").attr('disabled', false);
+                       	$("#sol_tip_sol_id_i").attr('readonly', false);
                        	$("#nuevoColaborador").val(0);
                     }else{
                     	/*Cliente no registrado*/
@@ -2531,6 +2533,8 @@
                    		$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
                    		$("#nuevoColaborador").val(0);
                    		$(".cliente").attr('disabled', true);
+               			$("#sol_tip_sol_id_i").attr('disabled', false);
+                       	$("#sol_tip_sol_id_i").attr('readonly', false);
                     }else{
                     	/*Cliente no registrado*/
                     	console.log("cliente no registrado");
