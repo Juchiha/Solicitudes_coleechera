@@ -2470,7 +2470,7 @@
                        	$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
                        	$(".cliente").attr('disabled', true);
                        	$("#sol_tip_sol_id_i").attr('disabled', false);
-                       	$("#sol_tip_sol_id_i").attr('readonly', false);
+                       	$("#sol_tip_sol_id_i").attr('readonly', true);
                        	$("#nuevoColaborador").val(0);
                     }else{
                     	/*Cliente no registrado*/
@@ -2534,7 +2534,7 @@
                    		$("#nuevoColaborador").val(0);
                    		$(".cliente").attr('disabled', true);
                			$("#sol_tip_sol_id_i").attr('disabled', false);
-                       	$("#sol_tip_sol_id_i").attr('readonly', false);
+                       	$("#sol_tip_sol_id_i").attr('readonly', true);
                     }else{
                     	/*Cliente no registrado*/
                     	console.log("cliente no registrado");

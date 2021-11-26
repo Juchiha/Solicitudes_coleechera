@@ -40,7 +40,7 @@
 		}
 
 		public function getDatosAll(){
-			$clientes = ControladorClientes::getData('sc_clientes JOIN sc_areas_cool ON are_id_i = cli_area_i ', null, null);
+			$clientes = ControladorClientes::getData('sc_clientes LEFT JOIN sc_areas_cool ON are_id_i = cli_area_i ', null, null);
 			echo '{
   	"data" : [';
   			$i = 0;
