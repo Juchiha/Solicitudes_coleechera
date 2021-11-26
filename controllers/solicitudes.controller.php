@@ -23,7 +23,7 @@
 				}
 
 				$id_Cliente = 0;
-				if($_POST['sol_tip_sol_id_i'] == '1' || $_POST['sol_tip_sol_id_i'] == '3' ){
+				if($_POST['nuevoColaborador'] == '1' || $_POST['nuevoColaborador'] == '3' ){
 
 					/*Insertamos el cliente*/
 					$datosCliente = array(

@@ -705,6 +705,7 @@
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="insertarR" value="1">
+					<input type="hidden" name="nuevoColaborador" id="nuevoColaborador" value="0">
 					<button type="button" class="btn btn-primary" id="enviarFormNuevo">Guardar</button>
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 				</div>
@@ -2473,6 +2474,7 @@
                     	console.log("cliente no registrado");
                     	alertify.error("Colaborador no registrado, por favor Ingrese sus datos")
 						$(".cliente").attr('disabled', false);
+						$("#nuevoColaborador").val(1);
                     }
                 },
 	            beforeSend:function(){
@@ -2531,6 +2533,7 @@
                     	console.log("cliente no registrado");
                        	alertify.error("Colaborador no registrado, por favor Ingrese sus datos")
 						$(".cliente").attr('disabled', false);
+						$("#nuevoColaborador").val(1);
                     }
                 },
 	            beforeSend:function(){
