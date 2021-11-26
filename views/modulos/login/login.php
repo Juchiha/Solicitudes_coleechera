@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>Insidencias Coolechera</title>
-    <link rel="icon" href="views/assets/img/theme/logotipo.jpg" type="image/jpg">
+    <link rel="icon" href="views/assets/img/theme/logotipo.jpeg" type="image/jpg">
 
     <!-- Custom fonts for this template-->
     <link href="views/assets/StartBoots/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +23,7 @@
 
 </head>
 
-<body class="bg-gradient-danger">
+<body class="bg-gradient-primary">
 
     <div class="container">
 
