@@ -23,7 +23,7 @@
 				}
 
 				$id_Cliente = 0;
-				if($_POST['nuevoColaborador'] == '1' || $_POST['nuevoColaborador'] == '3' ){
+				if($_POST['nuevoColaborador'] == '1' ){
 
 					/*Insertamos el cliente*/
 					$datosCliente = array(
