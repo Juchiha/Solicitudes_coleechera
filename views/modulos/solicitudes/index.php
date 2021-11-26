@@ -2469,11 +2469,13 @@
                        	$("#cli_identificacion_v").val(respuesta.cli_documento_v);
                        	$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
                        	$(".cliente").attr('disabled', true);
+                       	$("#nuevoColaborador").val(0);
                     }else{
                     	/*Cliente no registrado*/
                     	console.log("cliente no registrado");
                     	alertify.error("Colaborador no registrado, por favor Ingrese sus datos")
 						$(".cliente").attr('disabled', false);
+						$(".cliente").attr('readonly', false);
 						$("#nuevoColaborador").val(1);
                     }
                 },
@@ -2527,13 +2529,14 @@
                        	$("#cli_planta_id_i").val(respuesta.cli_planta_id_i).change();
                        	$("#sol_cli_correo_v").val(respuesta.cli_correo_v);
                    		$("#sol_tip_sol_id_i").val(respuesta.cli_tip_sol_id_i).change();
-
+                   		$("#nuevoColaborador").val(0);
                    		$(".cliente").attr('disabled', true);
                     }else{
                     	/*Cliente no registrado*/
                     	console.log("cliente no registrado");
                        	alertify.error("Colaborador no registrado, por favor Ingrese sus datos")
 						$(".cliente").attr('disabled', false);
+						$(".cliente").attr('readonly', false);
 						$("#nuevoColaborador").val(1);
                     }
                 },
