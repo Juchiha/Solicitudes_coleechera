@@ -103,7 +103,10 @@
 		**/
 		static public function ctrEditarClientes(){
 			if(isset($_POST['cli_identificacion_v_e'])){	
-
+				$area = 0;
+				if(isset($_POST['cli_area_i_e'])){
+					$area = $_POST['cli_area_i_e'];
+				}
 				$datos = array(
 					'cli_documento_v'   	=> $_POST['cli_identificacion_v_e'],
 					'cli_nombre_v' 			=> $_POST['cli_nombres_e'],
@@ -112,7 +115,7 @@
 					'cli_usuario_red_v' 	=> $_POST['cli_usuario_red_v_e'],
 					'cli_usuario_sap_v' 	=> $_POST['cli_usuario_sap_v_e'],
 					'cli_cargo_v' 			=> $_POST['cli_cargo_v_e'],
-					'cli_area_i' 			=> $_POST['cli_area_i_e'],
+					'cli_area_i' 			=> $area,
 					'cli_ciu_id_i' 			=> 0,
 					'cli_planta_id_i' 		=> $_POST['cli_planta_id_i_e'],
 					'cli_direccion_v' 		=> 0,

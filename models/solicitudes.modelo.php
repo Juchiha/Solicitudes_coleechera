@@ -206,7 +206,6 @@ class SolicitudesModelo extends ModeloDAO
 					,inc_req_det_sap_cali_i = :inc_req_det_sap_cali_i
 					,inc_ruta_evi_p_v = :inc_ruta_evi_p_v
 					,inc_ruta_evi_s_v = :inc_ruta_evi_s_v
-					,sol_tipo_sol_id_i = :sol_tipo_sol_id_i
 					,sol_obser_impresora_v = :sol_obser_impresora_v
 					,sol_obser_telefonia_cel_v = :sol_obser_telefonia_cel_v
 					,sol_obser_telefonia_fija_v = :sol_obser_telefonia_fija_v
@@ -257,7 +256,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_id_i", $datos['sol_id_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_prioridad_i", $datos['sol_prioridad_i'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_estado_i", $datos['sol_estado_i'], PDO::PARAM_STR);
-			$stmt->bindParam(":sol_tipo_sol_id_i", $datos['sol_tipo_sol_id_i'], PDO::PARAM_STR);
+			
 			$stmt->bindParam(":sol_obser_impresora_v", $datos['sol_obser_impresora_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_obser_telefonia_fija_v", $datos['sol_obser_telefonia_fija_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_obser_telefonia_cel_v", $datos['sol_obser_telefonia_cel_v'], PDO::PARAM_STR);

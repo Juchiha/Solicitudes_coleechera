@@ -779,7 +779,6 @@
 					'inc_ruta_evi_p_v'					=> $ruta,
 					'inc_ruta_evi_s_v'					=> $ruta_2,
 					'sol_id_i'							=> $_POST['sol_id_i_e'],
-					'sol_tipo_sol_id_i'					=> $_POST['e_sol_tipo_sol_id_tipo'],
 					'sol_obser_impresora_v'				=> $_observacionImpresora,
 					'sol_obser_telefonia_fija_v'		=> $_observacionTelefoniaFija,
 					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu
