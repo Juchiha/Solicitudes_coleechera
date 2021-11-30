@@ -34,22 +34,20 @@
         	<table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                		<th style="width: 27%;">Quien solicita</th>
+                    	<th style="width: 27%;">Asunto</th>
+                		<th style="width: 20%;">Quien solicita</th>
                         <th style="width: 12%;">Fecha Sol.</th>
-                        <th style="width: 10%;"># OT</th>
-                        <th style="width: 9%;">Estado</th>
-                        <th style="width: 10%;">Prioridad</th>
+                        <th style="width: 9%;">Prioridad</th>
                         <th style="width: 24%;">Asignado A</th>
                         <th style="width: 8%;"></th>
                     </tr>
                 </thead>
                 <tfoot>
                      <tr>
-                		<th style="width: 27%;">Quien solicita</th>
+                		<th style="width: 27%;">Asunto</th>
+                		<th style="width: 20%;">Quien solicita</th>
                         <th style="width: 12%;">Fecha Sol.</th>
-                        <th style="width: 10%;"># OT</th>
-                        <th style="width: 9%;">Estado</th>
-                        <th style="width: 10%;">Prioridad</th>
+                        <th style="width: 9%;">Prioridad</th>
                         <th style="width: 24%;">Asignado A</th>
                         <th style="width: 8%;"></th>
                     </tr>
@@ -2124,41 +2122,18 @@
         			"className": "text-center",
             		 render: {
                 		display: function (data, type, row) {
-                			if ( row[3] !== 'SOLUCIONADO' ){
-	            				if ( row[4] === 'ALTA' ) {
+                			if ( row[6] !== 'SOLUCIONADO' ){
+	            				if ( row[3] === 'ALTA' ) {
 	                     			return '<span style="text-align:center; color:red;">ALTA</span>';
-	                         	}else if(row[4] === 'MEDIA'){
+	                         	}else if(row[3] === 'MEDIA'){
 	                         		return '<span style="text-align:center; color:orange;">MEDIA</span>';
-	                         	}else if(row[4] === 'BAJA'){
+	                         	}else if(row[3] === 'BAJA'){
 	                         		return '<span style="text-align:center; color:yellow;">BAJA</span>';
 	                         	}else{
 	                         		return '<span style="text-align:center; color:yellow;"></span>';
 	                         	}	
                          	}else{
-                         		return '<span style="text-align:center; color:green;">'+ row[4] +'</span>';
-                         	}
-            			}
-                		
-                	}
-		        },
-		        {
-	        	 	"targets": -4,
-            		"data": null,
-        			"className": "text-center",
-            		 render: {
-                		display: function (data, type, row) {
-                			if ( row[3] !== 'SOLUCIONADO' ){
-	            				if ( row[4] === 'ALTA' ) {
-	                     			return '<span style="text-align:center; color:red;">'+row[3]+'</span>';
-	                         	}else if(row[4] === 'MEDIA'){
-	                         		return '<span style="text-align:center; color:orange;">'+row[3]+'</span>';
-	                         	}else if(row[4] === 'BAJA'){
-	                         		return '<span style="text-align:center; color:yellow;">'+row[3]+'</span>';
-	                         	}else{
-	                         		return '<span></span>';
-	                         	}	
-                         	}else{
-                         		return '<span style="text-align:center; color:green;">'+row[3]+'</span>';
+                         		return '<span style="text-align:center; color:green;">'+ row[3] +'</span>';
                          	}
             			}
                 		
