@@ -386,7 +386,8 @@
 					'sol_tipo_sol_id_i'		     		=> $_POST['sol_tipo_sol_id_tipo'],
 					'sol_obser_impresora_v'				=> $_observacionImpresora,
 					'sol_obser_telefonia_fija_v'		=> $_observacionTelefoniaFija,
-					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu
+					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu,
+					'sol_asunto_v'						=> $_POST['asunto_incicencia']
 				);
 
 				$respuesta = SolicitudesModelo::insertDatos($datos);
@@ -397,7 +398,7 @@
 
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
 
-					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total']);
+					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total'], $_POST['asunto_incicencia']);
 					/*print_r($respuestaCorreoClien);*/
 					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
@@ -781,7 +782,8 @@
 					'sol_id_i'							=> $_POST['sol_id_i_e'],
 					'sol_obser_impresora_v'				=> $_observacionImpresora,
 					'sol_obser_telefonia_fija_v'		=> $_observacionTelefoniaFija,
-					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu
+					'sol_obser_telefonia_cel_v'			=> $_observacionTelefoniaCelu,
+					'sol_asunto_v'						=> $_POST['asunto_incicencia_e']
 				);
 
 				$respuesta = SolicitudesModelo::UpdateDatos($datos);
@@ -789,7 +791,15 @@
 					
 					if(isset($_POST['e_sol_estado_e']) && $_POST['e_sol_estado_e'] == '5'){
 						//Solucionado
-						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes', 'sol_fecha_solucion=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
+						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes_coolechera', 'sol_fecha_solucion_d=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
+					}
+
+					if($estado == 3 && $_POST['e_sol_estado_e'] == 4){
+						/*Cambiaron el estado a Asignado*/
+						if($_POST['e_sol_tec_usu_id_i_i'] != 0){
+							$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['e_sol_tec_usu_id_i_i']);
+							$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], $inicidencia['sol_orden_trabajo_v']);
+						}
 					}
 
 					if(isset($_POST['e_observaciones_usuarios_finales']) && $_POST['e_observaciones_usuarios_finales'] != ''){
@@ -890,11 +900,11 @@
 		*Method => POST
 		*Return => boolean : True => False
 		**/	
-		public static function notificarCliente($correoCliente, $numeroOrden){
+		public static function notificarCliente($correoCliente, $numeroOrden, $asunto){
 			
 
 			$para  = $correoCliente;
-			$titulo = 'Notificación Proceso / Incidencia #'.$numeroOrden;
+			$titulo = $asunto;
 			$mensaje = '
 <html>
 	<head>

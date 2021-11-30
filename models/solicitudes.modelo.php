@@ -51,6 +51,7 @@ class SolicitudesModelo extends ModeloDAO
 				,sol_obser_impresora_v
 				,sol_obser_telefonia_cel_v
 				,sol_obser_telefonia_fija_v
+				,sol_asunto_v
 				)
 				VALUES
 				(	
@@ -100,6 +101,7 @@ class SolicitudesModelo extends ModeloDAO
 					,:sol_obser_impresora_v
 					,:sol_obser_telefonia_cel_v
 					,:sol_obser_telefonia_fija_v
+					,:sol_asunto_v
 				) 
 			");
 
@@ -149,6 +151,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_obser_impresora_v", $datos['sol_obser_impresora_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_obser_telefonia_fija_v", $datos['sol_obser_telefonia_fija_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_obser_telefonia_cel_v", $datos['sol_obser_telefonia_cel_v'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_asunto_v", $datos['sol_asunto_v'], PDO::PARAM_STR);
 
 			if($stmt->execute()){
 				$stmt = null;
@@ -209,7 +212,7 @@ class SolicitudesModelo extends ModeloDAO
 					,sol_obser_impresora_v = :sol_obser_impresora_v
 					,sol_obser_telefonia_cel_v = :sol_obser_telefonia_cel_v
 					,sol_obser_telefonia_fija_v = :sol_obser_telefonia_fija_v
-
+					,sol_asunto_v = :sol_asunto_v
 				WHERE 
 					sol_id_i = :sol_id_i");
 
@@ -260,6 +263,7 @@ class SolicitudesModelo extends ModeloDAO
 			$stmt->bindParam(":sol_obser_impresora_v", $datos['sol_obser_impresora_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_obser_telefonia_fija_v", $datos['sol_obser_telefonia_fija_v'], PDO::PARAM_STR);
 			$stmt->bindParam(":sol_obser_telefonia_cel_v", $datos['sol_obser_telefonia_cel_v'], PDO::PARAM_STR);
+			$stmt->bindParam(":sol_asunto_v", $datos['sol_asunto_v'], PDO::PARAM_STR);
 			if($stmt->execute()){
 				$stmt = null;
 				return 'ok';

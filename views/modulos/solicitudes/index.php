@@ -680,6 +680,12 @@
 										</select>
 									</div>
 								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="asunto_incicencia">Asunto Para Correo</label>
+										<input type="text" class="form-control" id="asunto_incicencia" name="asunto_incicencia" placeholder="Asunto Para Correo">
+									</div>
+								</div>
 							</div>
         				</div>
         			</div>
@@ -1349,6 +1355,12 @@
 										</select>
 									</div>
 								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<label for="asunto_incicencia">Asunto Para Correo</label>
+										<input type="text" class="form-control" id="asunto_incicencia_e" name="asunto_incicencia_e" placeholder="Asunto Para Correo">
+									</div>
+								</div>
 							</div>
         				</div>
         			</div>
@@ -1664,12 +1676,14 @@
 		                	$("#hrefVerEvidencia").attr('href', data.inc_ruta_evi_p_v);
 		                }else{
 		                	$("#hrefVerEvidencia").attr('href', '#');
+		                	$("#hrefVerEvidencia").hide();
 		                }
 
 		                if(data.inc_ruta_evi_s_v != null && data.inc_ruta_evi_s_v != ''){
 		                	$("#hrefVerEvidencia2").attr('href', data.inc_ruta_evi_s_v);
 		                }else{
 		                	$("#hrefVerEvidencia2").attr('href', '#');
+		                	$("#hrefVerEvidencia2").hide();
 		                }
 
 		                /*Desde aqui empieza la muestra y desmuestra de DIv de edicion*/
@@ -2813,6 +2827,15 @@
 				$("#e-DetallePerifericos_che").show();
 			}else{
 				$("#e-DetallePerifericos_che").hide();
+			}
+		});
+		
+
+		$("#sol_tec_usu_id_i_i").on('change', function(){
+			if($(this).val() != 0){
+				$("#sol_estado_e").val(4).change();
+			}else{
+				$("#sol_estado_e").val(3).change();
 			}
 		});
 	});
