@@ -904,16 +904,16 @@
 			
 
 			$para  = $correoCliente;
-			$titulo = $asunto;
+			$titulo = 'Notificaci&oacute;n S.O.S - se ha creado un caso con el #'.$numeroOrden;
 			$mensaje = '
 <html>
 	<head>
-		<title>Notificaci&oacute;n Proceso / Incidencia #'.$numeroOrden.'</title>
+		<title>Notificaci&oacute;n S.O.S - se ha creado un caso con el #'.$numeroOrden.'</title>
 	</head>
 	<body style="text-align:justify;">
   		<p>Saludos cordiales,</p>
   		<p style="text-align:justify;">
-  			Su solicitud ha sido recibida y se le asignó el numero '.$numeroOrden.'. Estaremos en contacto con usted para mantenerle informado lo antes posible.
+  			Su solicitud relacionada con "'.$asunto.'", ha sido recibida y se le asignó el numero '.$numeroOrden.'. Estaremos en contacto con usted para mantenerle informado lo antes posible.
   		</p>
   		<p>Cordialmente,</p>
   		<p>
