@@ -2169,7 +2169,7 @@
 
 		$('#dataTableUsuario tbody').on( 'click', 'a', function () {
 		    var data = dataTableEmpresas.row( $(this).parents('tr') ).data();
-		    $(this).attr("id_solicitud", data[6]);
+		    $(this).attr("id_solicitud", data[5]);
 		});
 
 		/* Esta parte es para traer los datos de la edicion */
