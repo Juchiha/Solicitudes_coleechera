@@ -416,7 +416,7 @@
 						$observacion = SolicitudesModelo::insertObservaciones($datos);	
 					}
 					
-					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito'));
+					return json_encode(array('code' => 1, 'message' => 'Solicitud guardadada con exito, numero de orden '.date('dmY').$orden['total']));
 				}else{	
 					return json_encode(array('code' => 0, 'message' => 'Solicitud no guardadado'));
 				}
