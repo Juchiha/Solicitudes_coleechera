@@ -151,52 +151,5 @@ echo $tecnicosActivos;
     	</div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <table class="table table-hover table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th colspan="5" style="text-align: center;">
-                            DETALLES POR CLIENTES
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="width:10px; text-align: center;">#</th>
-                        <th style="width:50%; text-align: center;">CLIENTE</th>
-                        <th style="width:18%; text-align: center;"># SOLICITUDES</th>
-                        <th style="width:18%; text-align: center;"># SOLUCIONADAS</th>
-                        <th style="width:14%; text-align: center;">%</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        $clientes =  ControladorUtilidades::getData('sc_clientes', null, null);
 
-                        foreach($clientes as $key => $value){
-                            $asignadas = 0;
-                            $terminadas = 0;
-                            $revisarAsignadas = ControladorUtilidades::getDataFromLsql('sol_id_i, sol_estado_i', 'sc_solicitudes_coolechera', 'sol_clie_id_i = '.$value['cli_id_i'], null, null, null);
-                            foreach($revisarAsignadas as $newKey => $newValue){
-                                $asignadas++;
-                                if($newValue['sol_estado_i'] == '5'){
-                                    $terminadas++;
-                                }
-                            }
-                            $promedio = 0;
-                            if($asignadas > 0){
-                                $promedio = ($terminadas*100/$asignadas);
-                            }
-                            echo '<tr>
-                                    <td style="width:10px; text-align: center;">'.($key+1).'</td>
-                                    <td style="width:50%; text-align: center;">'.mb_strtoupper($value['cli_nombre_v']).'</td>
-                                    <td style="width:18%; text-align: center;">'.$asignadas.'</td>
-                                    <td style="width:18%; text-align: center;">'.$terminadas.'</td>
-                                    <td style="width:14%; text-align: center;">'.number_format($promedio, 2).' %</td>
-                                </tr>';
-                        }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
