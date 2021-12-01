@@ -904,11 +904,11 @@
 			
 
 			$para  = $correoCliente;
-			$titulo = 'Notificaci&oacute;n S.O.S - se ha creado un caso con el #'.$numeroOrden;
+			$titulo = 'Notificación S.O.S - se ha creado un caso con el #'.$numeroOrden;
 			$mensaje = '
 <html>
 	<head>
-		<title>Notificaci&oacute;n S.O.S - se ha creado un caso con el #'.$numeroOrden.'</title>
+		<title>Notificación S.O.S - se ha creado un caso con el #'.$numeroOrden.'</title>
 	</head>
 	<body style="text-align:justify;">
   		<p>Saludos cordiales,</p>
@@ -917,7 +917,7 @@
   		</p>
   		<p>Cordialmente,</p>
   		<p>
-  			Tecnolog&iacute;a y Transformaci&oacute;n Digital, Coolechera
+  			Tecnolog&iacute;a y Transformación Digital, Coolechera
   		</p>
   	</body>
 </html>';
