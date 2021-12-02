@@ -38,7 +38,8 @@
                 		<th style="width: 20%;">Quien solicita</th>
                         <th style="width: 12%;">Fecha Sol.</th>
                         <th style="width: 9%;">Prioridad</th>
-                        <th style="width: 24%;">Asignado A</th>
+                        <th style="width: 14%;">Asignado A</th>
+                        <th style="width: 10%;">OT</th>
                         <th style="width: 8%;"></th>
                     </tr>
                 </thead>
@@ -48,7 +49,8 @@
                 		<th style="width: 20%;">Quien solicita</th>
                         <th style="width: 12%;">Fecha Sol.</th>
                         <th style="width: 9%;">Prioridad</th>
-                        <th style="width: 24%;">Asignado A</th>
+                        <th style="width: 14%;">Asignado A</th>
+                        <th style="width: 10%;">OT</th>
                         <th style="width: 8%;"></th>
                     </tr>
                 </tfoot>
@@ -2117,12 +2119,12 @@
                 	}
 		        },
 		        {
-	        	 	"targets": -3,
+	        	 	"targets": -4,
             		"data": null,
         			"className": "text-center",
             		 render: {
                 		display: function (data, type, row) {
-                			if ( row[6] !== 'SOLUCIONADO' ){
+                			if ( row[7] !== 'SOLUCIONADO' ){
 	            				if ( row[3] === 'ALTA' ) {
 	                     			return '<span style="text-align:center; color:red;">ALTA</span>';
 	                         	}else if(row[3] === 'MEDIA'){
@@ -2169,7 +2171,7 @@
 
 		$('#dataTableUsuario tbody').on( 'click', 'a', function () {
 		    var data = dataTableEmpresas.row( $(this).parents('tr') ).data();
-		    $(this).attr("id_solicitud", data[5]);
+		    $(this).attr("id_solicitud", data[6]);
 		});
 
 		/* Esta parte es para traer los datos de la edicion */
