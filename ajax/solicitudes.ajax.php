@@ -65,9 +65,10 @@ echo '{
 				echo '"'.$value["sol_fecha_solicitud"].'",'; //solicitudes
 				echo '"'.mb_strtoupper($value["pri_desc_v"]).'",';//estados
 				echo '"'.mb_strtoupper($value['usu_nombre_v']).'",';//asignaciones
+				echo '"'.$value["sol_orden_trabajo_v"].'",';//solicitudes
 				echo '"'.$value["sol_id_i"].'",';//solicitudes
-				echo '"'.$value["est_nombre_v"].'",';//solicitudesecho 
-				echo '"'.$value["sol_orden_trabajo_v"].'"';//solicitudes
+				echo '"'.$value["est_nombre_v"].'"';//solicitudesecho 
+
 				echo ']';
             	$i++;
 		 	}
