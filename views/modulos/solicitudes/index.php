@@ -2046,14 +2046,16 @@
 	            		$.each(data, function(item, i){
 	            			console.log(i);
 		               		tabla += '<tr>';
-		               		tabla += '<td>'+i.obs_desc_v+'</td>';
-		               		tabla += '<td>'+i.obs_fecha_d+'</td>';
+		               		tabla += '<td colspan="3">'+i.obs_desc_v+'</td>';
+		               		tabla += '</tr>';
+		               		tabla += '<tr>';
+		               		tabla += '<td>Documentado por: '+i.usu_nombre_v+' '+i.usu_apellido_v+'</td>';
+		               		tabla += '<td>Fecha: '+i.obs_fecha_d+'</td>';
 		               		if(i.obs_ruta_evidencia != null){
 		               			tabla += '<td><a href="'+i.obs_ruta_evidencia+'" target="_blank">Evid.</a></td>';
 		               		}else{
 		               			tabla += '<td></td>';
 		               		}
-		               		
 		               		tabla += '</tr>';
 		                });	
 		                $("#cuerpoObservaciones").html(tabla);
