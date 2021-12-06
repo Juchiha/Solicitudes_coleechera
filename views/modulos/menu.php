@@ -48,6 +48,14 @@
         </a>
     </li>
 
+     <hr class="sidebar-divider d-none d-md-block">
+    <li id="reportes" class="nav-item">
+        <a class="nav-link" href="reportes">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Reportes</span>
+        </a>
+    </li>
+
 
      <hr class="sidebar-divider d-none d-md-block">
 <?php }else if($_SESSION['perfil'] == 3 ){ ?>
@@ -57,6 +65,17 @@
         <a class="nav-link" href="incidencias">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Incidencias</span>
+        </a>
+    </li>
+
+        <hr class="sidebar-divider d-none d-md-block">
+<?php }else if($_SESSION['perfil'] == 3 ){ ?>
+    <hr class="sidebar-divider my-0">
+    <!-- Menu  reportes -->
+    <li id="reportes" class="nav-item">
+        <a class="nav-link" href="reportes">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Reportes</span>
         </a>
     </li>
     

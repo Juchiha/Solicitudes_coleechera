@@ -28,6 +28,7 @@
                 $nuevoAncho = $ancho;
                 $nuevoAlto  = $alto;
             }
+            //echo $typo ;
             
             if (!file_exists($ruta)) {
                 mkdir($ruta, 0755);
@@ -50,9 +51,17 @@
                 imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
                 imagepng($destino, $ruta);
             }else{
+                $extecion = "";
+                if($typo == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+                    $extecion = ".docx";
+                }else if($typo == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+                    $extecion = ".xlsx";
+                }else if($typo == 'application/pdf'){
+                     $extecion = ".pdf";
+                }
                 $aleatorio = mt_rand(100, 9999).date('YmdHis');
-                $rutaReal =  $rutaReal.$aleatorio.".pdf";
-                $ruta =  $ruta.$aleatorio.".pdf";
+                $rutaReal =  $rutaReal.$aleatorio.$extecion;
+                $ruta =  $ruta.$aleatorio.$extecion;
                 copy($fila, $ruta);
             }
             return $rutaReal;

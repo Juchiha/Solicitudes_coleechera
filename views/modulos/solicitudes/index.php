@@ -1610,7 +1610,7 @@
 		                $("#e_cli_planta_id_i").val(data.cli_planta_id_i);
 		                $("#e_sol_cli_correo_v").val(data.cli_correo_v);
 		                $("#e_sol_tipo_sol_id_tipo").val(data.sol_tipo_sol_id_i).change();
-
+		                $("#asunto_incicencia_e").val(data.sol_asunto_v);
 		                /*Parte de otros Requerimientos*/
 		                if(data.sol_equipo_v == '1'){
 		                	$("#e-che_equipo_computo").attr('checked', true);
@@ -2275,7 +2275,7 @@
 		    var imagen = this.files[0];
 		    console.log(imagen);
 		    /* Validar el tipo de imagen */
-		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" ){
+		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" && imagen['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && imagen['type'] != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
 		        $(".NuevaFoto").val('');
 		        swal({
 		            title : "Error al subir el archivo",
@@ -2292,22 +2292,6 @@
 		            confirmButtonText : "Cerrar"
 		        });
 		    }else{
-
-		        if(imagen['type'] == 'image/jpeg' || imagen['type'] == 'image/png' || imagen['type'] != "application/pdf"){
-		            var datosImagen = new FileReader();
-		            datosImagen.readAsDataURL(imagen);
-
-		            $(datosImagen).on("load", function(event){
-		                var rutaimagen = event.target.result;
-		                if(imax == '0'){
-		                    $(".previsualizar").attr('src', rutaimagen);
-		                }else{
-		                    $(".previsualizar"+imax).attr('src', rutaimagen);
-		                }
-		                
-		                
-		            }); 
-		        }
 		        
 		    }   
 		});
