@@ -2275,7 +2275,8 @@
 		    var imagen = this.files[0];
 		    console.log(imagen);
 		    /* Validar el tipo de imagen */
-		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" && imagen['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && imagen['type'] != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'){
+		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" && imagen['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && imagen['type'] != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && imagen['type'] == 'message/rfc822' ){
+		    	
 		        $(".NuevaFoto").val('');
 		        swal({
 		            title : "Error al subir el archivo",
@@ -2283,11 +2284,11 @@
 		            type  : "error",
 		            confirmButtonText : "Cerrar"
 		        });
-		    }else if(imagen['size'] > 2000000 ) {
+		    }else if(imagen['size'] > 8000000 ) {
 		        $(".NuevaFoto").val('');
 		        swal({
 		            title : "Error al subir el archivo",
-		            text  : "El archivo no debe pesar mas de 2MB",
+		            text  : "El archivo no debe pesar mas de 8MB",
 		            type  : "error",
 		            confirmButtonText : "Cerrar"
 		        });

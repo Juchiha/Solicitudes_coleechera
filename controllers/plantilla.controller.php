@@ -6,7 +6,8 @@
 	{
 		
 		static public function ctrPlantilla(){
-            if(isset($_SESSION['SessionSeguimientos']) && $_SESSION['SessionSeguimientos'] == 'ok'){
+            if(isset($_SESSION['SessionSeguimientos']) && $_SESSION['SessionSeguimientos'] == 'ok')
+            {
                 include "views/plantilla.php";
             }else{
                 include "views/modulos/login/login.php";
@@ -57,7 +58,9 @@
                 }else if($typo == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
                     $extecion = ".xlsx";
                 }else if($typo == 'application/pdf'){
-                     $extecion = ".pdf";
+                    $extecion = ".pdf";
+                }else if($typo == 'message/rfc822'){
+                    $extecion = ".eml";
                 }
                 $aleatorio = mt_rand(100, 9999).date('YmdHis');
                 $rutaReal =  $rutaReal.$aleatorio.$extecion;
