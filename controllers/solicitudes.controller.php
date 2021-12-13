@@ -399,6 +399,7 @@
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
 
 					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total'], $_POST['asunto_incicencia']);
+					
 					/*print_r($respuestaCorreoClien);*/
 					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
