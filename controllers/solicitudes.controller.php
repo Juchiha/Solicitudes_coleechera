@@ -399,7 +399,7 @@
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
 
 					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total'], $_POST['asunto_incicencia']);
-					
+
 					/*print_r($respuestaCorreoClien);*/
 					if($_POST['sol_tec_usu_id_i_i'] != 0 && $_POST['sol_estado_e'] == 4){
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['sol_tec_usu_id_i_i']);
@@ -923,8 +923,8 @@
   	</body>
 </html>';
 
-			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, null );
-			/*print_r($respueta);*/
+			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com' );
+			
 			if($respueta == 'ok'){
 				return true;
 			}else{
@@ -960,7 +960,7 @@
   		</p>
   	</body>
 </html>';
-				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, null );
+				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com' );
 				/*print_r($respueta);*/
 				if($respueta == 'ok'){
 					return true;
