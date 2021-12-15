@@ -2275,12 +2275,12 @@
 		    var imagen = this.files[0];
 		    console.log(imagen);
 		    /* Validar el tipo de imagen */
-		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" && imagen['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && imagen['type'] != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && imagen['type'] == 'message/rfc822' ){
+		    if(imagen['type'] != 'image/jpeg' && imagen['type'] != 'image/png' && imagen['type'] != "application/pdf" && imagen['type'] != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && imagen['type'] != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && imagen['type'] != 'message/rfc822' ){
 		    	
 		        $(".NuevaFoto").val('');
 		        swal({
 		            title : "Error al subir el archivo",
-		            text  : "El archivo debe estar en formato PNG , JPG, PDF",
+		            text  : "El archivo debe estar en formato PNG , JPG, PDF, DOCX, XLSX, EML",
 		            type  : "error",
 		            confirmButtonText : "Cerrar"
 		        });
