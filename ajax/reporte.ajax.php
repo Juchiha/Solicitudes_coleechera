@@ -42,7 +42,8 @@
 	echo '<table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                	<th style="width: 27%;">Asunto</th>
+                	<th style="width: 3%;">#</th>
+                	<th style="width: 24%;">Asunto</th>
             		<th style="width: 20%;">Quien solicita</th>
                     <th style="width: 12%;">Fecha Sol.</th>
                     <th style="width: 9%;">Prioridad</th>
@@ -57,6 +58,7 @@
 			$color = 'style="color:green;"';
 		}
 		echo '<tr '.$color.'>';
+			echo '<td>'.($key+1).'</td>';
 			echo '<td>'.$value['sol_asunto_v'].'</td>';
 			echo '<td>'.$value['cli_nombre_v'].'</td>';
 			echo '<td>'.$value['sol_fecha_solicitud'].'</td>';
@@ -66,15 +68,16 @@
 		echo '</tr>';
 	}
 
-	echo '</tbody>
+	echo '	</tbody>
 			<tfoot>
-                     <tr>
-                		<th style="width: 27%;">Asunto</th>
-                		<th style="width: 20%;">Quien solicita</th>
-                        <th style="width: 12%;">Fecha Sol.</th>
-                        <th style="width: 9%;">Prioridad</th>
-                        <th style="width: 14%;">Asignado A</th>
-                        <th style="width: 10%;">OT</th>
-                    </tr>
-                </tfoot>
-           	</table>';
+	             <tr>
+	        		<th style="width: 3%;">#</th>
+	        		<th style="width: 24%;">Asunto</th>
+	        		<th style="width: 20%;">Quien solicita</th>
+	                <th style="width: 12%;">Fecha Sol.</th>
+	                <th style="width: 9%;">Prioridad</th>
+	                <th style="width: 14%;">Asignado A</th>
+	                <th style="width: 10%;">OT</th>
+	            </tr>
+	        </tfoot>
+	   	</table>';
