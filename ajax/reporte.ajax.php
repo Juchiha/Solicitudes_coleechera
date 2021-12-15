@@ -56,7 +56,7 @@
 		if($value['sol_estado_i'] == 4){
 			$color = 'style="color:green;"';
 		}
-		echo '<tr $color>';
+		echo '<tr '.$color.'>';
 			echo '<td>'.$value['sol_asunto_v'].'</td>';
 			echo '<td>'.$value['cli_nombre_v'].'</td>';
 			echo '<td>'.$value['sol_fecha_solicitud'].'</td>';
