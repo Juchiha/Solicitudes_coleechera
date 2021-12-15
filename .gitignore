@@ -1,3 +1,6 @@
 # These are the files that not upload to repository
 #Exito que mal ingles
 models/conexion.php
+
+views/evidencias_img/
+views/incidencias_img/
