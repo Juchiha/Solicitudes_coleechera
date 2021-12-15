@@ -32,6 +32,7 @@
         </div>
         <div class="card-body">
         	<!---Aqui tabla principal-->
+       
         	<div class="row">
 	        	<div class="col-md-4">
 					<div class="form-group">
@@ -107,7 +108,14 @@
 			<button type="button" class="btn btn-primary" id="enviarFormNuevo">Ejecutar</button>
 		</div>
 	</div>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+        <div class="card-body" id="resultadoTabla">
 
+        </div>
+	</div>
 <!-- nuevo usuario -->
 
 </div>
@@ -152,6 +160,48 @@
 	        language: "es",
 	        autoclose: true,
 	        todayHighlight: true
-	    })
+	    });
+
+	    $("#enviarFormNuevo").click(function () {
+	    	$.ajax({
+	            url: 'ajax/reporte.ajax.php',
+	            type  : 'post',
+	            data: { 
+	            	equipo 		: $("#equipo").val(), 
+	            	prioridad 	: $("#prioridad").val(), 
+	            	estado 		: $("#estado").val(), 
+	            	otrabajo 	: $("#otrabajo").val(), 
+	            	fromDate 	: $("#fromDate").val(), 
+	            	toDate 		: $("#toDate").val(), 
+	            },
+	            dataType : 'html',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	$("#resultadoTabla").html(data);	            	
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+	    });
 	})
 </script>

@@ -55,11 +55,13 @@
 		static public function mdlMostrarGroupAndOrder($campo,$tabla,$condicion = null, $groupBy = null, $orderBy = null, $limit=null){
 			if($condicion==""){
 				//si no tiene condicion
+
 				$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla $groupBy $orderBy $limit");
 				$stmt->execute();
 				return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}else{
 				//si tiene condicion
+	
 				$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla WHERE $condicion $groupBy $orderBy $limit");
 				$stmt->execute();
 				return $stmt->fetchAll(PDO::FETCH_ASSOC);
