@@ -1,6 +1,6 @@
 {
 	"name": "josegiron/myworky",
-    "description": "Proyecto para trabajar la data obtenia de las mediciones, reaizadas por la empresa MyWorky",
+    "description": "Proyecto para trabajar la data obtenia de las mediciones, reaizadas por la empresa Coolehcera",
     "type": "project",
     "authors": [
         {
@@ -10,6 +10,5 @@
     ],
     "require": {
 		"mpdf/mpdf": "^8.0",
-		"phpoffice/phpspreadsheet": "^1.18"
 	}
 }

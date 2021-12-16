@@ -120,6 +120,7 @@
 			
 		</div>
 		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" id="Exportar">Exportar</button>
 			<button type="button" class="btn btn-primary" id="enviarFormNuevo">Ejecutar</button>
 		</div>
 	</div>
@@ -219,5 +220,61 @@
 	            }
 	        });
 	    });
+
+	    $("#Exportar").click(function () {
+	    	$.ajax({
+	            url: 'ajax/reporteExcel.ajax.php',
+	            type  : 'post',
+	            data: { 
+	            	equipo 		: $("#equipo").val(), 
+	            	prioridad 	: $("#prioridad").val(), 
+	            	estado 		: $("#estado").val(), 
+	            	otrabajo 	: $("#otrabajo").val(), 
+	            	fromDate 	: $("#fromDate").val(), 
+	            	toDate 		: $("#toDate").val(), 
+	            	tipo_sol    : $("#tipo_sol").val()
+	            },
+	            dataType : 'json',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	var currentdate = new Date();
+	                var fecha_hora = currentdate.getFullYear() + rellenar((currentdate.getMonth()+1), 2) +  rellenar(currentdate.getDate(), 2) + "_" + rellenar(currentdate.getHours(), 2) +  rellenar(currentdate.getMinutes(), 2) + rellenar(currentdate.getSeconds(), 2);
+	                var $a = $("<a>");
+	                $a.attr("href",data.file);
+	                $("body").append($a);
+	                $a.attr("download","consolidado_casos_reportados"+fecha_hora+".xlsx");
+	                $a[0].click();
+	                $a.remove();            	
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+	    });
+
 	})
+
+	function rellenar (str, max) {
+        str = str.toString();
+        return str.length < max ? rellenar("0" + str, max) : str;
+    }
 </script>
