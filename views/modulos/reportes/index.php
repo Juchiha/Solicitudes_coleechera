@@ -34,7 +34,7 @@
         	<!---Aqui tabla principal-->
        
         	<div class="row">
-	        	<div class="col-md-4">
+	        	<div class="col-md-3">
 					<div class="form-group">
 						<label for="sol_cli_correo_v">Equipo Informatico</label>
 						<select class="form-control cliente" id="equipo"
@@ -49,7 +49,7 @@
 						</select>
 					</div>
 	    		</div>
-	    		<div class="col-md-4">
+	    		<div class="col-md-3">
 					<div class="form-group">
 						<label for="sol_cli_correo_v">Prioridad</label>
 						<select class="form-control cliente" id="prioridad"
@@ -65,37 +65,52 @@
 					</div>
 	    		</div>
 
-	    		<div class="col-md-4">
+	    		<div class="col-md-3">
 					<div class="form-group">
 						<label for="sol_cli_correo_v">Estado</label>
 						<select class="form-control cliente" id="estado"
 						placeholder="Ciudad">
 						<option value="0">Seleccione</option>
 						<option value="1">Pendiente</option>
-											<option value="2">Asignado</option>
-											<option value="3">En curso</option>
-											<option value="4">Solucionado</option>
-											<option value="5">Cerrado sin Solución</option>
+						<option value="2">Asignado</option>
+						<option value="3">En curso</option>
+						<option value="4">Solucionado</option>
+						<option value="5">Cerrado sin Solución</option>
+						</select>
+					</div>
+	    		</div>
+	    		<div class="col-md-3">
+					<div class="form-group">
+						<label for="sol_tipo_soli">Tipo de Solicitud</label>
+						<select class="form-control cliente" id="tipo_sol"
+						placeholder="Ciudad">
+						<option value="0">Seleccione</option>
+						<?php 
+							$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
+							foreach($bancos as $key => $value){
+								echo '<option value="'.$value['tipo_sol_id_i'].'">'.$value['tipo_desc_v'].'</option>';
+							}
+						?>
 						</select>
 					</div>
 	    		</div>
 	    	</div>
 	    	<div class="row">
-	    		<div class="col-md-4">
+	    		<div class="col-md-3">
 					<div class="form-group">
 						<label for="">Orden de Trabajo</label>
 						<input type="text" name="" id="otrabajo" class="form-control cliente" placeholder="Orden de Trabajo">
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="form-group">
 						<label for="">Fecha inicio</label>
 						<input type="text" name="" id="fromDate" class="form-control cliente" placeholder="Fecha inicio">
 					</div>
 				</div>
 
-				<div class="col-md-4">
+				<div class="col-md-3">
 					<div class="form-group">
 						<label for="">Fecha final</label>
 						<input type="text" name="" id="toDate" class="form-control cliente" placeholder="Fecha final">
@@ -173,6 +188,7 @@
 	            	otrabajo 	: $("#otrabajo").val(), 
 	            	fromDate 	: $("#fromDate").val(), 
 	            	toDate 		: $("#toDate").val(), 
+	            	tipo_sol    : $("#tipo_sol").val()
 	            },
 	            dataType : 'html',
 	            beforeSend:function(){
