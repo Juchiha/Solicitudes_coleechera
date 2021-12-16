@@ -174,10 +174,10 @@
 				if(isset($_POST['che_usuario_R'])){
 					$_usuarioRed = 1;
 				}
-				if(isset($_POST['detalle_obse_usu_re'])){
+				if(isset($_POST['detalle_obse_usu_re']) && $_POST['detalle_obse_usu_re'] != ''){
 					$_detalle_obse_usu_re = $_POST['detalle_obse_usu_re'];
 				}
-				if(isset($_POST['detalle_obse_usuarioRed2'])){
+				if(isset($_POST['detalle_obse_usuarioRed2']) && $_POST['detalle_obse_usuarioRed2'] != ''){
 					$_detalle_obse_usu_re = $_POST['detalle_obse_usuarioRed2'];
 				}
 				if(isset($_POST['detalle_usu_red'])){
@@ -191,10 +191,10 @@
 				if(isset($_POST['che_correo'])){
 					$_che_correo = 1;
 				}
-				if(isset($_POST['detalle_obse_correo'])){
+				if(isset($_POST['detalle_obse_correo']) && $_POST['detalle_obse_correo'] != ''){
 					$_detalle_obse_correo = $_POST['detalle_obse_correo'];
 				}
-				if(isset($_POST['detalle_obse_Correo_2'])){
+				if(isset($_POST['detalle_obse_Correo_2']) && $_POST['detalle_obse_Correo_2'] != ''){
 					$_detalle_obse_correo = $_POST['detalle_obse_Correo_2'];
 				}
 				if(isset($_POST['detalle_correo'])){
@@ -215,10 +215,10 @@
 				if(isset($_POST['detalle_Sap'])){
 					$_detalle_Sap = $_POST['detalle_Sap'];
 				}
-				if(isset($_POST['detalle_obse_sap'])){
+				if(isset($_POST['detalle_obse_sap']) && $_POST['detalle_obse_sap'] != ''){
 					$_detalle_obse_sap = $_POST['detalle_obse_sap'];
 				}
-				if(isset($_POST['detalle_obse_sap_2'])){
+				if(isset($_POST['detalle_obse_sap_2']) && $_POST['detalle_obse_sap_2'] != ''){
 					$_detalle_obse_sap = $_POST['detalle_obse_sap_2'];
 				}
 				if(isset($_POST['detalle_Sap_acc'])){
@@ -923,7 +923,7 @@
   	</body>
 </html>';
 
-			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com' );
+			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, null);
 			
 			if($respueta == 'ok'){
 				return true;
@@ -960,7 +960,7 @@
   		</p>
   	</body>
 </html>';
-				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com' );
+				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, null );
 				/*print_r($respueta);*/
 				if($respueta == 'ok'){
 					return true;
