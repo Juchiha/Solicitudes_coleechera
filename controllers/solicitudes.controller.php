@@ -925,7 +925,7 @@
 </html>';
 			$ctrMail = new ctrMail();
 			$respueta = $ctrMail->EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com');
-			print_r($respueta);
+			/*print_r($respueta);*/
 			if($respueta == 'ok'){
 				return true;
 			}else{
@@ -963,7 +963,7 @@
 </html>';
 				$ctrMail = new ctrMail();
 				$respueta = $ctrMail->EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com' );
-				print_r($respueta);
+				/*print_r($respueta);*/
 				if($respueta == 'ok'){
 					return true;
 				}else{
