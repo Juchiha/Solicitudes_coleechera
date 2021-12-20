@@ -398,6 +398,7 @@
 
 					$resp = ClientesModelo::getDatos('sc_clientes', 'cli_id_i', $id_Cliente);
 
+
 					$respuestaCorreoClien = self::notificarCliente($resp['cli_correo_v'], date('dmY').$orden['total'], $_POST['asunto_incicencia']);
 
 					/*print_r($respuestaCorreoClien);*/
@@ -922,8 +923,8 @@
   		</p>
   	</body>
 </html>';
-
-			$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, null);
+			$ctrMail = new ctrMail();
+			$respueta = $ctrMail->EnviarMailWithEmailAndPass('Notificaciones Incidencias Reportadas', $titulo, $mensaje, $para, null, null);
 			
 			if($respueta == 'ok'){
 				return true;
@@ -960,7 +961,8 @@
   		</p>
   	</body>
 </html>';
-				$respueta = self::EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, null );
+				$ctrMail = new ctrMail();
+				$respueta = $ctrMail->EnviarMailWithEmailAndPass('Notificaciones Asignación Incidencias', $titulo, $mensaje, $para, null, null );
 				/*print_r($respueta);*/
 				if($respueta == 'ok'){
 					return true;
