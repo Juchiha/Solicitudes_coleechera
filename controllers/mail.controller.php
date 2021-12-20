@@ -49,7 +49,7 @@ class ctrMail{
 			return "ok";
 		}
 	}
-	public function EnviarAgenda($asunto, $correos, $fecha, $hora, $duracion, $organizador, $lugar, $asistencia){
+	public static function EnviarAgenda($asunto, $correos, $fecha, $hora, $duracion, $organizador, $lugar, $asistencia){
 
 		$fechacreacion = date('Ymd');
 		$horacreacion = date('His');
@@ -130,7 +130,7 @@ class ctrMail{
 		}
 	}
 
-	public function EnviarMailWithEmailAndPass($empresa, $asunto, $cuerpo, $correos, $adjuntos, $CopiaOculta = null, $usuario = null){
+	public static function EnviarMailWithEmailAndPass($empresa, $asunto, $cuerpo, $correos, $adjuntos, $CopiaOculta = null, $usuario = null){
 		
 		$from_name = $empresa;
 		$phpmailer = new PHPMailer(); 
