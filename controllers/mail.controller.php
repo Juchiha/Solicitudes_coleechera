@@ -137,12 +137,12 @@ class ctrMail{
 		$phpmailer->CharSet = 'UTF-8';
 		// ---------- datos de la cuenta de Gmail -------------------------------
 		$phpmailer->Username = 'sos@coolechera.com';
-		$phpmailer->Password = '47Y@FuH55uti'; 
+		$phpmailer->Password = 'C00l3ch3r42022'; 
 		//-----------------------------------------------------------------------
-		//$phpmailer->SMTPDebug = 1;
-		$phpmailer->SMTPSecure = '';
+		//$phpmailer->SMTPDebug = 3;
+		$phpmailer->SMTPSecure = 'tls';
 		$phpmailer->Host = "smtp.office365.com";
-		$phpmailer->Port = 25;
+		$phpmailer->Port = 587;
 		$phpmailer->IsSMTP();
 		$phpmailer->SMTPAuth = true;
 		$phpmailer->setFrom($phpmailer->Username,$from_name);
