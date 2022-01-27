@@ -48,7 +48,7 @@
         </a>
     </li>
 
-     <hr class="sidebar-divider d-none d-md-block">
+    <hr class="sidebar-divider d-none d-md-block">
     <li id="reportes" class="nav-item">
         <a class="nav-link" href="reportes">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -90,6 +90,12 @@
         </a>
     </li>
     <hr class="sidebar-divider d-none d-md-block">
+    <li id="reportes" class="nav-item">
+        <a class="nav-link" href="reportes">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Reportes</span>
+        </a>
+    </li>
 
 <?php } ?>
 </ul>
