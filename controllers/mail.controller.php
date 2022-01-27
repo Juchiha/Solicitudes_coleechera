@@ -139,7 +139,6 @@ class ctrMail{
 		$phpmailer->Username = 'sos@coolechera.com';
 		$phpmailer->Password = 'C00l3ch3r42022'; 
 		//-----------------------------------------------------------------------
-		//$phpmailer->SMTPDebug = 3;
 		$phpmailer->SMTPSecure = 'tls';
 		$phpmailer->Host = "smtp.office365.com";
 		$phpmailer->Port = 587;
