@@ -44,7 +44,7 @@
 			$where = null;
 			
 			if ($_SESSION['perfil'] == '4') {
-				$where = 'sol_asignado_a_i = '.$_SESSION['codigo'];
+				$where = 'sol_asignado_a_i = '.$_SESSION['codigo'].' AND sol_estado_i NOT IN (5,6) ' ;
 			}else if($_SESSION['perfil'] == '3'){
 				//$where = 'sol_ban_id_i = '.$_SESSION['bnco_id'];
 			}else{
