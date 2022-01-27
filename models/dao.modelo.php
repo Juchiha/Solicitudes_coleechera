@@ -61,7 +61,7 @@
 				return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}else{
 				//si tiene condicion
-	
+				//echo "SELECT $campo FROM $tabla WHERE $condicion $groupBy $orderBy $limit";
 				$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla WHERE $condicion $groupBy $orderBy $limit");
 				$stmt->execute();
 				return $stmt->fetchAll(PDO::FETCH_ASSOC);

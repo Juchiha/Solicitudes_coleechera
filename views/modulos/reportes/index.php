@@ -71,11 +71,11 @@
 						<select class="form-control cliente" id="estado"
 						placeholder="Ciudad">
 						<option value="0">Seleccione</option>
-						<option value="1">Pendiente</option>
-						<option value="2">Asignado</option>
-						<option value="3">En curso</option>
-						<option value="4">Solucionado</option>
-						<option value="5">Cerrado sin Solución</option>
+						<option value="3">Pendiente</option>
+						<option value="4">Asignado</option>
+						<option value="7">En curso</option>
+						<option value="5">Solucionado</option>
+						<option value="6">Cerrado sin Solución</option>
 						</select>
 					</div>
 	    		</div>

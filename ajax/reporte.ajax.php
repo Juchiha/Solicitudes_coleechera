@@ -10,36 +10,59 @@
 	require_once '../models/clientes.modelo.php';
 	require_once '../models/auth.modelo.php';
 
-	$where = ' 1 = 1 ';
+	$where = null;
+	$valido = " ";
 
 	if(isset($_POST['equipo']) && $_POST['equipo'] != 0){
-		$where .= ' AND sol_asignado_a_i='.$_POST['equipo'] ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido.'sol_asignado_a_i = '.$_POST['equipo'] ;
 	}
 
 	if(isset($_POST['prioridad']) && $_POST['prioridad'] != 0){
-		$where .= ' AND sol_prioridad_i='.$_POST['prioridad'] ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido.' sol_prioridad_i = '.$_POST['prioridad'] ;
 	}
 
 	if(isset($_POST['estado']) && $_POST['estado'] != 0){
-		$where .= ' AND sol_estado_i='.$_POST['estado'] ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido.' sol_estado_i = '.$_POST['estado'] ;
 	}
 
 	if(isset($_POST['otrabajo']) && $_POST['otrabajo'] != ""){
-		$where .= " AND sol_orden_trabajo_v='".$_POST['otrabajo']."'" ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido." sol_orden_trabajo_v='".$_POST['otrabajo']."'" ;
 	}
 
 	if(isset($_POST['fromDate']) && $_POST['fromDate'] != "" && isset($_POST['toDate']) && $_POST['toDate'] != ""){
-		$where .= " AND sol_fecha_solicitud BETWEEN '".$_POST['fromDate']."' AND '".$_POST['toDate']."'" ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido." sol_fecha_solicitud BETWEEN '".$_POST['fromDate']."' AND '".$_POST['toDate']."'" ;
 	}
 
 	if(isset($_POST['fromDate']) && $_POST['fromDate'] != "" && isset($_POST['toDate']) && $_POST['toDate'] == ""){
-		$where .= " AND sol_fecha_solicitud = '".$_POST['fromDate']."'" ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido." sol_fecha_solicitud = '".$_POST['fromDate']."'" ;
 	}
 
 	if(isset($_POST['tipo_sol']) && $_POST['tipo_sol'] != 0){
-		$where .= " AND sol_tipo_sol_id_i = '".$_POST['tipo_sol']."'" ;
+		if($where != '' && $where != null){
+			$valido = " AND ";
+		}
+		$where .= $valido." sol_tipo_sol_id_i = '".$_POST['tipo_sol']."'" ;
 	}
 	
+
 	$usuarios = ControladorSolicitudes::getDataFromLsql('cli_nombre_v, sol_fecha_solicitud, sol_orden_trabajo_v, sol_estado_i, sol_prioridad_i, sol_asignado_a_i,  est_nombre_v, pri_desc_v, sol_id_i, usu_nombre_v, sol_asunto_v', 'sc_solicitudes_coolechera JOIN sc_clientes ON cli_id_i = sol_clie_id_i JOIN sc_estados ON est_id_i = sol_estado_i LEFT JOIN sc_prioridades ON  sol_prioridad_i = pri_id_i LEFT JOIN sc_usuarios ON usu_id_i = sol_asignado_a_i', $where, null, 'ORDER BY sol_fecha_solicitud DESC', null);
 
 
@@ -57,6 +80,11 @@
                 </tr>
             </thead>
             <tbody>';
+            if($usuarios == false){
+            	echo '<tr>
+                	<th colspan="8" style="text-align:center;"><b>No hay datos con esos criterios de busqueda</b></th>
+                </tr>';
+            }
 	foreach($usuarios as $key => $value){
 		$color = '';
 		if($value['sol_estado_i'] == 5){
