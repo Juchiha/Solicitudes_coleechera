@@ -60,7 +60,7 @@ echo '{
             		echo ",";
             	}
 				echo '[';
-				echo '"'.$value["sol_asunto_v"].'",';//viene de sucursales
+				echo '"'.str_replace('"', '\"', $value["sol_asunto_v"]).'",';//viene de sucursales
 				echo '"'.$value["cli_nombre_v"].'",';//viene de sucursales
 				echo '"'.$value["sol_fecha_solicitud"].'",'; //solicitudes
 				echo '"'.mb_strtoupper($value["pri_desc_v"]).'",';//estados
