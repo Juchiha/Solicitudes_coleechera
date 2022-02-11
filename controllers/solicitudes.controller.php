@@ -793,7 +793,14 @@
 					
 					if(isset($_POST['e_sol_estado_e']) && $_POST['e_sol_estado_e'] == '5'){
 						//Solucionado
-						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes_coolechera', 'sol_fecha_solucion_d=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
+						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes_coolechera', 'sol_fecha_solucion_d=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']);
+
+						$resp = ClientesModelo::getDatos('sc_clientes Join sc_solicitudes ON sol_clie_id_i = cli_id_i', 'sol_id_i', $_POST['sol_id_i_e']);
+
+						$respuestaEquipo = self::notificarClienteSolucionado($resp['cli_correo_v'], $inicidencia['sol_orden_trabajo_v'], $inicidencia['sol_asunto_v']);
+
+						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], $inicidencia['sol_orden_trabajo_v']);
+
 					}
 
 					if($estado == 3 && $_POST['e_sol_estado_e'] == 4){
