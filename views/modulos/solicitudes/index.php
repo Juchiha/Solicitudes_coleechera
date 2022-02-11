@@ -25,12 +25,116 @@
 	?>
 </div>
 <div class="container-fluid">
+	<div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+        </div>
+        <div class="card-body">
+        	<!---Aqui tabla principal-->
+       
+        	<div class="row">
+	        	<div class="col-md-3">
+					<div class="form-group">
+						<label for="sol_cli_correo_v">Clientes</label>
+						<select class="form-control cliente input-sm" id="equipo"
+						placeholder="Ciudad">
+						<option value="0">Seleccione</option>
+						<?php 
+							$tecnicos = null;
+						
+							if($_SESSION['perfil']	== '4'){
+								$tecnicos = ControladorUtilidades::getDataFromLsql('sol_clie_id_i, cli_nombre_v', 'sc_solicitudes_coolechera JOIN sc_clientes ON cli_id_i = sol_clie_id_i', 'sol_asignado_a_i = '.$_SESSION['codigo'], 'group by sol_clie_id_i', 'ORDER BY cli_nombre_v ASC', null);
+							}else{
+								$tecnicos = ControladorUtilidades::getDataFromLsql('sol_clie_id_i, cli_nombre_v', 'sc_solicitudes_coolechera JOIN sc_clientes ON cli_id_i = sol_clie_id_i', " 1 = 1 ", 'group by sol_clie_id_i', 'ORDER BY cli_nombre_v ASC', null);
+							}
+							
+							foreach($tecnicos as $key => $value){
+								echo '<option value="'.$value['sol_clie_id_i'].'">'.$value['cli_nombre_v'].'</option>';
+							}
+						?>
+						</select>
+					</div>
+	    		</div>
+	    		<div class="col-md-3">
+					<div class="form-group">
+						<label for="sol_cli_correo_v">Prioridad</label>
+						<select class="form-control cliente form-control-sm" id="prioridad"
+						placeholder="Ciudad">
+						<option value="0">Seleccione</option>
+						<?php 
+							$prioridades = ControladorUtilidades::getData('sc_prioridades', null, null);
+							foreach($prioridades as $key => $value){
+								echo '<option value="'.$value['pri_id_i'].'">'.$value['pri_desc_v'].'</option>';
+							}
+						?>
+						</select>
+					</div>
+	    		</div>
+
+	    		<div class="col-md-3">
+					<div class="form-group">
+						<label for="sol_cli_correo_v">Estado</label>
+						<select class="form-control cliente form-control-sm" id="estado"
+						placeholder="Ciudad">
+						<option value="0">Seleccione</option>
+						<option value="3">Pendiente</option>
+						<option value="4">Asignado</option>
+						<option value="7">En curso</option>
+						<option value="5">Solucionado</option>
+						<option value="6">Cerrado sin Solución</option>
+						</select>
+					</div>
+	    		</div>
+	    		<div class="col-md-3">
+					<div class="form-group">
+						<label for="sol_tipo_soli">Tipo de Solicitud</label>
+						<select class="form-control cliente form-control-sm" id="tipo_sol"
+						placeholder="Ciudad">
+						<option value="0">Seleccione</option>
+						<?php 
+							$bancos = ControladorUtilidades::getData('sc_tipo_solicitud', null, null);
+							foreach($bancos as $key => $value){
+								echo '<option value="'.$value['tipo_sol_id_i'].'">'.$value['tipo_desc_v'].'</option>';
+							}
+						?>
+						</select>
+					</div>
+	    		</div>
+	    	</div>
+	    	<div class="row">
+	    		<div class="col-md-3">
+					<div class="form-group">
+						<label for="">Orden de Trabajo</label>
+						<input type="text" name="" id="otrabajo" class="form-control cliente form-control-sm" placeholder="Orden de Trabajo">
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="">Fecha inicio</label>
+						<input type="text" name="" id="fromDate" class="form-control cliente form-control-sm" placeholder="Fecha inicio">
+					</div>
+				</div>
+
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="">Fecha final</label>
+						<input type="text" name="" id="toDate" class="form-control cliente form-control-sm" placeholder="Fecha final">
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" id="TraerInfoDatos">Ejecutar Busqueda</button>
+		</div>
+	</div>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Datos de las Incidencias</h6>
         </div>
-        <div class="card-body">
+        <div class="card-body" id="resultadoTabla">
         	<table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0">
                 <thead>
                     <tr>
@@ -1433,6 +1537,8 @@
 <!-- Page level plugins -->
 <script src="views/assets/StartBoots/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="views/assets/StartBoots/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css">
 <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
@@ -2802,5 +2908,78 @@
 				$("#sol_estado_e").val(3).change();
 			}
 		});
+
+		$("#equipo").select2();
+
+		$.fn.datepicker.dates['es'] = {
+		    days: ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+		    daysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+		    daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+		    months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+		    monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+		    today: "Today",
+		    clear: "Clear",
+		    format: "yyyy-mm-dd",
+		    weekStart: 0
+		};
+		$("#fromDate").datepicker({
+	        language: "es",
+	        autoclose: true,
+	        todayHighlight: true
+	    }).on('changeDate', function (selected) {
+	        $('#toDate').val('');
+	        var minDate = new Date(selected.date.valueOf());
+	        $('#toDate').datepicker('setStartDate', minDate);
+	    });
+
+	    $("#toDate").datepicker({
+	        language: "es",
+	        autoclose: true,
+	        todayHighlight: true
+	    });
+
+	    $("#TraerInfoDatos").click(function () {
+	    	$.ajax({
+	            url: 'ajax/dataTables.php',
+	            type  : 'post',
+	            data: { 
+	            	equipo 		: $("#equipo").val(), 
+	            	prioridad 	: $("#prioridad").val(), 
+	            	estado 		: $("#estado").val(), 
+	            	otrabajo 	: $("#otrabajo").val(), 
+	            	fromDate 	: $("#fromDate").val(), 
+	            	toDate 		: $("#toDate").val(), 
+	            	tipo_sol    : $("#tipo_sol").val()
+	            },
+	            dataType : 'html',
+	            beforeSend:function(){
+	                $.blockUI({ 
+	                    message : '<h3>Un momento por favor....</h3>',
+	                    baseZ: 2000,
+	                    css: { 
+	                        border: 'none', 
+	                        padding: '1px', 
+	                        backgroundColor: '#000', 
+	                        '-webkit-border-radius': '10px', 
+	                        '-moz-border-radius': '10px', 
+	                        opacity: .5, 
+	                        color: '#fff' 
+	                    } 
+	                }); 
+	            },
+	            complete:function(){
+	                $.unblockUI();
+	            },
+	            //una vez finalizado correctamente
+	            success: function(data){
+	            	$("#resultadoTabla").html(data);	
+	            	            	
+	            },
+	            //si ha ocurrido un error
+	            error: function(){
+	                alertify.error('Error al realizar el proceso');
+	            }
+	        });
+	    });
 	});
 </script>
