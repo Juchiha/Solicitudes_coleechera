@@ -793,7 +793,14 @@
 					
 					if(isset($_POST['e_sol_estado_e']) && $_POST['e_sol_estado_e'] == '5'){
 						//Solucionado
-						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes_coolechera', 'sol_fecha_solucion_d=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']); 
+						$respuestaX = SolicitudesModelo::mdlEditar('sc_solicitudes_coolechera', 'sol_fecha_solucion_d=\''.date('Y-m-d').'\'', 'sol_id_i='.$_POST['sol_id_i_e']);
+
+						$resp = ClientesModelo::getDatos('sc_clientes Join sc_solicitudes ON sol_clie_id_i = cli_id_i', 'sol_id_i', $_POST['sol_id_i_e']);
+
+						$respuestaEquipo = self::notificarClienteSolucionado($resp['cli_correo_v'], $inicidencia['sol_orden_trabajo_v'], $inicidencia['sol_asunto_v']);
+
+						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], $inicidencia['sol_orden_trabajo_v']);
+
 					}
 
 					if($estado == 3 && $_POST['e_sol_estado_e'] == 4){
@@ -934,6 +941,42 @@
 		}
 
 		/**
+		*Desc.  => Enviar un correo de notificación al correo del cliente para enterarlo de su proceso 
+		*Method => POST
+		*Return => boolean : True => False
+		**/	
+		public static function notificarClienteSolucionado($correoCliente, $numeroOrden, $asunto){
+			
+
+			$para  = $correoCliente;
+			$titulo = 'Notificación S.O.S - se ha solucionado su caso con el #'.$numeroOrden;
+			$mensaje = '
+<html>
+	<head>
+		<title>Notificación S.O.S - se ha solucionado su caso con el #'.$numeroOrden.'</title>
+	</head>
+	<body style="text-align:justify;">
+  		<p>Saludos cordiales,</p>
+  		<p style="text-align:justify;">
+  			Su solicitud relacionada con "'.$asunto.'", ha sido solucionada. Esperamos que nuestra atención haya cumplido con sus expectativas, lo invitamos a verificar.
+  		</p>
+  		<p>Cordialmente,</p>
+  		<p>
+  			Tecnolog&iacute;a y Transformación Digital, Coolechera
+  		</p>
+  	</body>
+</html>';
+			$ctrMail = new ctrMail();
+			$respueta = $ctrMail->EnviarMailWithEmailAndPass('Notificaciones Incidencias Solucionadas', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com');
+			/*print_r($respueta);*/
+			if($respueta == 'ok'){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		/**
 		*Desc.  => Enviar un correo de notificación al equipo  para enterarlo de su proceso de asignacion de un caso 
 		*Method => POST
 		*Return => boolean : True => False
@@ -970,6 +1013,33 @@
 					return false;
 				}
 
+			}else if($respuestacliente['sol_estado_i'] == '5'){
+				$para  = $correoEquipo;
+				$titulo = 'Notificación, Solución Proceso / Incidencia #'.$numeroOrden;
+				$mensaje = '
+<html>
+	<head>
+		<title>Notificaci&oacute;n Solución Proceso / Incidencia #'.$numeroOrden.'</title>
+	</head>
+	<body style="text-align:justify;">
+  		<p>Saludos cordiales,</p>
+  		<p style="text-align:justify;">
+  			la solicitud con el numero '.$numeroOrden.', fue solucionada por usted, buen trabajo.
+  		</p>
+  		<p>Cordialmente,</p>
+  		<p>
+  			Tecnolog&iacute;a y Transformaci&oacute;n Digital, Coolechera
+  		</p>
+  	</body>
+</html>';
+				$ctrMail = new ctrMail();
+				$respueta = $ctrMail->EnviarMailWithEmailAndPass('Notificaciones Solución Incidencias', $titulo, $mensaje, $para, null, 'desarrollador@coolechera.com' );
+				/*print_r($respueta);*/
+				if($respueta == 'ok'){
+					return true;
+				}else{
+					return false;
+				}
 			}
 		}
 		

@@ -44,7 +44,7 @@
 			$where = null;
 			
 			if ($_SESSION['perfil'] == '4') {
-				$where = 'sol_asignado_a_i = '.$_SESSION['codigo'].' AND sol_estado_i NOT IN (5,6) ' ;
+				$where = 'sol_asignado_a_i = '.$_SESSION['codigo'].' ' ;
 			}else if($_SESSION['perfil'] == '3'){
 				//$where = 'sol_ban_id_i = '.$_SESSION['bnco_id'];
 			}else{
@@ -60,7 +60,7 @@ echo '{
             		echo ",";
             	}
 				echo '[';
-				echo '"'.str_replace('"', '\"', $value["sol_asunto_v"]).'",';//viene de sucursales
+				echo '"'.str_replace('"', "'", $value["sol_asunto_v"]).'",';//viene de sucursales
 				echo '"'.$value["cli_nombre_v"].'",';//viene de sucursales
 				echo '"'.$value["sol_fecha_solicitud"].'",'; //solicitudes
 				echo '"'.mb_strtoupper($value["pri_desc_v"]).'",';//estados
