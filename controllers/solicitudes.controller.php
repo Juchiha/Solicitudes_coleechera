@@ -800,6 +800,7 @@
 						$respuestaEquipo = self::notificarClienteSolucionado($resp['cli_correo_v'], $inicidencia['sol_orden_trabajo_v'], $inicidencia['sol_asunto_v']);
 
 						$resp = ClientesModelo::getDatos('sc_usuarios', 'usu_id_i', $_POST['e_sol_tec_usu_id_i_i']);
+						
 						$respuestaEquipo = self::notificarEquipo($resp['usu_correo_v'], $inicidencia['sol_orden_trabajo_v']);
 
 					}

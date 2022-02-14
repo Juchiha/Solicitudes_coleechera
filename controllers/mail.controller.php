@@ -6,15 +6,14 @@ require_once __DIR__."/../ext/PHPMailer/class.smtp.php";
 class ctrMail{
 	public static function EnviarMail($asunto, $cuerpo, $correos, $adjuntos, $CopiaOculta = null, $usuario = null){
 		
-		$email_user = "info@incapacidades.co";
-  		$email_password = "1143231494ABc_";
 		
 		$from_name = "Info Incapacidades";
 		$phpmailer = new PHPMailer(); 
 		$phpmailer->CharSet = 'UTF-8';
 		// ---------- datos de la cuenta de Gmail -------------------------------
-		$phpmailer->Username = $email_user;
-		$phpmailer->Password = $email_password; 
+		
+		$phpmailer->Username = 'soltic@coolechera.com';
+		$phpmailer->Password = '47Y@FuH55uti'; 
 		//-----------------------------------------------------------------------
 		// $phpmailer->SMTPDebug = 1;
 		$phpmailer->SMTPSecure = 'tls';
@@ -69,15 +68,14 @@ class ctrMail{
 			$horafin = 	date('His', $fechahorafin);
 		}
 
-		$email_user = "info@incapacidades.co";
-  		$email_password = "1143231494ABc_";
 
 		$from_name = "Notificaciones";
 		$phpmailer = new PHPMailer(); 
 		$phpmailer->CharSet = 'UTF-8';
 		// ---------- datos de la cuenta de Gmail -------------------------------
-		$phpmailer->Username = $email_user;
-		$phpmailer->Password = $email_password; 
+
+		$phpmailer->Username = 'soltic@coolechera.com';
+		$phpmailer->Password = '47Y@FuH55uti'; 
 		//-----------------------------------------------------------------------
 		// $phpmailer->SMTPDebug = 1;
 		$phpmailer->SMTPSecure = 'tls';
@@ -136,8 +134,8 @@ class ctrMail{
 		$phpmailer = new PHPMailer(); 
 		$phpmailer->CharSet = 'UTF-8';
 		// ---------- datos de la cuenta de Gmail -------------------------------
-		$phpmailer->Username = 'sos@coolechera.com';
-		$phpmailer->Password = 'C00l3ch3r42022'; 
+		$phpmailer->Username = 'soltic@coolechera.com';
+		$phpmailer->Password = '47Y@FuH55uti'; 
 		//-----------------------------------------------------------------------
 		$phpmailer->SMTPSecure = 'tls';
 		$phpmailer->Host = "smtp.office365.com";
